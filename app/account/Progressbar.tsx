@@ -8,7 +8,7 @@ const Progressbar: React.FC<ProgressbarProps> = ({
   percentage,
   circleWidth,
 }) => {
-  const radius = 85;
+  const radius = 75;
   const dashArray = radius * Math.PI * 2;
   const dashOffset = dashArray - (dashArray * percentage) / 100;
   return (

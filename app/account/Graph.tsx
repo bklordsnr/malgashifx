@@ -54,12 +54,12 @@ const Graph = () => {
     scales: {
       x: {
         grid: {
-          display: false,
+          display: true,
         },
       },
       y: {
         min: 0,
-        max: 10000,
+        max: 3000,
         ticks: {
           callback: (value: any) => value + "$",
         },
