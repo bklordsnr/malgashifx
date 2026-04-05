@@ -16,7 +16,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Malgashi FX Ltd - Forex Trading Platform",
+  title: "Malgashi FX Trading - Forex Trading Platform",
   description:
     "Next-Level Trading and Investment",
 };

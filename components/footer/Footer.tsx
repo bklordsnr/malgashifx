@@ -48,7 +48,7 @@ const Footer = () => {
           </div>
           <div className="mt-9 text-muted-foreground text-center text-sm">
             {" "}
-            &copy; {new Date().getFullYear()} By MALGASHI INVESTMENT
+            &copy; {new Date().getFullYear()} By MALGASHI FX TRADING
           </div>
         </div>
       </Container>
