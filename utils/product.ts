@@ -1,0 +1,41 @@
+export const products = [
+  {
+    id: "65bf49743eda8f76799a9535",
+    name: "Basic Package",
+    description:
+      "Principal return on maturity, instant withdrawal to your mobile money or bank profession chart and 24/7 support. package maturity time 24-25 hours maximum",
+    price: "500",
+    profit: "3000",
+    category: "basic",
+    availability: true,
+    personalAccount: true,
+    swapdiscount: false,
+    customizedinvestment: false,
+  },
+  {
+    id: "65bf49743eda8f76799a9536",
+    name: "Basic Package",
+    description:
+      "Principal return on maturity, instant withdrawal to your mobile money or bank profession chart and 24/7 support. package maturity time 24-25 hours maximum",
+    price: "800",
+    profit: "4800",
+    category: "basic",
+    availability: true,
+    personalAccount: true,
+    swapdiscount: false,
+    customizedinvestment: false,
+  },
+  {
+    id: "65bf49857535ed36c71b28f4",
+    name: "Basic Package",
+    description:
+      "Principal return on maturity, instant withdrawal to your mobile money or bank profession chart and 24/7 support. package maturity time 24-25 hours maximum",
+    price: "900",
+    profit: "5400",
+    category: "basic",
+    availability: true,
+    personalAccount: true,
+    swapdiscount: false,
+    customizedinvestment: false,
+  },
+];

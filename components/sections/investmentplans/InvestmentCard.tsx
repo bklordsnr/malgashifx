@@ -1,0 +1,146 @@
+"use client";
+
+import { IoCheckmarkDone } from "react-icons/io5";
+import { RiCloseLine } from "react-icons/ri";
+import { useRouter } from "next/navigation";
+import { formatPrice } from "@/utils/formatPrice";
+import { useEffect, useState } from "react";
+import { useCart } from "@/hook/useCart";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+
+interface InvestmentCardProps {
+  product: any;
+}
+
+const InvestmentCard: React.FC<InvestmentCardProps> = ({ product }) => {
+  const { cartProducts } = useCart();
+  const router = useRouter();
+  const [active, setActive] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (!cartProducts || cartProducts?.length < 0) {
+      setActive(false);
+    }
+  }, [cartProducts]);
+
+  return (
+    <div className="rounded-[15px] border w-full md:max-w-[350px] p-4">
+      <div className="flex flex-col items-center w-full gap-1 ">
+        <div className="mr-auto p-[2px] rounded-[15px] border w-[80px]">
+          {product.swapdiscount ? (
+            <div className="text-center text-destructive">
+              {product.category}
+            </div>
+          ) : (
+            <div className="text-center text-primary">{product.category}</div>
+          )}
+        </div>
+
+        <div className="mr-auto mt-2">
+          <span className="text-xl font-medium text-secondary-foreground">
+            Invest
+          </span>
+          <div className="font-semibold text-2xl flex flex-row">
+            <span className="text-3xl block mt-2 text-secondary-foreground">
+              {formatPrice(product.price)}
+            </span>
+          </div>
+        </div>
+
+        <div className="mt-4 w-full">
+          {product.swapdiscount ? (
+            <div className="flex justify-between">
+              <div className="flex items-center">
+                <IoCheckmarkDone size={24} className="text-primary mr-2" />
+                <span>Leverage:</span>
+              </div>
+              <div className="text-primary">1:1000</div>
+            </div>
+          ) : (
+            <div className="flex justify-between">
+              <div className="flex items-center">
+                <IoCheckmarkDone size={24} className="text-primary mr-2" />
+                <span>Leverage:</span>
+              </div>
+              <div className="text-primary">1:500</div>
+            </div>
+          )}
+
+          {product.swapdiscount ? (
+            <div className="flex justify-between mt-2">
+              <div className="flex items-center">
+                <IoCheckmarkDone size={24} className="text-primary mr-2" />
+                <span>Holding Period:</span>
+              </div>
+              <div className="text-primary">48 hrs</div>
+            </div>
+          ) : (
+            <div className="flex justify-between mt-2">
+              <div className="flex items-center">
+                <IoCheckmarkDone size={24} className="text-primary mr-2" />
+                <span>Holding Period:</span>
+              </div>
+              <div className="text-primary">24 hrs</div>
+            </div>
+          )}
+
+          {product.swapdiscount ? (
+            <div className="flex justify-between mt-2">
+              <div className="flex items-center">
+                <IoCheckmarkDone size={24} className="text-primary mr-2" />
+                <span>Swap Discount:</span>
+              </div>
+              <div className="text-primary">yes</div>
+            </div>
+          ) : (
+            <div className="flex justify-between mt-2">
+              <div className="flex items-center">
+                <RiCloseLine size={24} className="text-muted mr-2" />
+                <span className="text-muted">Swap Discount:</span>
+              </div>
+              <div className="text-muted">No</div>
+            </div>
+          )}
+
+          {product.customizedinvestment ? (
+            <div className="flex justify-between mt-2">
+              <div className="flex items-center">
+                <IoCheckmarkDone size={24} className="text-primary mr-2" />
+                <span>Customized Investment:</span>
+              </div>
+              <div className="text-primary">yes</div>
+            </div>
+          ) : (
+            <div className="flex justify-between mt-2">
+              <div className="flex items-center">
+                <RiCloseLine size={24} className="text-muted mr-2" />
+                <span className="text-muted">Customized Investment:</span>
+              </div>
+              <div className="text-muted">No</div>
+            </div>
+          )}
+        </div>
+
+        <div className="mr-auto mt-2">
+          <span className="text-xl font-medium text-secondary-foreground">
+            Profit
+          </span>
+          <div className="font-semibold text-2xl flex flex-row">
+            <span className="text-3xl block mt-2 text-secondary-foreground">
+              {formatPrice(product.profit)}
+            </span>
+          </div>
+        </div>
+
+        <div className="mt-2 w-full">
+          <Link href={`/account`}>
+            <Button className="w-full ">Invest</Button>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default InvestmentCard;

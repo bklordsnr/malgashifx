@@ -1,0 +1,89 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+}
+
+model Account {
+  id                 String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId             String  @db.ObjectId
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.String
+  access_token       String?  @db.String
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.String
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model User {
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  TotalBalance       Int?     @default(0)
+  Deposit       Int?     @default(0)
+  Profit       Int?     @default(0)
+  Rate       Int?     @default(0)
+  withdrawal String?  @default("null")
+  image         String?
+  hashedPassword String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  role Role  @default(USER)
+
+  accounts      Account[]
+  order          Order[]
+}
+
+model Order {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId  String  @db.ObjectId 
+  amount Int
+  currency String
+  status String
+  ProfitStatus String
+  createdDate DateTime @default(now())
+  paymentIntentId String @unique
+  products CartPlanType[]
+  adress Address?
+
+   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+} 
+
+
+ type CartPlanType{
+  id String
+  name String
+  price String
+  profit String
+  category String
+  customizedinvestment Boolean
+  swapdiscount Boolean
+  personalAccount Boolean
+  availability Boolean
+}
+
+type Address {
+ city String
+ country String
+ line1 String
+ line2 String?
+ postal_code  String
+ state String
+}
+
+enum Role{
+    USER
+    ADMIN
+}
