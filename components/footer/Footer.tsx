@@ -1,5 +1,3 @@
-import Image from "next/image";
-import logo from "@/public/logo-image/logo.png";
 import FooterList from "./FooterList";
 import Link from "next/link";
 import Container from "../Container";
@@ -10,16 +8,6 @@ const Footer = () => {
       <Container>
         <div>
           <div className="flex gap-5 flex-col md:flex-row">
-            <div className="flex flex-col gap-2 w-full max-w-[400px] space-y-3 ">
-              <div className="w-[150px] relative">
-                <Image src={logo} alt="footerlogo" className="w-full h-auto" />
-              </div>
-
-              <p className="text-card-foreground text-sm">
-                Convert your money into a source income with the
-                best forex traders.
-              </p>
-            </div>
             <div className="text-muted-foreground text-sm gap-y-8 gap-x-4 flex flex-row justify-between w-full flex-wrap ">
               <FooterList>
                 <h3 className="uppercase text-secondary-foreground font-medium text-base">
