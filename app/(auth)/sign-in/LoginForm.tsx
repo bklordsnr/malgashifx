@@ -35,14 +35,14 @@ const LoginForm = () => {
         if (callback?.ok) {
           router.push("/account");
           router.refresh();
-          toast.success("Logged in");
+          toast.success("Good Job!");
         }
         if (callback?.error) {
           toast.error(callback.error);
         }
       })
       .catch(() => {
-        toast.error("something went wrong");
+        toast.error("This didn't work.");
       })
       .finally(() => {
         setIsLoading(false);
@@ -56,7 +56,7 @@ const LoginForm = () => {
         variant={"outline"}
         onClick={() => signIn("google")}
       >
-        <FcGoogle size={18} /> Google
+        <FcGoogle size={18} /> Sign up with Google
       </Button>
 
       <div className="w-full flex items-center">

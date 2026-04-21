@@ -38,7 +38,7 @@ const Graph = () => {
     ],
     datasets: [
       {
-        label: "Investment progress",
+        
         data: [0],
         backgroundColor: "transparent",
         borderColor: "#FF4949",

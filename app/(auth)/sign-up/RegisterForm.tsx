@@ -42,7 +42,7 @@ const RegisterForm = () => {
           if (callback?.ok) {
             router.push("/account");
             router.refresh();
-            toast.success("Loggin in");
+            toast.success("Good Job!");
           }
           if (callback?.error) {
             toast.error(callback.error);
@@ -50,7 +50,7 @@ const RegisterForm = () => {
         });
       })
       .catch(() => {
-        toast.error("something went wrong");
+        toast.error("This didn't work.");
       })
       .finally(() => {
         setIsLoading(false);
@@ -60,7 +60,7 @@ const RegisterForm = () => {
   return (
     <>
       <Button className="w-full flex items-center gap-x-3" variant={"outline"} onClick={() => signIn('google')}>
-        <FcGoogle size={18} /> Google
+        <FcGoogle size={18} /> Sign up with Google
       </Button>
       <Input
         id="name"

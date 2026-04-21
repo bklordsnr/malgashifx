@@ -10,33 +10,32 @@ const Footer = () => {
           <div className="flex gap-5 flex-col md:flex-row">
             <div className="text-muted-foreground text-sm gap-y-8 gap-x-4 flex flex-row justify-between w-full flex-wrap ">
               <FooterList>
-                <h3 className="uppercase text-secondary-foreground font-medium text-base">
+                <span className="uppercase text-secondary-foreground  text-sm">
                   Trade
-                </h3>
-                <Link href={"/trade"}>Currency Pairs</Link>
+                </span>
+                <Link href={"/trade"}>Pairs</Link>
                 <Link href={"/trade"}>Shares</Link>
               </FooterList>
 
               <FooterList>
-                <h3 className="uppercase text-secondary-foreground font-medium text-base">
+                <span className="uppercase text-secondary-foreground text-sm">
                   About Company
-                </h3>
+                </span>
                 <Link href={"/aboutcompany"}>About us</Link>
-                <a href="https://t.me/malgashiadmin">Contact us</a>
+                <a href="https://t.me/malgashiadmin">Telegram</a>
               </FooterList>
 
               <FooterList>
-                <h3 className="uppercase text-secondary-foreground font-medium text-base">
+                <span className="uppercase text-secondary-foreground text-sm">
                   Faq
-                </h3>
+                </span>
                 <Link href={"/faqs"}>How to invest</Link>
-                <Link href={"/faqs/#regulation"}>Regulation</Link>
               </FooterList>
             </div>
           </div>
           <div className="mt-9 text-muted-foreground text-center text-sm">
             {" "}
-            &copy; {new Date().getFullYear()} By MALGASHI TRADERS
+            &copy; {new Date().getFullYear()} By Malgashi Traders
           </div>
         </div>
       </Container>

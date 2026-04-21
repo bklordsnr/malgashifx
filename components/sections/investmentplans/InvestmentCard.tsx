@@ -25,7 +25,7 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product }) => {
   }, [cartProducts]);
 
   return (
-    <div className="rounded-[15px] border w-full md:max-w-[350px] p-4">
+    <div className="rounded-[15px] border w-full md:max-w-[350px] p-4 border-custom2 ">
       <div className="flex flex-col items-center w-full gap-1 ">
         <div className="mr-auto p-[2px] rounded-[15px] border w-[80px]">
           {product.swapdiscount ? (
@@ -135,7 +135,7 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product }) => {
 
         <div className="mt-2 w-full">
           <Link href={`/account`}>
-            <Button className="w-full ">Invest</Button>
+            <Button className="w-full border-custom">Invest</Button>
           </Link>
         </div>
       </div>

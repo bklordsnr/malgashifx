@@ -29,10 +29,10 @@ export const Couresel = () => {
         {seriesCoins.map((coin) => (
           <div key={coin.id} className="embla__slide  flex-1 w-full">
             <div className="flex flex-row gap-4">
-              <span className="text-muted-foreground font-normal">
+              <span className="text-muted-foreground text-sm">
                 {TruncateText(coin.name)}
               </span>
-              <span className="bg-primary bg-clip-text text-transparent font-normal">
+              <span className="bg-primary bg-clip-text text-transparent text-sm">
                 {parseFloat(coin.trade_volume_24h_btc).toFixed(2)}
               </span>
             </div>

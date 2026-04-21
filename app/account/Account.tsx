@@ -20,12 +20,12 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
     <>
       {/* left side */}
       <div className="w-full">
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-row items-center gap-2">
           <span className="text-secondary-foreground text-xl font-medium flex flex-row items-center gap-2">
-            Welcome back
+            Welcome back 
           </span>
-          <span className="text-secondary-foreground font-semibold text-3xl capitalize">
-            {currentUser?.name}
+          <span className="text-muted-foreground text-base capitalize">
+            ~ {currentUser?.name}
           </span>
         </div>
 
@@ -33,7 +33,7 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
         <div className="relative mt-10 bg-card border rounded-md overflow-hidden w-full max-w-[450px] max-h-[200px] h-full px-4 flex justify-between">
           <div className="w-full max-w-[60%] flex flex-col py-5 justify-between z-10">
             <div className="flex flex-col pt-3 space-y-2">
-              <span className="text-secondary-foreground text-sm">
+              <span className="text-muted-foreground text-sm">
                 Total Balance
               </span>
               <span className="text-secondary-foreground font-semibold text-2xl md:text-3xl">
@@ -75,7 +75,7 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
         <div className="justify-between grid grid-cols-1 md:grid-cols-2 gap-y-5 sm:gap-y-0 sm:gap-x-7  ">
           <div className=" w-full md:max-w-[300px] bg-card border rounded-md px-4 h-[100px] flex justify-between">
             <div className="flex flex-col py-5 justify-between">
-              <span className="text-sm text-secondary-foreground">
+              <span className="text-sm text-muted-foreground">
                 Invested Value
               </span>
               <span className="text-secondary-foreground font-semibold text-xl">
@@ -93,7 +93,7 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
 
           <div className=" w-full md:max-w-[300px] bg-card border rounded-md px-4 h-[100px] flex justify-between">
             <div className="flex flex-col py-5 justify-between">
-              <span className="text-sm text-secondary-foreground">
+              <span className="text-sm text-muted-foreground">
                 Targeted Profits
               </span>
               <span className="text-secondary-foreground font-semibold text-xl">
@@ -112,8 +112,8 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
             <ProfitsProgress currentUser={currentUser} />
           </div>
 
-          <div className="w-[100%] md:w-[60%] ">
-            <span className="text-secondary-foreground">Investment Track</span>
+          <div className="w-[100%] md:w-[60%] text-sm">
+            <span className="text-muted-foreground">Investment Track</span>
             <Graph />
           </div>
         </div>

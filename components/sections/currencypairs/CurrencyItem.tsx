@@ -18,7 +18,7 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({
   green,
 }) => {
   return (
-    <div className="border rounded-[15px] p-5 md:max-w-[370px] w-full">
+    <div className="border-custom2  rounded-[15px] p-5 md:max-w-[370px] w-full">
       <div className="flex flex-row  items-center">
         <div className="mr-4 relative w-[80px]">
           <Image src={image} alt="image" className="w-full h-auto"  loading="lazy" />

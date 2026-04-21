@@ -31,7 +31,7 @@ const UnderDevelopment = () => {
 
         <div className="w-full max-w-[500px] aspect-square relative">
           <Image
-            src="/assets/404.png"
+            src="/assets/trade.png"
             alt="space png"
             fill
             className="object-cover object-center"

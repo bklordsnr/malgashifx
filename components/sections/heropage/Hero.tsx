@@ -16,7 +16,6 @@ import graphred from "@/public/assets/graphred.svg";
 import InvestmentCard from "../investmentplans/InvestmentCard";
 import { MdOutlineCloudDownload } from "react-icons/md";
 import { products } from "@/utils/product";
-import { TestimonialCard } from "../testimonials/TestimonialCard";
 import { IoCheckmarkDone } from "react-icons/io5";
 import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -28,32 +27,31 @@ const Hero = () => {
       <Container>
         {/* homepage section */}
         <section>
-          <div className="h-[calc(100vh-64px)] justify-between flex flex-col z-10">
-            <div className="flex flex-col sm:flex-row mt-auto mb-auto justify-between gap-x-2">
-              <div className="w-full flex items-center">
-                <div className="flex flex-col gap-8 z-10">
-                  <h2 className="text-4xl md:text-5xl font-semibold">
-                    Don&apos;t be late <br /> investment is great
-                  </h2>
-                  <p className="text-muted-foreground max-w-[550px]">
-                    Invest with us today and enjoy a 5% - 8% yield with low risk
-                    through our tokenised treasuries and corporate bonds.
-                  </p>
-                  <div
-                    className=" 
-            max-w-[300px]"
-                  >
-                    <Button className="w-full max-w-[500px]">
-                      <Link href="/account">Get Started Now</Link>
-                    </Button>
-                  </div>
+          <div className="h-[calc(100vh-64px)] flex flex-col justify-between z-10">
+            <div className="flex flex-col md:flex-row items-center md:items-center justify-center md:justify-between gap-10 flex-1">
+              {/* LEFT */}
+              <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left gap-8">
+                <h2 className="text-4xl md:text-5xl font-semibold">
+                  Don&apos;t be late <br /> investment is great
+                </h2>
+
+                <p className="text-muted-foreground max-w-[700px]">
+                  Invest with us today and enjoy a 5% - 8% yield with low risk
+                  through our tokenised treasuries and corporate bonds.
+                </p>
+
+                <div className="max-w-[300px] w-full">
+                  <Button className="w-full border-custom">
+                    <Link href="/account">Get Started Now</Link>
+                  </Button>
                 </div>
               </div>
 
-              <div className="w-full sm:flex hidden   justify-center items-center ">
+              {/* RIGHT IMAGE */}
+              <div className="hidden md:flex justify-center md:justify-end w-full md:w-1/2">
                 <div className="relative aspect-square w-full max-w-[400px]">
                   <Image
-                    src="/assets/technology.png"
+                    src="/assets/money.png"
                     fill
                     alt="technology"
                     className="object-cover object-center"
@@ -62,7 +60,8 @@ const Hero = () => {
               </div>
             </div>
 
-            <div className="pb-5">
+            {/* BOTTOM */}
+            <div className="pb-5 flex justify-center">
               <Couresel />
             </div>
           </div>
@@ -74,7 +73,7 @@ const Hero = () => {
           <div>
             <div className="flex flex-col gap-6">
               <div>
-                <Button>About us</Button>
+                <Button className="border-custom">About us</Button>
               </div>
               <SectionHeading title="Why choose us?" />
             </div>
@@ -114,7 +113,7 @@ const Hero = () => {
         <section className="py-10">
           <div className="flex flex-col gap-6">
             <div>
-              <Button>Currency</Button>
+              <Button className="border-custom">Currency</Button>
             </div>
             <SectionHeading title="Currency Pairs" />
           </div>
@@ -147,10 +146,10 @@ const Hero = () => {
           </div>
 
           <div className="pt-20 w-full">
-            <div className=" border rounded-[15px]  pl-4 pr-4 bg-card w-full md:max-w-[800px]  flex flex-col md:flex-row items-center justify-between m-auto">
+            <div className="border-custom2  rounded-[15px]  pl-4 pr-4 bg-card w-full md:max-w-[800px]  flex flex-col md:flex-row items-center justify-between m-auto">
               <div className="relative w-full aspect-square max-w-[300px]">
                 <Image
-                  src="/assets/cartoon.png"
+                  src="/assets/prices.png"
                   alt="cartoon"
                   fill
                   className="object-cover"
@@ -159,7 +158,7 @@ const Hero = () => {
 
               <div className="pt-4 pb-3 flex flex-col w-full md:w-auto max-w-[400px]">
                 <div>
-                  <Button>Prices</Button>
+                  <Button className="border-custom">Prices</Button>
                 </div>
 
                 <h2 className="font-semibold text-2xl mt-2 mb-2 text-secondary-foreground">
@@ -173,7 +172,7 @@ const Hero = () => {
                 </p>
 
                 <div className="w-full">
-                  <Button className="w-full mt-4 sm:m-0">
+                  <Button className="w-full mt-4 sm:m-0 border-custom">
                     <Link href="/investmentplans">Investment Prices</Link>
                   </Button>
                 </div>
@@ -187,12 +186,12 @@ const Hero = () => {
         <section className="py-10">
           <div className="flex flex-col gap-6">
             <div>
-              <Button>For investors</Button>
+              <Button className="border-custom">For investors</Button>
             </div>
             <SectionHeading title="Investment Plans" />
           </div>
 
-          <div className="flex flex-wrap justify-between gap-8 mt-8">
+          <div className="flex flex-wrap justify-between gap-8 mt-8 ">
             {products.slice(0, 3).map((product) => {
               return <InvestmentCard product={product} key={product.id} />;
             })}
@@ -216,7 +215,7 @@ const Hero = () => {
         <section className="py-10">
           <div className="flex flex-col gap-6">
             <div>
-              <Button>First steps</Button>
+              <Button className="border-custom">First steps</Button>
             </div>
             <SectionHeading title="Let's create your account" />
           </div>
@@ -225,11 +224,11 @@ const Hero = () => {
             <div className=" w-full max-w-[600px]">
               <div>
                 <p className="text-muted-foreground text-sm">
-                  We are a Fintech trading company located in United Arab Emirates, with a
-                  direct objective to make trading simple and accessible to
-                  everyone transparently and securely environment. We do not
-                  believe in trading just for traders. we believe in trading for
-                  everyone.
+                  We are a Fintech trading company located in United Arab
+                  Emirates, with a direct objective to make trading simple and
+                  accessible to everyone transparently and securely environment.
+                  We do not believe in trading just for traders. we believe in
+                  trading for everyone.
                 </p>
               </div>
 
@@ -278,13 +277,13 @@ const Hero = () => {
               </div>
             </div>
 
-            <div className="w-full flex justify-center mt-5 lg:justify-end md:mt-[-50px]">
-              <div className="aspect-square relative w-full max-w-[450px]">
+            <div className="w-full flex justify-center items-center mt-5 md:justify-end md:mt-[-50px]">
+              <div className="aspect-square relative w-full max-w-[400px] ">
                 <Image
-                  src="/assets/accountcreation.png"
+                  src="/assets/createacc.png"
                   alt="account"
                   fill
-                  className="object-cover "
+                  className="object-contain object-center"
                   loading="lazy"
                 />
               </div>
@@ -295,22 +294,21 @@ const Hero = () => {
         {/* create account */}
 
         <section className="py-10">
-
           <div className="w-full">
-            <div className="flex flex-col md:flex-row items-center justify-between border rounded-[15px] max-w-[800px] py-7 pr-7 gap-5 pl-7 m-auto ">
-              <div className="overflow-hidden relative w-full max-w-[400px] h-[200px] aspect-square rounded-[15px]">
+            <div className="flex flex-col md:flex-row items-center justify-between border-custom2 rounded-[15px] max-w-[800px] py-7 pr-7 gap-5 pl-7 m-auto ">
+              <div className="relative w-full aspect-square rounded-[15px] max-w-[250px] hidden md:flex">
                 <Image
-                  src="/assets/sample1.jpg"
+                  src="/assets/ready.png"
                   alt="sample1"
                   fill
-                  className="object-cover w-full"
+                  className="object-contain"
                   loading="lazy"
                 />
               </div>
 
               <div className="">
                 <div>
-                  <Button>Start</Button>
+                  <Button className="border-custom">Start</Button>
                 </div>
                 <h2 className="text-secondary-foreground font-semibold text-2xl mt-2 mb-2">
                   Ready to Invest?
@@ -321,7 +319,7 @@ const Hero = () => {
                 </p>
 
                 <div className="mt-4 pb-2">
-                  <Button className="w-full">
+                  <Button className="w-full border-custom">
                     <a href="/account">Create Account</a>
                   </Button>
                 </div>

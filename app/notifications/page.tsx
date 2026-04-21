@@ -13,7 +13,7 @@ function page() {
         <div className="flex flex-col justify-center items-center">
           <div className="aspect-square relative w-[290px] h-full">
             <Image
-              src="/assets/emptyinbox.png"
+              src="/assets/notificationsv3.png"
               fill
               className="object-cover object-center"
               alt="notification image"

@@ -18,10 +18,10 @@ const page = async () => {
             <div className="w-full bg-card rounded-md max-w-[400px] border p-8">
               <div className="space-y-1 mb-8">
                 <h1 className="text-secondary-foreground font-semibold text-2xl">
-                  Create an account
+                  Create your account
                 </h1>
                 <p className="text-muted-foreground text-sm">
-                  Enter your email below to create your account
+                  Enter your email below to sign up
                 </p>
               </div>
               <FormWrapper>

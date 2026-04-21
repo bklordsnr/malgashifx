@@ -11,7 +11,7 @@ import { buttonVariants } from "../ui/button";
 const Navbar = async () => {
   const currentUser = await getCurrentUser();
   return (
-    <nav className="sticky top-0 w-full z-50 inset-x-0 py-2 border-b border-border backdrop-blur-md ">
+    <nav className="sticky top-0 w-full z-50 inset-x-0 py-2 border border-border backdrop-blur-md  ">
       <Container>
         <div className="flex justify-between items-center h-16 relative">
           {/* logo */}
@@ -24,9 +24,6 @@ const Navbar = async () => {
           {/* middle links*/}
           <div className="hidden lg:flex  items-center ">
             <ul className="flex flex-row items-center gap-5 text-secondary-foreground ">
-              <a href="https://t.me/malgashiadmin" target="_blank">
-                <li>Telegram</li>
-              </a>
               <Link href="/trade">
                 <li>Trade</li>
               </Link>

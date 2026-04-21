@@ -125,18 +125,6 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
         ) : (
           <div className="z-30 px-4 py-3 ">
             <div className="flex flex-col gap-4">
-              <a href="https://t.me/malgashiadmin">
-                <MenuItem
-                  url="platform"
-                  onClick={handleMenu}
-                  icon={LiaTelegramPlane}
-                >
-                  Telegram
-                </MenuItem>
-              </a>
-
-              <span className="w-full h-[1px] bg-secondary" />
-
               <Link href="/investmentplans">
                 <MenuItem
                   url="platform"

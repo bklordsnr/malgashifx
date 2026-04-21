@@ -33,10 +33,10 @@ const AboutCompany = () => {
           </div>
 
           {/* right */}
-          <div className="w-full flex justify-center items-center">
+          <div className="w-full flex justify-center items-center md:justify-end">
             <div className="w-full max-w-[400px] relative aspect-square">
               <Image
-                src="/assets/order.png"
+                src="/assets/about-us.png"
                 alt="about"
                 fill
                 className="object-cover object-center"
@@ -47,7 +47,7 @@ const AboutCompany = () => {
 
         <div id="ceo" className="py-10">
           <div className="flex flex-col sm:flex-row items-center justify-between">
-            <div className="w-full max-w-[400px] relative aspect-square overflow-hidden border mb-10 sm:mb-0">
+            <div className="w-full max-w-[400px] relative aspect-square overflow-hidden border mb-10 sm:mb-0 border-custom2">
               <Image
                 src="/assets/marktebo.png"
                 alt="ceo img"
