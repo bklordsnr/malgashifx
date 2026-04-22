@@ -24,7 +24,7 @@ function page() {
             No notification right now!
           </h2>
 
-          <div className="flex items-center">
+          <div className="flex items-center text-sm">
             <a
               href="/account"
               className={cn(buttonVariants({ variant: "link" }))}

@@ -81,15 +81,10 @@ const Hero = () => {
             <div className="flex items-start justify-between gap-10 flex-col lg:flex-row">
               <div className="max-w-[500px] text-muted-foreground text-sm mt-7 mr-auto">
                 <p>
-                  We focus on offering our customers a transparent and
-                  cost-effective service commercial conditions, cutting-edge
-                  technology and great support
-                </p>
-
-                <p className="mt-4 mb-4 ">
-                  We are on a mission to create a unique trading platform
-                  Designed to suit traders of all levels, from beginners Who has
-                  never negotiated with experienced professionals?
+                  We provide a transparent, cost-effective service with modern
+                  technology and strong support. Our goal is to build a unique
+                  platform for both traders and investors of all experience
+                  levels—from beginners to professionals.
                 </p>
               </div>
 
@@ -161,14 +156,15 @@ const Hero = () => {
                   <Button className="border-custom">Prices</Button>
                 </div>
 
-                <h2 className="font-semibold text-2xl mt-2 mb-2 text-secondary-foreground">
+                <h2 className="font-semibold text-xl mt-2 mb-2 text-secondary-foreground">
                   Invest with low prices
                 </h2>
 
-                <p className="w-full text-muted-foreground my-2 text-sm">
-                  With us, you get a transparent pricing structure and a safe,
-                  regulated trading environment. As an amateur or professional
-                  trader, you can also qualify for lower fees and extra benefits
+                <p className="w-full text-muted-foreground my-3 text-sm">
+                  Enjoy clear, transparent pricing in a safe and regulated
+                  environment. Whether you’re a beginner or an experienced
+                  trader or investor, you can benefit from lower fees, reliable
+                  technology, and added advantages as you grow.
                 </p>
 
                 <div className="w-full">
@@ -224,11 +220,10 @@ const Hero = () => {
             <div className=" w-full max-w-[600px]">
               <div>
                 <p className="text-muted-foreground text-sm">
-                  We are a Fintech trading company located in United Arab
-                  Emirates, with a direct objective to make trading simple and
-                  accessible to everyone transparently and securely environment.
-                  We do not believe in trading just for traders. we believe in
-                  trading for everyone.
+                  Get started in minutes with a simple and secure sign-up
+                  process. Join a trusted Dubai-based platform designed to make
+                  trading and investing accessible, transparent, and easy for
+                  everyone.
                 </p>
               </div>
 
@@ -238,12 +233,9 @@ const Hero = () => {
                     <IoCheckmarkDone size={24} className="text-primary" />
                   </div>
                   <div className="flex flex-col mr-auto">
-                    <span className="text-secondary-foreground normal-case text-base mb-1">
+                    <span className="text-secondary-foreground normal-case text-sm mb-1">
                       First start you creating an account followed by choosing
-                      an investment package from our plans.
-                    </span>
-                    <span className="text-muted-foreground text-sm">
-                      Can be done by navigating to the account section.
+                      an investment plan.
                     </span>
                   </div>
                 </div>
@@ -252,12 +244,8 @@ const Hero = () => {
                     <IoCheckmarkDone size={24} className="text-primary" />
                   </div>
                   <div className="flex flex-col mr-auto">
-                    <span className="text-secondary-foreground normal-case text-base mb-1">
-                      Make payment
-                    </span>
-                    <span className="text-muted-foreground text-sm">
-                      Contact the administrator so you can make payment with
-                      your preferred mobile wallet
+                    <span className="text-secondary-foreground normal-case text-sm mb-1">
+                      Second You Make payment
                     </span>
                   </div>
                 </div>
@@ -266,11 +254,8 @@ const Hero = () => {
                     <IoCheckmarkDone size={24} className="text-primary" />
                   </div>
                   <div className="flex flex-col mr-auto">
-                    <span className="text-secondary-foreground normal-case text-base mb-1">
-                      Investment will start!
-                    </span>
-                    <span className="text-muted-foreground text-sm">
-                      Investment will begin as soon as the payment is made.
+                    <span className="text-secondary-foreground normal-case text-sm mb-1">
+                      Third investment will start you wait for the profit!
                     </span>
                   </div>
                 </div>
@@ -310,7 +295,7 @@ const Hero = () => {
                 <div>
                   <Button className="border-custom">Start</Button>
                 </div>
-                <h2 className="text-secondary-foreground font-semibold text-2xl mt-2 mb-2">
+                <h2 className="text-secondary-foreground font-semibold text-xl mt-2 mb-2">
                   Ready to Invest?
                 </h2>
                 <p className="text-muted-foreground max-w-[400px] text-sm">

@@ -11,10 +11,10 @@ const UnderDevelopment = () => {
     <div className="flex items-center justify-center h-full">
       <div className="flex flex-col sm:flex-row justify-between items-center w-full pt-12 sm:pt-0 ">
         <div className="mr-auto text-start">
-          <h1 className="text-foreground text-3xl sm:text-4xl font-semibold">
+          <h1 className="text-foreground text-xl font-semibold">
             Oops!
           </h1>
-          <p className="text-muted-foreground sm:text-xl">
+          <p className="text-muted-foreground text-sm">
             Page under development...
           </p>
 

@@ -38,11 +38,11 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product }) => {
         </div>
 
         <div className="mr-auto mt-2">
-          <span className="text-xl font-medium text-secondary-foreground">
+          <span className="text-base font-medium text-secondary-foreground">
             Invest
           </span>
-          <div className="font-semibold text-2xl flex flex-row">
-            <span className="text-3xl block mt-2 text-secondary-foreground">
+          <div className="font-semibold text-xl flex flex-row">
+            <span className=" block mt-2 text-secondary-foreground">
               {formatPrice(product.price)}
             </span>
           </div>
@@ -52,44 +52,44 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product }) => {
           {product.swapdiscount ? (
             <div className="flex justify-between">
               <div className="flex items-center">
-                <IoCheckmarkDone size={24} className="text-primary mr-2" />
-                <span>Leverage:</span>
+                <IoCheckmarkDone size={20} className="text-primary mr-2" />
+                <span className="text-muted-foreground text-sm">Leverage:</span>
               </div>
-              <div className="text-primary">1:1000</div>
+              <div className="text-primary text-sm">1:1000</div>
             </div>
           ) : (
             <div className="flex justify-between">
               <div className="flex items-center">
-                <IoCheckmarkDone size={24} className="text-primary mr-2" />
-                <span>Leverage:</span>
+                <IoCheckmarkDone size={20} className="text-primary mr-2" />
+                <span className="text-muted-foreground text-sm">Leverage:</span>
               </div>
-              <div className="text-primary">1:500</div>
+              <div className="text-primary text-sm">1:500</div>
             </div>
           )}
 
           {product.swapdiscount ? (
             <div className="flex justify-between mt-2">
               <div className="flex items-center">
-                <IoCheckmarkDone size={24} className="text-primary mr-2" />
-                <span>Holding Period:</span>
+                <IoCheckmarkDone size={20} className="text-primary mr-2" />
+                <span className="text-muted-foreground text-sm">Holding Period:</span>
               </div>
-              <div className="text-primary">48 hrs</div>
+              <div className="text-primary text-sm">48 hrs</div>
             </div>
           ) : (
             <div className="flex justify-between mt-2">
               <div className="flex items-center">
-                <IoCheckmarkDone size={24} className="text-primary mr-2" />
-                <span>Holding Period:</span>
+                <IoCheckmarkDone size={20} className="text-primary mr-2" />
+                <span className="text-muted-foreground text-sm">Holding Period:</span>
               </div>
-              <div className="text-primary">24 hrs</div>
+              <div className="text-primary text-sm">24 hrs</div>
             </div>
           )}
 
           {product.swapdiscount ? (
             <div className="flex justify-between mt-2">
               <div className="flex items-center">
-                <IoCheckmarkDone size={24} className="text-primary mr-2" />
-                <span>Swap Discount:</span>
+                <IoCheckmarkDone size={20} className="text-primary mr-2" />
+                <span className="text-sm">Swap Discount:</span>
               </div>
               <div className="text-primary">yes</div>
             </div>
@@ -97,17 +97,17 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product }) => {
             <div className="flex justify-between mt-2">
               <div className="flex items-center">
                 <RiCloseLine size={24} className="text-muted mr-2" />
-                <span className="text-muted">Swap Discount:</span>
+                <span className="text-muted text-sm">Swap Discount:</span>
               </div>
-              <div className="text-muted">No</div>
+              <div className="text-muted text-sm">No</div>
             </div>
           )}
 
           {product.customizedinvestment ? (
             <div className="flex justify-between mt-2">
               <div className="flex items-center">
-                <IoCheckmarkDone size={24} className="text-primary mr-2" />
-                <span>Customized Investment:</span>
+                <IoCheckmarkDone size={20} className="text-primary mr-2" />
+                <span className="text-sm">Customized Investment:</span>
               </div>
               <div className="text-primary">yes</div>
             </div>
@@ -115,19 +115,19 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product }) => {
             <div className="flex justify-between mt-2">
               <div className="flex items-center">
                 <RiCloseLine size={24} className="text-muted mr-2" />
-                <span className="text-muted">Customized Investment:</span>
+                <span className="text-muted text-sm">Customized Investment:</span>
               </div>
-              <div className="text-muted">No</div>
+              <div className="text-muted text-sm">No</div>
             </div>
           )}
         </div>
 
         <div className="mr-auto mt-2">
-          <span className="text-xl font-medium text-secondary-foreground">
+          <span className="text-base font-medium text-secondary-foreground">
             Profit
           </span>
           <div className="font-semibold text-2xl flex flex-row">
-            <span className="text-3xl block mt-2 text-secondary-foreground">
+            <span className="text-xl block mt-2 text-secondary-foreground">
               {formatPrice(product.profit)}
             </span>
           </div>

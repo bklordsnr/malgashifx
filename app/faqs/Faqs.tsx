@@ -14,7 +14,7 @@ const Faqs = () => {
 
   return (
     <>
-      <h1 className="text-foreground text-2xl font-medium">
+      <h1 className="text-foreground text-xl font-medium">
         Frequently asked questions.
       </h1>
 

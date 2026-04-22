@@ -21,7 +21,7 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
       {/* left side */}
       <div className="w-full">
         <div className="flex flex-col items-start justify-start gap-2">
-          <span className="text-secondary-foreground text-lg font-medium flex flex-row items-center gap-2">
+          <span className="text-secondary-foreground text-xl font-medium flex flex-row items-center gap-2">
             Welcome back 
           </span>
           <span className="text-muted-foreground text-sm capitalize">

@@ -17,11 +17,12 @@ const AboutCompany = () => {
         <div className="h-full flex flex-col sm:flex-row items-center justify-between">
           {/* left */}
           <div className="w-full max-w-[500px] flex flex-col gap-5">
-            <h2 className="text-foreground font-semibold text-4xl">About Us</h2>
+            <h2 className="text-foreground font-semibold text-xl ">About Us</h2>
             <p className="text-muted-foreground text-sm">
-              we are a private online forex and CFD
-              broker committed to empower people to invest and trade with
-              confidence, in an innovative and trustworthy environment.
+              We are a Dubai-based company focused on making trading and
+              investing simple, transparent, and secure for everyone. Our
+              platform is built to be accessible to all—not just traders, but
+              anyone looking to grow their investments with confidence.
             </p>
 
             <div className="max-w-[300px] flex items-center gap-1">
@@ -67,7 +68,7 @@ const AboutCompany = () => {
 
               <div className="flex flex-col">
                 <span className="text-secondary-foreground">Tebo</span>
-                <span className="text-muted-foreground text-sms">
+                <span className="text-muted-foreground text-sm">
                   Ceo/Founder
                 </span>
               </div>

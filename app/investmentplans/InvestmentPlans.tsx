@@ -4,7 +4,7 @@ import { products } from "@/utils/product";
 const InvestmentPlans = () => {
   return (
     <>
-      <h1 className="text-secondary-foreground font-semibold text-2xl mb-8">Investment Plans</h1>
+      <h1 className="text-secondary-foreground font-semibold text-xl mb-8">Investment Plans</h1>
 
       <div className="flex flex-wrap justify-between gap-8 pb-8 w-full">
         {products.map((product) => {
