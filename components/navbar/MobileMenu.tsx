@@ -47,7 +47,7 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
         }
       >
         {currentUser ? (
-          <div className="z-30 px-4 py-3">
+          <div className="z-30 px-4 py-3 text-sm">
             <div>
               <div className="px-1 py-2 flex flex-col gap-3 z-30">
                 <Link href="/account">
@@ -123,7 +123,7 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
             </div>
           </div>
         ) : (
-          <div className="z-30 px-4 py-3 ">
+          <div className="z-30 px-4 py-3 text-sm">
             <div className="flex flex-col gap-4">
               <Link href="/investmentplans">
                 <MenuItem

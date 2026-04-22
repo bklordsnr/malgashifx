@@ -35,7 +35,7 @@ const Hero = () => {
                   Don&apos;t be late <br /> investment is great
                 </h2>
 
-                <p className="text-muted-foreground max-w-[700px]">
+                <p className="text-muted-foreground max-w-[700px] text-sm">
                   Invest with us today and enjoy a 5% - 8% yield with low risk
                   through our tokenised treasuries and corporate bonds.
                 </p>
@@ -165,7 +165,7 @@ const Hero = () => {
                   Invest with low prices
                 </h2>
 
-                <p className="w-full text-card-foreground my-2 text-sm">
+                <p className="w-full text-muted-foreground my-2 text-sm">
                   With us, you get a transparent pricing structure and a safe,
                   regulated trading environment. As an amateur or professional
                   trader, you can also qualify for lower fees and extra benefits

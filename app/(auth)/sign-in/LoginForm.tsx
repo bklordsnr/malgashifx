@@ -56,7 +56,7 @@ const LoginForm = () => {
         variant={"outline"}
         onClick={() => signIn("google")}
       >
-        <FcGoogle size={18} /> Sign up with Google
+        <FcGoogle size={18} /> Sign in with Google
       </Button>
 
       <div className="w-full flex items-center">

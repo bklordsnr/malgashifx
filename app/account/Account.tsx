@@ -20,11 +20,11 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
     <>
       {/* left side */}
       <div className="w-full">
-        <div className="flex flex-row items-center gap-2">
-          <span className="text-secondary-foreground text-xl font-medium flex flex-row items-center gap-2">
+        <div className="flex flex-col items-start justify-start gap-2">
+          <span className="text-secondary-foreground text-lg font-medium flex flex-row items-center gap-2">
             Welcome back 
           </span>
-          <span className="text-muted-foreground text-base capitalize">
+          <span className="text-muted-foreground text-sm capitalize">
             ~ {currentUser?.name}
           </span>
         </div>
@@ -40,7 +40,7 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
                 {formatPrice(currentUser?.TotalBalance)}
               </span>
             </div>
-            <div className="flex items-center text-sm gap-2 pb-2 ">
+            <div className="flex items-center text-sm gap-2 pb-2">
               <AiOutlineRise size={20} className="text-primary" />
               <span className="text-muted-foreground">1:200 M</span>
               <span className="text-muted-foreground">Leverage</span>

@@ -21,7 +21,7 @@ const News = () => {
         {offer ? (
           <div className="flex items-center py-4 justify-center text-primary-foreground">
             <div className="mx-auto text-sm text-start pr-4">
-              <a href="https://t.me/malgashiadmin">Invest $105 | Earn $474</a>
+              <a href="https://t.me/malgashiadmin">Invest $105 | Faiido $474</a>
             </div>
             <div className="cursor-pointer" onClick={handleClose}>
               <GoEyeClosed size={20} />

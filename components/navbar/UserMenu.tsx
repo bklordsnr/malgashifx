@@ -40,7 +40,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
       {isOpen && (
         <div className="absolute w-[250px] bg-background border overflow-hidden right-0 top-[72px] flex flex-col cursor-pointer z-30">
           {currentUser ? (
-            <div className="px-1 py-2  z-30">
+            <div className="px-1 py-2 text-sm z-30">
               <Link href="/account">
                 <MenuItem
                   url="account"
@@ -71,7 +71,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
               </MenuItem>
             </div>
           ) : (
-            <div className=" z-30">
+            <div className=" z-30 text-sm">
               <Link href="/sign-in">
                 <MenuItem onClick={toggleOpen} icon={HiOutlineLogout}>
                   Log In

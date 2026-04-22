@@ -18,7 +18,7 @@ const AboutCompany = () => {
           {/* left */}
           <div className="w-full max-w-[500px] flex flex-col gap-5">
             <h2 className="text-foreground font-semibold text-4xl">About Us</h2>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               we are a private online forex and CFD
               broker committed to empower people to invest and trade with
               confidence, in an innovative and trustworthy environment.
@@ -57,17 +57,17 @@ const AboutCompany = () => {
             </div>
 
             <div className="w-full max-w-[400px] space-y-3">
-              <h1 className="text-3xl text-secondary-foreground">
+              <h1 className="text-base text-secondary-foreground">
                 Message from CEO
               </h1>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 Don&apos;t worry about not knowing everything, just start and
                 you will learn about them as you grow and invest.
               </p>
 
               <div className="flex flex-col">
                 <span className="text-secondary-foreground">Tebo</span>
-                <span className="text-muted-foreground ">
+                <span className="text-muted-foreground text-sms">
                   Ceo/Founder
                 </span>
               </div>

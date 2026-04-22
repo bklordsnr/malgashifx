@@ -23,7 +23,7 @@ const Navbar = async () => {
 
           {/* middle links*/}
           <div className="hidden lg:flex  items-center ">
-            <ul className="flex flex-row items-center gap-5 text-secondary-foreground ">
+            <ul className="flex flex-row items-center text-sm gap-5 text-muted-foreground ">
               <Link href="/trade">
                 <li>Trade</li>
               </Link>
@@ -48,10 +48,10 @@ const Navbar = async () => {
             </Link>
 
             {currentUser ? null : (
-              <div className="hidden md:flex md:items-center md:gap-3 font-light">
+              <div className="hidden md:flex md:items-center md:gap-3 ">
                 <Link
                   href="/sign-in"
-                  className={`${buttonVariants({ variant: "outline" })}`}
+                  className={`text-sm ${buttonVariants({ variant: "outline" })}`}
                 >
                   Log In
                 </Link>
@@ -60,7 +60,7 @@ const Navbar = async () => {
 
                 <Link
                   href="/sign-up"
-                  className={`w-36 ${buttonVariants({ variant: "default" })}`}
+                  className={`text-sm w-36 ${buttonVariants({ variant: "default" })}`}
                 >
                   Sign Up
                 </Link>

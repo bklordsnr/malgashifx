@@ -23,14 +23,14 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({
         <div className="mr-4 relative w-[80px]">
           <Image src={image} alt="image" className="w-full h-auto"  loading="lazy" />
         </div>
-        <span className="uppercase text-card-foreground text-lg font-semibold">
+        <span className="uppercase text-card-foreground text-base font-semibold">
           {title}
         </span>
       </div>
       <div className="mt-5 flex justify-between flex-row">
         <div className="">
-          <span className="text-muted-foreground block">Buy Price</span>
-          <span className="text-card-foreground">{bprice}</span>
+          <span className="text-muted-foreground block text-sm">Buy Price</span>
+          <span className="text-card-foreground text-sm">{bprice}</span>
         </div>
 
         <div className="flex justify-end flex-col ">
