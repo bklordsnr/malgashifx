@@ -177,35 +177,6 @@ const Hero = () => {
           </div>
         </section>
 
-        {/* investment plans */}
-
-        <section className="py-10">
-          <div className="flex flex-col gap-6">
-            <div>
-              <Button className="border-custom">For investors</Button>
-            </div>
-            <SectionHeading title="Investment Plans" />
-          </div>
-
-          <div className="flex flex-wrap justify-between gap-8 mt-8 ">
-            {products.slice(0, 3).map((product) => {
-              return <InvestmentCard product={product} key={product.id} />;
-            })}
-          </div>
-
-          <div className="mt-5 w-full flex flex-col justify-center items-center">
-            <div className="flex items-center justify-center my-3 sm:my-0">
-              <Link
-                href={"/investmentplans"}
-                className={buttonVariants({ variant: "link" })}
-              >
-                view more plans
-              </Link>
-              <FaArrowRightLong size={19} className="text-primary" />
-            </div>
-          </div>
-        </section>
-
         {/* account opening */}
 
         <section className="py-10">
@@ -234,7 +205,7 @@ const Hero = () => {
                   </div>
                   <div className="flex flex-col mr-auto">
                     <span className="text-secondary-foreground normal-case text-sm mb-1">
-                      First start you creating an account followed by choosing
+                      First you start by creating an account followed by choosing
                       an investment plan.
                     </span>
                   </div>
@@ -245,7 +216,7 @@ const Hero = () => {
                   </div>
                   <div className="flex flex-col mr-auto">
                     <span className="text-secondary-foreground normal-case text-sm mb-1">
-                      Second You Make payment
+                      Second, you make payment so the investment can start.
                     </span>
                   </div>
                 </div>
@@ -255,7 +226,7 @@ const Hero = () => {
                   </div>
                   <div className="flex flex-col mr-auto">
                     <span className="text-secondary-foreground normal-case text-sm mb-1">
-                      Third investment will start you wait for the profit!
+                      After deposit is confirmed, the investment will start.
                     </span>
                   </div>
                 </div>
@@ -278,7 +249,7 @@ const Hero = () => {
 
         {/* create account */}
 
-        <section className="py-10">
+        <section className="pb-8 ">
           <div className="w-full">
             <div className="flex flex-col md:flex-row items-center justify-between border-custom2 rounded-[15px] max-w-[800px] py-7 pr-7 gap-5 pl-7 m-auto ">
               <div className="relative w-full aspect-square rounded-[15px] max-w-[250px] hidden md:flex">

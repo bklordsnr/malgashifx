@@ -11,7 +11,7 @@ import { SafeUser } from "@/types";
 import { MdOutlineSupervisorAccount } from "react-icons/md";
 import { LuFileSpreadsheet } from "react-icons/lu";
 import { HiOutlineLogout } from "react-icons/hi";
-import { GiCash } from "react-icons/gi";
+import { RiTelegram2Line } from "react-icons/ri";
 import { MdOutlineNoAccounts } from "react-icons/md";
 
 
@@ -58,6 +58,16 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                   icon={LuFileSpreadsheet}
                 >
                   Investment Plans
+                </MenuItem>
+              </Link>
+
+              <Link href="https://t.me/malgashiadmin">
+                <MenuItem
+                  url="platform"
+                  onClick={toggleOpen}
+                  icon={RiTelegram2Line}
+                >
+                  Telegram Support
                 </MenuItem>
               </Link>
 

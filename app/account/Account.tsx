@@ -30,7 +30,7 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
         </div>
 
         {/* balance container */}
-        <div className="relative mt-10 bg-card border rounded-md overflow-hidden w-full max-w-[450px] max-h-[200px] h-full px-4 flex justify-between">
+        <div className="relative mt-10 bg-card border-custom2 rounded-md overflow-hidden w-full max-w-[450px] max-h-[200px] h-full px-4 flex justify-between">
           <div className="w-full max-w-[60%] flex flex-col py-5 justify-between z-10">
             <div className="flex flex-col pt-3 space-y-2">
               <span className="text-muted-foreground text-sm">
@@ -73,7 +73,7 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
       {/* right side */}
       <div className="mt-10 lg:mt-0">
         <div className="justify-between grid grid-cols-1 md:grid-cols-2 gap-y-5 sm:gap-y-0 sm:gap-x-7  ">
-          <div className=" w-full md:max-w-[300px] bg-card border rounded-md px-4 h-[100px] flex justify-between">
+          <div className=" w-full md:max-w-[300px] bg-card border-custom2 rounded-md px-4 h-[100px] flex justify-between">
             <div className="flex flex-col py-5 justify-between">
               <span className="text-sm text-muted-foreground">
                 Invested Value
@@ -91,7 +91,7 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
             </div>
           </div>
 
-          <div className=" w-full md:max-w-[300px] bg-card border rounded-md px-4 h-[100px] flex justify-between">
+          <div className=" w-full md:max-w-[300px] bg-card border-custom2 rounded-md px-4 h-[100px] flex justify-between">
             <div className="flex flex-col py-5 justify-between">
               <span className="text-sm text-muted-foreground">
                 Targeted Profits
@@ -107,7 +107,7 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
           </div>
         </div>
 
-        <div className="my-4 rounded-md w-full bg-card border p-5 flex gap-6 justify-between flex-col md:flex-row">
+        <div className="my-4 rounded-md w-full bg-card border-custom2 p-5 flex gap-6 justify-between flex-col md:flex-row">
           <div className="w-[100%] md:w-[40%] flex justify-center">
             <ProfitsProgress currentUser={currentUser} />
           </div>

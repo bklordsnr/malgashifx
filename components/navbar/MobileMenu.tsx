@@ -1,14 +1,10 @@
 "use client";
-import { LiaTelegramPlane } from "react-icons/lia";
 import { MdOutlineSupervisorAccount } from "react-icons/md";
 import { GrCircleInformation } from "react-icons/gr";
 import { MdWaterfallChart } from "react-icons/md";
-import { HiOutlineLogout } from "react-icons/hi";
 import { BsPatchQuestion } from "react-icons/bs";
 import { LuFileSpreadsheet } from "react-icons/lu";
-import { TbLogout2 } from "react-icons/tb";
-import { MdOutlineNoAccounts } from "react-icons/md";
-import { GiCash } from "react-icons/gi";
+import { RiTelegram2Line } from "react-icons/ri";
 import { IoMdClose } from "react-icons/io";
 import { useState } from "react";
 import { MdMenu } from "react-icons/md";
@@ -110,9 +106,19 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
 
                 <span className="w-full h-[1px] bg-secondary" />
 
+                <Link href="https://t.me/malgashiadmin">
+                  <MenuItem
+                    url="platform"
+                    onClick={handleMenu}
+                    icon={RiTelegram2Line}
+                  >
+                    Telegram Support
+                  </MenuItem>
+                </Link>
+
                 <Button
                   onClick={() => {
-                    handleMenu(), signOut();
+                    (handleMenu(), signOut());
                   }}
                   className="mt-4"
                   variant="destructive"
@@ -160,6 +166,16 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
               </Link>
 
               <span className="w-full h-[1px] bg-secondary" />
+
+              <Link href="https://t.me/malgashiadmin">
+                <MenuItem
+                  url="platform"
+                  onClick={handleMenu}
+                  icon={RiTelegram2Line}
+                >
+                  Telegram Support
+                </MenuItem>
+              </Link>
             </div>
 
             <div className="mt-6 flex flex-col space-y-5">
