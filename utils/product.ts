@@ -1,5 +1,18 @@
 export const products = [
   {
+    id: "65bf49743eda8f76799a9578",
+    name: "Basic Package",
+    description:
+      "Principal return on maturity, instant withdrawal to your mobile money or bank profession chart and 24/7 support. package maturity time 24-25 hours maximum",
+    price: "50",
+    profit: "248",
+    category: "basic",
+    availability: true,
+    personalAccount: true,
+    swapdiscount: false,
+    customizedinvestment: false,
+  },
+  {
     id: "65bf49743eda8f76799a9539",
     name: "Basic Package",
     description:
