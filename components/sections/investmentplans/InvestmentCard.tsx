@@ -17,7 +17,6 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product }) => {
     purple: "text-purple-700",
     yellow: "text-yellow-500",
   };
-  console.log(product.color, colorMap[product.color]);
 
   return (
     <div className="rounded-[15px] border w-full md:max-w-[350px] p-4 border-custom2 ">
