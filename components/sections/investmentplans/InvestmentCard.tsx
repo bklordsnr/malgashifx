@@ -11,14 +11,6 @@ interface InvestmentCardProps {
 }
 
 const InvestmentCard: React.FC<InvestmentCardProps> = ({ product }) => {
-
-  const colorMap: Record<string, string> = {
-  "Student Plan": "text-green-500",
-  "Hustler Plan": "text-blue-600",
-  "Builder Plan": "text-purple-700",
-  "Legacy Plan": "text-yellow-500",
-};
-
   return (
     <div className="rounded-[15px] border w-full md:max-w-[350px] p-4 border-custom2 ">
       <div className="flex flex-col items-center w-full gap-1 ">
