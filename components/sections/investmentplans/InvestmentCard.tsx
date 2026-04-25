@@ -2,41 +2,30 @@
 
 import { IoCheckmarkDone } from "react-icons/io5";
 import { RiCloseLine } from "react-icons/ri";
-import { useRouter } from "next/navigation";
 import { formatPrice } from "@/utils/formatPrice";
-import { useEffect, useState } from "react";
-import { useCart } from "@/hook/useCart";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 interface InvestmentCardProps {
   product: any;
-  color: string;
 }
 
 const InvestmentCard: React.FC<InvestmentCardProps> = ({ product }) => {
-  const { cartProducts } = useCart();
-  const router = useRouter();
-  const [active, setActive] = useState<boolean>(true);
 
- 
-  useEffect(() => {
-    if (!cartProducts || cartProducts?.length < 0) {
-      setActive(false);
-    }
-  }, [cartProducts]);
+  const colorMap: Record<string, string> = {
+  "Student Plan": "text-green-500",
+  "Hustler Plan": "text-blue-600",
+  "Builder Plan": "text-purple-700",
+  "Legacy Plan": "text-yellow-500",
+};
 
   return (
     <div className="rounded-[15px] border w-full md:max-w-[350px] p-4 border-custom2 ">
       <div className="flex flex-col items-center w-full gap-1 ">
         <div className={`mr-auto p-[2px] rounded-[7px] border w-fit px-2`}>
-          {product.swapdiscount ? (
-            <div className="text-center text-destructive">
-              {product.category}
-            </div>
-          ) : (
-            <div className={`text-center text-primary text-sm  ${product.color}`}>{product.category}</div>
-          )}
+          <div className={`text-center text-sm ${product.color}`}>
+            {product.category}
+          </div>
         </div>
 
         <div className="mr-auto mt-2">
@@ -73,7 +62,9 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product }) => {
             <div className="flex justify-between mt-2">
               <div className="flex items-center">
                 <IoCheckmarkDone size={20} className="text-primary mr-2" />
-                <span className="text-muted-foreground text-sm">Holding Period:</span>
+                <span className="text-muted-foreground text-sm">
+                  Holding Period:
+                </span>
               </div>
               <div className="text-primary text-sm">48 hrs</div>
             </div>
@@ -81,7 +72,9 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product }) => {
             <div className="flex justify-between mt-2">
               <div className="flex items-center">
                 <IoCheckmarkDone size={20} className="text-primary mr-2" />
-                <span className="text-muted-foreground text-sm">Holding Period:</span>
+                <span className="text-muted-foreground text-sm">
+                  Holding Period:
+                </span>
               </div>
               <div className="text-primary text-sm">24 hrs</div>
             </div>
@@ -117,7 +110,9 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product }) => {
             <div className="flex justify-between mt-2">
               <div className="flex items-center">
                 <RiCloseLine size={24} className="text-muted mr-2" />
-                <span className="text-muted text-sm">Customized Investment:</span>
+                <span className="text-muted text-sm">
+                  Customized Investment:
+                </span>
               </div>
               <div className="text-muted text-sm">No</div>
             </div>
