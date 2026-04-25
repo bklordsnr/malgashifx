@@ -11,7 +11,7 @@ export const products = [
     personalAccount: true,
     swapdiscount: false,
     customizedinvestment: false,
-    color: "text-green-500",
+    color: "green",
   },
   {
     id: "65bf49743eda8f76799a9539",
@@ -25,7 +25,7 @@ export const products = [
     personalAccount: true,
     swapdiscount: false,
     customizedinvestment: false,
-    color: "text-blue-600",
+    color: "blue",
   },
   {
     id: "65bf49743eda8f76799349535",
@@ -39,7 +39,7 @@ export const products = [
     personalAccount: true,
     swapdiscount: false,
     customizedinvestment: false,
-    color: "text-purple-700",
+    color: "purple",
   },
   {
     id: "65bf49743eda8f76799a9535",
@@ -53,6 +53,6 @@ export const products = [
     personalAccount: true,
     swapdiscount: false,
     customizedinvestment: false,
-    color: "text-yellow-500",
+    color: "yellow",
   },
 ];

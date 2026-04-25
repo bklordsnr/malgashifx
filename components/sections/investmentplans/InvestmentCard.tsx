@@ -11,11 +11,19 @@ interface InvestmentCardProps {
 }
 
 const InvestmentCard: React.FC<InvestmentCardProps> = ({ product }) => {
+  const colorMap: Record<string, string> = {
+    green: "text-green-500",
+    blue: "text-blue-600",
+    purple: "text-purple-700",
+    yellow: "text-yellow-500",
+  };
+  console.log(product.color, colorMap[product.color]);
+
   return (
     <div className="rounded-[15px] border w-full md:max-w-[350px] p-4 border-custom2 ">
       <div className="flex flex-col items-center w-full gap-1 ">
         <div className={`mr-auto p-[2px] rounded-[7px] border w-fit px-2`}>
-          <div className={`text-center text-sm ${product.color}`}>
+          <div className={`text-center text-sm ${colorMap[product.color]}`}>
             {product.category}
           </div>
         </div>
