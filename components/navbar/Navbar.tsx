@@ -22,7 +22,7 @@ const Navbar = async () => {
           </Link>
 
           {/* middle links*/}
-          <div className="hidden lg:flex  items-center ">
+          <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 ">
             <ul className="flex flex-row items-center text-sm gap-5 text-muted-foreground ">
               <Link href="/trade">
                 <li>Trade</li>
@@ -42,7 +42,7 @@ const Navbar = async () => {
               <div className="relative cursor-pointer flex items-center">
                 <div className="flex items-center">
                   <IoMdNotifications size={24} />
-                  <div className="absolute h-[5px] w-[5px] rounded-full bg-card top-[-5px] right-[-5px]" />
+                  <div className="absolute h-[5px] w-[4px] rounded-full bg-card top-[-1px] right-[-1px] bg-gray-200" />
                 </div>
               </div>
             </Link>
@@ -51,7 +51,7 @@ const Navbar = async () => {
               <div className="hidden md:flex md:items-center md:gap-3 ">
                 <Link
                   href="/sign-in"
-                  className={`text-sm ${buttonVariants({ variant: "outline" })}`}
+                  className={`text-sm border-custom2 ${buttonVariants({ variant: "outline" })}`}
                 >
                   Log In
                 </Link>
@@ -60,7 +60,7 @@ const Navbar = async () => {
 
                 <Link
                   href="/sign-up"
-                  className={`text-sm w-36 ${buttonVariants({ variant: "default" })}`}
+                  className={`text-sm w-36 border-custom ${buttonVariants({ variant: "default" })}`}
                 >
                   Sign Up
                 </Link>

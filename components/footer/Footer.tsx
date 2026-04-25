@@ -5,8 +5,10 @@ const Footer = () => {
     <footer className="border-t w-full py-8">
       <Container>
         <div>
-          <div className="text-muted-foreground text-center text-sm ">
-            &copy; {new Date().getFullYear()} Malgashi Traders
+          <div className="text-center">
+            <span className="text-sm text-muted-foreground ">
+              &copy; {new Date().getFullYear()} Malgashi Traders
+            </span>
           </div>
         </div>
       </Container>

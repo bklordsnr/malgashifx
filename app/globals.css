@@ -51,3 +51,7 @@
 .border-custom2 {
   @apply border-t-[2px] border-r-[2px] border-l-[2px] border-b-[4px] border-[#f0f1f1];
 }
+
+.border-custom3 {
+  @apply border-t-[1px] border-r-[2px] border-l-[2px]  border-b-[4px] border-[#921f1f];
+}

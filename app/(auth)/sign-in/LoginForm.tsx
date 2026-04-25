@@ -52,7 +52,7 @@ const LoginForm = () => {
   return (
     <>
       <Button
-        className="w-full flex items-center gap-x-3"
+        className="w-full flex items-center gap-x-3 border-custom2"
         variant={"outline"}
         onClick={() => signIn("google")}
       >
@@ -91,7 +91,7 @@ const LoginForm = () => {
         </Link>
       </p>
 
-      <Button onClick={handleSubmit(onSubmit)} className="w-full">
+      <Button onClick={handleSubmit(onSubmit)} className="w-full border-custom">
         {isLoading ? "Loading.." : "Log In"}
       </Button>
     </>

@@ -8,7 +8,7 @@ const InvestmentPlans = () => {
 
       <div className="flex flex-wrap justify-between gap-8 pb-8 w-full">
         {products.map((product) => {
-          return <InvestmentCard product={product} key={product.id} />;
+          return <InvestmentCard product={product} key={product.id} color={product.color} />;
         })}
       </div>
     </>

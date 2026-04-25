@@ -120,7 +120,7 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
                   onClick={() => {
                     (handleMenu(), signOut());
                   }}
-                  className="mt-4"
+                  className="mt-4 border-custom3"
                   variant="destructive"
                 >
                   Logout
@@ -182,7 +182,7 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
               <Link
                 onClick={handleMenu}
                 href="/sign-in"
-                className={buttonVariants({ variant: "outline" })}
+                className={`border-custom2 ${buttonVariants({ variant: "outline" })}`}
               >
                 Log In
               </Link>
@@ -190,7 +190,7 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
               <Link
                 onClick={handleMenu}
                 href="/sign-up"
-                className={buttonVariants({ variant: "default" })}
+                className={`border-custom ${buttonVariants({ variant: "default" })}`}
               >
                 Register
               </Link>

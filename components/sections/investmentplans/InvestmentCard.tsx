@@ -11,6 +11,7 @@ import Link from "next/link";
 
 interface InvestmentCardProps {
   product: any;
+  color: string;
 }
 
 const InvestmentCard: React.FC<InvestmentCardProps> = ({ product }) => {
@@ -18,6 +19,7 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product }) => {
   const router = useRouter();
   const [active, setActive] = useState<boolean>(true);
 
+ 
   useEffect(() => {
     if (!cartProducts || cartProducts?.length < 0) {
       setActive(false);
@@ -27,13 +29,13 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product }) => {
   return (
     <div className="rounded-[15px] border w-full md:max-w-[350px] p-4 border-custom2 ">
       <div className="flex flex-col items-center w-full gap-1 ">
-        <div className="mr-auto p-[2px] rounded-[15px] border w-[80px]">
+        <div className={`mr-auto p-[2px] rounded-[7px] border w-fit px-2`}>
           {product.swapdiscount ? (
             <div className="text-center text-destructive">
               {product.category}
             </div>
           ) : (
-            <div className="text-center text-primary">{product.category}</div>
+            <div className={`text-center text-primary text-sm  ${product.color}`}>{product.category}</div>
           )}
         </div>
 

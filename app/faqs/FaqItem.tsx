@@ -12,7 +12,7 @@ const FaqItem = ({ data }: { data: any }) => {
   }, []);
 
   return (
-    <div className="w-full flex flex-col rounded-md border gap-y-5 py-2 px-4">
+    <div className="w-full flex flex-col border-custom2 rounded-md border gap-y-5 py-2 px-4">
       <div className="flex flex-row items-center justify-between w-full">
         <span className="text-secondary-foreground text-sm block">
           {data.title}

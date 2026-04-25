@@ -59,7 +59,7 @@ const RegisterForm = () => {
 
   return (
     <>
-      <Button className="w-full flex items-center gap-x-3" variant={"outline"} onClick={() => signIn('google')}>
+      <Button className="w-full flex items-center gap-x-3 border-custom2" variant={"outline"} onClick={() => signIn('google')}>
         <FcGoogle size={18} /> Sign up with Google
       </Button>
       <Input
@@ -95,7 +95,7 @@ const RegisterForm = () => {
         </Link>
       </p>
 
-      <Button onClick={handleSubmit(onSubmit)} className="w-full">
+      <Button onClick={handleSubmit(onSubmit)} className="w-full border-custom">
         {isLoading ? "Loading.." : "Create account"}
       </Button>
     </>

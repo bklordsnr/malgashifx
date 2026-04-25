@@ -12,7 +12,7 @@ const UnderDevelopment = () => {
       <div className="flex flex-col sm:flex-row justify-between items-center w-full pt-12 sm:pt-0 ">
         <div className="mr-auto text-start">
           <h1 className="text-foreground text-xl font-semibold">
-            Oops!
+            Oops! 
           </h1>
           <p className="text-muted-foreground text-sm">
             Page under development...

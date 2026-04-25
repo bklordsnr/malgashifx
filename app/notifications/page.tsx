@@ -20,9 +20,12 @@ function page() {
             />
           </div>
 
-          <h2 className="text-xl text-card-foreground">
-            No notification right now!
-          </h2>
+          <h1 className="text-xl text-foreground font-semibold">
+            Oops!
+          </h1>
+          <p className="text-sm text-muted-foreground">
+            No notification right now...
+          </p>
 
           <div className="flex items-center text-sm">
             <a
