@@ -1,30 +1,51 @@
 "use client";
 
 import { useState } from "react";
-import { FieldValues, useForm, SubmitHandler } from "react-hook-form";
-import Link from "next/link";
+import { useForm, SubmitHandler, FieldErrors } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema } from "@/lib/loginSchema";
+import { z } from "zod";
+
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+
 import Input from "@/components/inputs/Input";
 import { Button } from "@/components/ui/button";
 import { FcGoogle } from "react-icons/fc";
+import Link from "next/link";
+
+type FormData = z.infer<typeof loginSchema>;
 
 const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FieldValues>({
+  } = useForm<FormData>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onInvalid = (errors: FieldErrors<FormData>) => {
+    const firstError = Object.values(errors)[0];
+
+    if (firstError?.message) {
+      toast.error(firstError.message as string);
+    }
+
+    if (typeof navigator !== "undefined" && navigator.vibrate) {
+      navigator.vibrate([100, 50, 100]);
+    }
+  };
+
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     setIsLoading(true);
 
     const normalizedData = {
@@ -32,72 +53,66 @@ const LoginForm = () => {
       email: data.email.toLowerCase().trim(),
     };
 
-    signIn("credentials", {
-      ...normalizedData,
-      redirect: false,
-    })
-      .then((callback) => {
-        if (callback?.ok) {
-          router.push("/account");
-          router.refresh();
-          toast.success("Good Job!");
-        }
-
-        if (callback?.error) {
-          toast.error(callback.error);
-        }
-      })
-      .catch(() => {
-        toast.error("This didn't work.");
-      })
-      .finally(() => {
-        setIsLoading(false);
+    try {
+      const callback = await signIn("credentials", {
+        ...normalizedData,
+        redirect: false,
       });
+
+      if (callback?.ok) {
+        router.push("/account");
+        router.refresh();
+        toast.success("Good Job!");
+      }
+
+      if (callback?.error) {
+        toast.error(callback.error);
+      }
+    } catch {
+      toast.error("This didn't work.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <>
       <Button
         className="w-full flex items-center gap-x-3 border-custom2"
-        variant={"outline"}
+        variant="outline"
         onClick={() => signIn("google")}
       >
         <FcGoogle size={18} /> Sign in with Google
       </Button>
 
-      <div className="w-full flex items-center">
-        <span className="h-[0.3px] bg-secondary  flex-1" />
-        <div className="uppercase text-sm bg-background py-[0.5px] px-1 text-center text-muted-foreground">
-          or continue with
-        </div>
-        <span className="h-[0.3px] bg-secondary  flex-1" />
-      </div>
       <Input
         id="email"
         label="Enter Email"
         disabled={isLoading}
         register={register}
         errors={errors}
-        required
       />
+
       <Input
         id="password"
         label="Enter Password"
         disabled={isLoading}
         register={register}
         errors={errors}
-        required
         type="password"
       />
 
       <p className="mr-auto text-muted-foreground text-sm">
-        Dont have have an account?{" "}
-        <Link href={"/sign-up"} className="underline">
+        Dont have an account?{" "}
+        <Link href="/sign-up" className="underline">
           Register
         </Link>
       </p>
 
-      <Button onClick={handleSubmit(onSubmit)} className="w-full border-custom">
+      <Button
+        onClick={handleSubmit(onSubmit, onInvalid)}
+        className="w-full border-custom"
+      >
         {isLoading ? "Loading.." : "Log In"}
       </Button>
     </>
