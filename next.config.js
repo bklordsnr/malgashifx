@@ -19,6 +19,3 @@ module.exports = (phase, { defaultConfig }) => {
 };
 
 
-module.exports = {
-  allowedDevOrigins: ['192.168.0.101'],
-}

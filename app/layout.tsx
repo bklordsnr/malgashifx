@@ -36,8 +36,6 @@ export default async function RootLayout({
               background: "#1C1917",
               color: "white",
             },
-
-            icon: "👏",
           }}
         />
         <CartProvider>

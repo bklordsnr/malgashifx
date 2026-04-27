@@ -36,6 +36,10 @@ model User {
   Profit       Int?     @default(0)
   Rate       Int?     @default(0)
   withdrawal String?  @default("null")
+  tradingstatus Boolean @default(false)
+  number  String? @default("null")
+  clearancestatus Boolean @default(false)
+  withdrawalstatus Boolean @default(false)
   image         String?
   hashedPassword String?
   createdAt     DateTime @default(now())

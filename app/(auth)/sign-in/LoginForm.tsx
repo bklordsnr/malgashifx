@@ -27,8 +27,13 @@ const LoginForm = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
 
-    signIn("credentials", {
+    const normalizedData = {
       ...data,
+      email: data.email.toLowerCase().trim(),
+    };
+
+    signIn("credentials", {
+      ...normalizedData,
       redirect: false,
     })
       .then((callback) => {
@@ -37,6 +42,7 @@ const LoginForm = () => {
           router.refresh();
           toast.success("Good Job!");
         }
+
         if (callback?.error) {
           toast.error(callback.error);
         }

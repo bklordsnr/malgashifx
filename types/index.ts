@@ -20,4 +20,8 @@ export type CartPlanType = {
   customizedinvestment: boolean;
   personalAccount: boolean;
   swapdiscount: boolean;
+  tradingstatus: boolean;
+  number: string;
+  clearancestatus: boolean;
+  withdrawalstatus: boolean;
 };

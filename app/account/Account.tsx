@@ -18,18 +18,20 @@ interface AccountProps {
 const Account: React.FC<AccountProps> = ({ currentUser }) => {
   return (
     <>
-      {/* left side */}
+      {/* welcome section*/}
+
       <div className="w-full">
         <div className="flex flex-col items-start justify-start gap-2">
           <span className="text-secondary-foreground text-xl font-medium flex flex-row items-center gap-2">
-            Welcome back 
+            Welcome back
           </span>
           <span className="text-muted-foreground text-sm capitalize">
             ~ {currentUser?.name}
           </span>
         </div>
 
-        {/* balance container */}
+        {/* total balance section*/}
+
         <div className="relative mt-10 bg-card border-custom2 rounded-md overflow-hidden w-full max-w-[450px] max-h-[200px] h-full px-4 flex justify-between">
           <div className="w-full max-w-[60%] flex flex-col py-5 justify-between z-10">
             <div className="flex flex-col pt-3 space-y-2">
@@ -70,7 +72,7 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
         </div>
       </div>
 
-      {/* right side */}
+      {/* invested value section */}
       <div className="mt-10 lg:mt-0">
         <div className="justify-between grid grid-cols-1 md:grid-cols-2 gap-y-5 sm:gap-y-0 sm:gap-x-7  ">
           <div className=" w-full md:max-w-[300px] bg-card border-custom2 rounded-md px-4 h-[100px] flex justify-between">
@@ -91,6 +93,8 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
             </div>
           </div>
 
+          {/* targeted profit section */}
+
           <div className=" w-full md:max-w-[300px] bg-card border-custom2 rounded-md px-4 h-[100px] flex justify-between">
             <div className="flex flex-col py-5 justify-between">
               <span className="text-sm text-muted-foreground">
@@ -107,6 +111,8 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
           </div>
         </div>
 
+        {/* investment track section */}
+
         <div className="my-4 rounded-md w-full bg-card border-custom2 p-5 flex gap-6 justify-between flex-col md:flex-row">
           <div className="w-[100%] md:w-[40%] flex justify-center">
             <ProfitsProgress currentUser={currentUser} />
@@ -115,6 +121,95 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
           <div className="w-[100%] md:w-[60%] text-sm">
             <span className="text-muted-foreground">Investment Track</span>
             <Graph />
+          </div>
+        </div>
+
+        {/* account overview section */}
+
+        <div className="border-custom2 w-full flex flex-col px-4 rounded-md">
+          <div className="justify-start mb-2 pt-2">
+            <span className="capitalize  text-muted-foreground text-sm border border-dotted py-1 px-1 rounded-md">
+              account overview
+            </span>
+          </div>
+
+          <div className="flex justify-between items-center mb-2">
+            <div>
+              <span className="capitalize text-sm text-foreground">
+                Trading Status
+              </span>
+            </div>
+            <div>
+              {currentUser?.tradingstatus ? (
+                <span className="capitalize text-sm text-ring border border-dotted  px-1 border-ring rounded-md">
+                  active
+                </span>
+              ) : (
+                <span className="capitalize text-sm text-destructive border border-dotted  px-1 border-destructive rounded-md">
+                  inactive
+                </span>
+              )}
+            </div>
+          </div>
+
+          <span className="w-full h-[1px] bg-muted" />
+
+          <div className="flex justify-between items-center mb-2">
+            <div>
+              <span className="capitalize text-sm text-foreground">email</span>
+            </div>
+            <div>
+              <span className="text-sm text-muted-foreground">
+                {currentUser?.email}
+              </span>
+            </div>
+          </div>
+
+          <span className="w-full h-[1px] bg-muted" />
+
+          <div className="flex justify-between items-center mb-2">
+            <div>
+              <span className="capitalize text-sm text-foreground">number</span>
+            </div>
+            <div>
+              <span className="text-sm text-muted-foreground">
+                {currentUser?.number}
+              </span>
+            </div>
+          </div>
+
+          <span className="w-full h-[1px] bg-muted" />
+
+          <div className="flex justify-between items-center mb-2">
+            <div>
+              <span className="capitalize text-sm text-foreground">
+                clearance
+              </span>
+            </div>
+            <div>
+              {currentUser?.clearancestatus ? (
+                <span className="text-sm text-ring">approved</span>
+              ) : (
+                <span className="text-sm text-destructive">null</span>
+              )}
+            </div>
+          </div>
+
+          <span className="w-full h-[1px] bg-muted " />
+
+          <div className="flex justify-between items-center mb-2">
+            <div>
+              <span className="capitalize text-sm text-foreground">
+                withdrawal status
+              </span>
+            </div>
+            <div>
+              {currentUser?.withdrawalstatus ? (
+                <span className="text-sm text-ring">approved</span>
+              ) : (
+                <span className="text-sm text-destructive">null</span>
+              )}
+            </div>
           </div>
         </div>
       </div>

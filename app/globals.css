@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-
   :root {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
@@ -42,11 +41,9 @@
   }
 }
 
-
 .border-custom {
   @apply border-t-[1px] border-r-[2px] border-l-[2px]  border-b-[4px] border-[#0b3314];
 }
-
 
 .border-custom2 {
   @apply border-t-[2px] border-r-[2px] border-l-[2px] border-b-[4px] border-[#f0f1f1];
@@ -54,4 +51,22 @@
 
 .border-custom3 {
   @apply border-t-[1px] border-r-[2px] border-l-[2px]  border-b-[4px] border-[#921f1f];
+}
+
+
+@keyframes borderPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+  }
+}
+
+.avatar-pulse {
+  animation: borderPulse 2s infinite;
+  border-radius: 9999px;
 }

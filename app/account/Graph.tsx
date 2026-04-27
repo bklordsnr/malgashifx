@@ -41,7 +41,7 @@ const Graph = () => {
         
         data: [0],
         backgroundColor: "transparent",
-        borderColor: "#FF4949",
+        borderColor: "#F43F5E" ,
         tension: 0.5,
       },
     ],
