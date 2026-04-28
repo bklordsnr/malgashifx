@@ -8,21 +8,49 @@ import Link from "next/link";
 
 interface InvestmentCardProps {
   product: any;
+  rates: any;
 }
 
-const InvestmentCard: React.FC<InvestmentCardProps> = ({ product }) => {
-  const colorMap: Record<string, string> = {
-    green: "text-green-500",
-    blue: "text-blue-600",
-    purple: "text-purple-700",
-    yellow: "text-yellow-500",
+const InvestmentCard: React.FC<InvestmentCardProps> = ({ product, rates }) => {
+  const colorMap: Record<string, { text: string; border: string }> = {
+    green: {
+      text: "text-green-500",
+      border: "border-green-500",
+    },
+    blue: {
+      text: "text-blue-600",
+      border: "border-blue-600",
+    },
+    purple: {
+      text: "text-purple-700",
+      border: "border-purple-700",
+    },
+    yellow: {
+      text: "text-yellow-500",
+      border: "border-yellow-500",
+    },
   };
+
+  const usdPrice = Number(product.price);
+  const usdprofitPrice = Number(product.profit);
+
+  const mozPrice = usdPrice * rates.MZN;
+  const angolaPrice = usdPrice * rates.AOA;
+
+  const mozprofitPrice = usdprofitPrice * rates.MZN;
+  const angolaprofitPrice = usdprofitPrice * rates.AOA;
 
   return (
     <div className="rounded-[15px] border w-full md:max-w-[350px] p-4 border-custom2 ">
       <div className="flex flex-col items-center w-full gap-1 ">
-        <div className={`mr-auto p-[2px] rounded-[7px] border w-fit px-2`}>
-          <div className={`text-center text-sm ${colorMap[product.color]}`}>
+        <div
+          className={`mr-auto p-[2px] rounded-[7px] border border-dotted w-fit px-2 ${
+            colorMap[product.color]?.border || "border-gray-300"
+          }`}
+        >
+          <div
+            className={`text-center text-sm ${colorMap[product.color]?.text}`}
+          >
             {product.category}
           </div>
         </div>
@@ -31,10 +59,16 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product }) => {
           <span className="text-base font-medium text-secondary-foreground">
             Invest
           </span>
-          <div className="font-semibold text-xl flex flex-row">
-            <span className=" block mt-2 text-secondary-foreground">
+
+          <div className="flex flex-col">
+            <span className="text-xl mt-1 text-secondary-foreground font-semibold">
               {formatPrice(product.price)}
             </span>
+
+            <div className="text-muted-foreground text-[10px] flex gap-x-1">
+              (<span>{mozPrice.toFixed(0)} MZN</span>,
+              <span>{angolaPrice.toFixed(0)} AOA</span>)
+            </div>
           </div>
         </div>
 
@@ -122,10 +156,14 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product }) => {
           <span className="text-base font-medium text-secondary-foreground">
             Profit
           </span>
-          <div className="font-semibold text-2xl flex flex-row">
-            <span className="text-xl block mt-2 text-secondary-foreground">
+          <div className="flex flex-col">
+            <span className="text-xl block mt-2 text-secondary-foreground font-semibold">
               {formatPrice(product.profit)}
             </span>
+            <div className="mr-auto text-muted-foreground text-[10px] flex flex-row gap-x-1">
+              (<span>{mozprofitPrice.toFixed(0)} MZN</span>,
+              <span>{angolaprofitPrice.toFixed(0)} AOA</span>)
+            </div>
           </div>
         </div>
 

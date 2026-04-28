@@ -1,15 +1,31 @@
 import InvestmentCard from "@/components/sections/investmentplans/InvestmentCard";
 import { products } from "@/utils/product";
 
-const InvestmentPlans = () => {
+const getRates = async () => {
+  const res = await fetch("https://api.exchangerate.fun/latest?base=USD", {
+    next: { revalidate: 3600 },
+  });
+  const data = await res.json();
+  return data.rates;
+};
+
+const InvestmentPlans = async () => {
+  const rates = await getRates();
+
   return (
     <>
-      <h1 className="text-secondary-foreground font-semibold text-xl mb-8">Investment Plans</h1>
+      <h1 className="text-secondary-foreground font-semibold text-xl mb-8">
+        Investment Plans
+      </h1>
 
       <div className="flex flex-wrap justify-between gap-8 pb-8 w-full">
-        {products.map((product, index) => {
-          return <InvestmentCard product={product} key={product.id} />;
-        })}
+        {products.map((product) => (
+          <InvestmentCard
+            key={product.id}
+            product={product}
+            rates={rates}
+          />
+        ))}
       </div>
     </>
   );
