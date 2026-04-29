@@ -53,6 +53,9 @@
   @apply border-t-[1px] border-r-[2px] border-l-[2px]  border-b-[4px] border-[#921f1f];
 }
 
+.border-custom4 {
+  @apply border-t-[2px] border-r-[2px] border-l-[2px] border-b-[4px] border-destructive;
+}
 
 @keyframes borderPulse {
   0% {
@@ -69,4 +72,38 @@
 .avatar-pulse {
   animation: borderPulse 2s infinite;
   border-radius: 9999px;
+}
+
+@keyframes whiteBloomPulse {
+  0% {
+    background: rgba(255, 255, 255, 0);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  }
+
+  50% {
+    background: rgba(255, 255, 255, 0.65); /* WHITER wash */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    filter: brightness(1.08); /* subtle “washed out” effect */
+  }
+
+  100% {
+    background: rgba(255, 255, 255, 0);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    filter: brightness(1);
+  }
+}
+
+.dimPulse {
+  position: relative;
+  overflow: hidden;
+}
+
+/* white overlay that creates the “whitening dim” effect */
+.dimPulse::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.75);
+  animation: whiteBloomPulse 2.2s ease-in-out infinite;
 }

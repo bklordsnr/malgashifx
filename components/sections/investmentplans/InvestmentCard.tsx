@@ -4,7 +4,9 @@ import { IoCheckmarkDone } from "react-icons/io5";
 import { RiCloseLine } from "react-icons/ri";
 import { formatPrice } from "@/utils/formatPrice";
 import { Button } from "@/components/ui/button";
+import { FaRegClock } from "react-icons/fa6";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface InvestmentCardProps {
   product: any;
@@ -13,7 +15,7 @@ interface InvestmentCardProps {
 
 const InvestmentCard: React.FC<InvestmentCardProps> = ({ product, rates }) => {
   const colorMap: Record<string, { text: string; border: string }> = {
-    green: {
+    special: {
       text: "text-green-500",
       border: "border-green-500",
     },
@@ -40,18 +42,41 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product, rates }) => {
   const mozprofitPrice = usdprofitPrice * rates.MZN;
   const angolaprofitPrice = usdprofitPrice * rates.AOA;
 
+  const [dimPulse, setDimPulse] = useState(false);
+
+  useEffect(() => {
+    if (product?.type) {
+      setDimPulse(true);
+    }
+  }, [product?.type]);
+
   return (
-    <div className="rounded-[15px] border w-full md:max-w-[350px] p-4 border-custom2 ">
+    <div
+      className={`rounded-[15px] border w-full md:max-w-[350px] p-4   ${dimPulse ? "border-custom4" : ""} ${product.type ? `dimPulse` : `border-custom2`} `}
+    >
       <div className="flex flex-col items-center w-full gap-1 ">
-        <div
-          className={`mr-auto p-[2px] rounded-[7px] border border-dotted w-fit px-2 ${
-            colorMap[product.color]?.border || "border-gray-300"
-          }`}
-        >
+        <div className="flex flex-row items-center justify-between w-full">
           <div
-            className={`text-center text-sm ${colorMap[product.color]?.text}`}
+            className={` p-[2px] rounded-[7px] border border-dotted w-fit px-2 ${
+              colorMap[product.color]?.border || "border-gray-300"
+            }`}
           >
-            {product.category}
+            <div
+              className={`text-center text-sm ${colorMap[product.color]?.text}`}
+            >
+              {product.category}
+            </div>
+          </div>
+          <div>
+            {product.type && (
+              <div className="bg-destructive rounded-md flex items-center justify-center px-3 py-1">
+                <FaRegClock size={10} className="text-white mr-1" />
+
+                <span className="uppercase text-[10px] text-white font-medium">
+                  ends soon
+                </span>
+              </div>
+            )}
           </div>
         </div>
 

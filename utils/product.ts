@@ -1,6 +1,21 @@
 export const products = [
   {
-    id: "65bf49743eda8f76799a9539",
+    id: "1",
+    name: "Basic Package",
+    description:
+      "Principal return on maturity, instant withdrawal to your mobile money or bank profession chart and 24/7 support. package maturity time 24-25 hours maximum",
+    price: "50",
+    profit: "280",
+    category: "Student Plan",
+    availability: true,
+    personalAccount: true,
+    swapdiscount: false,
+    customizedinvestment: false,
+    color: "special",
+    type: true,
+  },
+  {
+    id: "2",
     name: "Basic Package",
     description:
       "Principal return on maturity, instant withdrawal to your mobile money or bank profession chart and 24/7 support. package maturity time 24-25 hours maximum",
@@ -12,9 +27,10 @@ export const products = [
     swapdiscount: false,
     customizedinvestment: false,
     color: "blue",
+    type: false,
   },
   {
-    id: "65bf49743eda8f76799349535",
+    id: "3",
     name: "Basic Package",
     description:
       "Principal return on maturity, instant withdrawal to your mobile money or bank profession chart and 24/7 support. package maturity time 24-25 hours maximum",
@@ -26,9 +42,10 @@ export const products = [
     swapdiscount: false,
     customizedinvestment: false,
     color: "purple",
+    type: false,
   },
   {
-    id: "65bf49743eda8f76799a9535",
+    id: "4",
     name: "Basic Package",
     description:
       "Principal return on maturity, instant withdrawal to your mobile money or bank profession chart and 24/7 support. package maturity time 24-25 hours maximum",
@@ -40,5 +57,6 @@ export const products = [
     swapdiscount: false,
     customizedinvestment: false,
     color: "yellow",
+    type: false,
   },
 ];
