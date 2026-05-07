@@ -16,7 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Trading Platform",
+  title: "Malgashi Traders",
 };
 
 export default async function RootLayout({

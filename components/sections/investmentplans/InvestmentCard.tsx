@@ -85,15 +85,14 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product, rates }) => {
             Invest
           </span>
 
-          <div className="flex flex-col">
-            <span className="text-xl mt-1 text-secondary-foreground font-semibold">
+          <div className="flex flex-row justify-center items-center">
+            <span className="text-xl text-secondary-foreground font-semibold">
               {formatPrice(product.price)}
             </span>
-
-            <div className="text-muted-foreground text-[10px] flex gap-x-1">
-              (<span>{mozPrice.toFixed(0)} MZN</span>,
-              <span>{angolaPrice.toFixed(0)} AOA</span>)
-            </div>
+            <span className="text-muted-foreground mx-1">~</span>
+            <span className="text-muted-foreground text-[10px]">
+              {mozPrice.toFixed(0)}MT
+            </span>
           </div>
         </div>
 
@@ -181,14 +180,12 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product, rates }) => {
           <span className="text-base font-medium text-secondary-foreground">
             Profit
           </span>
-          <div className="flex flex-col">
-            <span className="text-xl block mt-2 text-secondary-foreground font-semibold">
+          <div className="flex flex-row items-center justify-center">
+            <span className="text-xl block text-secondary-foreground font-semibold">
               {formatPrice(product.profit)}
             </span>
-            <div className="mr-auto text-muted-foreground text-[10px] flex flex-row gap-x-1">
-              (<span>{mozprofitPrice.toFixed(0)} MZN</span>,
-              <span>{angolaprofitPrice.toFixed(0)} AOA</span>)
-            </div>
+            <span className="text-muted-foreground mx-1">~</span>
+            <span className="text-muted-foreground text-[10px]">{mozprofitPrice.toFixed(0)}MT</span>
           </div>
         </div>
 

@@ -6,9 +6,7 @@ import UnderDevelopment from "@/components/UnderDevelopment";
 const page = () => {
   return (
     <Container>
-      <div className="h-[calc(100vh-70px)]">
-        <UnderDevelopment />
-      </div>
+      <UnderDevelopment />
     </Container>
   );
 };
