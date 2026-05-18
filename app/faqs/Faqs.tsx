@@ -14,9 +14,9 @@ const Faqs = () => {
 
   return (
     <>
-      <h1 className="text-foreground text-xl capitalize font-medium">
+      <span className="text-foreground text-xl capitalize font-medium">
         Suaalo badanaa la isweydiiyo
-      </h1>
+      </span>
 
       <div className="mt-8 flex flex-col gap-4 py-4">
         {data.map((data) => (

@@ -3,5 +3,5 @@ interface SectionProps {
 }
 
 export const SectionHeading: React.FC<SectionProps> = ({ title }) => {
-  return <h2 className="text-secondary-foreground font-bold text-xl capitalize">{title}</h2>;
+  return <span className="text-secondary-foreground font-medium text-xl capitalize">{title}</span>;
 };

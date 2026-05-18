@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { FaArrowRightLong } from "react-icons/fa6";
 import Container from "../../Container";
 import { Couresel } from "./Couresel";
 import { SectionHeading } from "../../SectionHeading";
@@ -13,12 +12,9 @@ import currencycad from "@/public/assets/currencycad.png";
 import currencyyeng from "@/public/assets/currencyyeng.png";
 import graphgreen from "@/public/assets/graphgreen.svg";
 import graphred from "@/public/assets/graphred.svg";
-import InvestmentCard from "../investmentplans/InvestmentCard";
-import { MdOutlineCloudDownload } from "react-icons/md";
-import { products } from "@/utils/product";
 import { IoCheckmarkDone } from "react-icons/io5";
 import Link from "next/link";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button} from "@/components/ui/button";
 
 const Hero = () => {
   const router = useRouter();
@@ -31,7 +27,7 @@ const Hero = () => {
             <div className="flex flex-col md:flex-row items-center md:items-center justify-center md:justify-between gap-10 flex-1">
               {/* LEFT */}
               <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left gap-8">
-                <h2 className="text-4xl md:text-5xl font-semibold">
+                <h2 className="text-3xl md:text-4xl font-medium">
                   Ha daahin
                   <br />
                   maalgashigu waa faaiido
@@ -158,7 +154,7 @@ const Hero = () => {
                   <Button className="border-custom">Qiimayaal</Button>
                 </div>
 
-                <h2 className="font-semibold text-xl mt-2 mb-2 text-secondary-foreground">
+                <h2 className="font-medium text-base mt-2 mb-2 text-secondary-foreground">
                   Ku maalgasho qiime hoose
                 </h2>
 
@@ -265,11 +261,11 @@ const Hero = () => {
                 />
               </div>
 
-              <div className="">
+              <div>
                 <div>
                   <Button className="border-custom">Bilow</Button>
                 </div>
-                <h2 className="text-secondary-foreground font-semibold text-xl mt-2 mb-2">
+                <h2 className="text-secondary-foreground font-medium text-base mt-2 mb-2">
                   Diyaar ma u tahay maalgashi
                 </h2>
                 <p className="text-muted-foreground max-w-[400px] text-sm">

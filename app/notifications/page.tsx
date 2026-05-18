@@ -18,7 +18,7 @@ function page() {
         />
       </div>
 
-      <h1 className="text-xl text-foreground font-semibold">Oops!</h1>
+      <h1 className="text-xl text-foreground font-medium">Oops!</h1>
       <p className="text-sm capitalize text-muted-foreground">
         ma jiraan ogeysiisyo hadda
       </p>

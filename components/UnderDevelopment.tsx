@@ -19,7 +19,7 @@ const UnderDevelopment = () => {
       </div>
 
       <div className="flex justify-center text-center flex-col">
-        <h1 className="text-foreground text-xl font-semibold">Oops!</h1>
+        <h1 className="text-foreground text-xl font-medium">Oops!</h1>
         <p className="text-muted-foreground text-sm capitalize">
           boggan wali waa la diyaarinayaa
         </p>

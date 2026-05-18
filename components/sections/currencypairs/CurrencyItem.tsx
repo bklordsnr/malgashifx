@@ -23,7 +23,7 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({
         <div className="mr-4 relative w-[50px]">
           <Image src={image} alt="image" className="w-full h-auto"  loading="lazy" />
         </div>
-        <span className="capitalize text-card-foreground text-base font-semibold">
+        <span className="capitalize text-card-foreground text-base font-medium">
           {title}
         </span>
       </div>

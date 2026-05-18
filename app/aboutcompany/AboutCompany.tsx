@@ -17,9 +17,9 @@ const AboutCompany = () => {
         <div className="h-full flex flex-col sm:flex-row items-center justify-between">
           {/* left */}
           <div className="w-full max-w-[500px] flex flex-col gap-5">
-            <h2 className="text-foreground font-semibold text-xl capitalize ">
+            <span className="text-foreground font-medium text-xl capitalize ">
               ku saabsan
-            </h2>
+            </span>
             <p className="text-muted-foreground text-sm">
               waxaan nahay shirkad saldhigeedu yahay dubai oo diiradda saarta
               fududeynta trading iyo maalgashi si hufan oo ammaan ah
@@ -61,7 +61,7 @@ const AboutCompany = () => {
             </div>
 
             <div className="w-full max-w-[400px] space-y-3">
-              <h1 className="text-base text-secondary-foreground">Message from CEO</h1>
+              <h1 className="text-xl text-secondary-foreground">Message from CEO</h1>
               <p className="text-muted-foreground text-sm">
                 ha ka welwelin inaadan wax walba aqoon kaliya bilow markaad
                 kobocdo oo aad maalgashato ayaad wax badan baran doontaa
