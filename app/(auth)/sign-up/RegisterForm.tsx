@@ -52,7 +52,7 @@ const RegisterForm = () => {
     axios
       .post("/api/register", data)
       .then(() => {
-        toast.success("Account Created");
+        toast.success("Account La Sameeyay");
 
         signIn("credentials", {
           email: data.email,
@@ -62,7 +62,7 @@ const RegisterForm = () => {
           if (callback?.ok) {
             router.push("/account");
             router.refresh();
-            toast.success("Good Job!");
+            toast.success("Wanaag Fiican!");
           }
           if (callback?.error) {
             toast.error(callback.error);
@@ -70,7 +70,7 @@ const RegisterForm = () => {
         });
       })
       .catch(() => {
-        toast.error("This didn't work.");
+        toast.error("Kani wuu shaqayn waayay");
       })
       .finally(() => {
         setIsLoading(false);
@@ -84,12 +84,12 @@ const RegisterForm = () => {
         variant="outline"
         onClick={() => signIn("google")}
       >
-        <FcGoogle size={18} /> Sign up with Google
+        <FcGoogle size={18} /> Ku isdiiwaangeli googleka
       </Button>
 
       <Input
         id="name"
-        label="Enter Name"
+        label="Geli Magacaaga"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -97,7 +97,7 @@ const RegisterForm = () => {
 
       <Input
         id="email"
-        label="Enter Email"
+        label="Geli Emailkaaga"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -105,7 +105,7 @@ const RegisterForm = () => {
 
       <Input
         id="password"
-        label="Enter Password"
+        label="Geli Passwordkaaga"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -113,9 +113,9 @@ const RegisterForm = () => {
       />
 
       <p className="mr-auto text-muted-foreground text-sm">
-        Do you have an account?{" "}
+        Ma leedahay account?{" "}
         <Link href="/sign-in" className="underline">
-          Login
+          Gal
         </Link>
       </p>
 
@@ -123,7 +123,7 @@ const RegisterForm = () => {
         onClick={handleSubmit(onSubmit, onInvalid)}
         className="w-full border-custom"
       >
-        {isLoading ? "Loading.." : "Create account"}
+        {isLoading ? "sooshubaya" : "Samee Account"}
       </Button>
     </>
   );

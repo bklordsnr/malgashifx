@@ -62,14 +62,14 @@ const LoginForm = () => {
       if (callback?.ok) {
         router.push("/account");
         router.refresh();
-        toast.success("Good Job!");
+        toast.success("Wanaag Fiican!");
       }
 
       if (callback?.error) {
         toast.error(callback.error);
       }
     } catch {
-      toast.error("This didn't work.");
+      toast.error("kani wuu shaqayn waayay");
     } finally {
       setIsLoading(false);
     }
@@ -82,12 +82,12 @@ const LoginForm = () => {
         variant="outline"
         onClick={() => signIn("google")}
       >
-        <FcGoogle size={18} /> Sign in with Google
+        <FcGoogle size={18} /> ku gal googleka
       </Button>
 
       <Input
         id="email"
-        label="Enter Email"
+        label="Geli Emailkaaga"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -95,7 +95,7 @@ const LoginForm = () => {
 
       <Input
         id="password"
-        label="Enter Password"
+        label="Geli Passwordkaaga"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -103,9 +103,9 @@ const LoginForm = () => {
       />
 
       <p className="mr-auto text-muted-foreground text-sm">
-        Dont have an account?{" "}
-        <Link href="/sign-up" className="underline">
-          Register
+        Ma lihid account
+        <Link href="/sign-up" className="underline ml-1">
+          Isdiiwaangeli
         </Link>
       </p>
 
@@ -113,7 +113,7 @@ const LoginForm = () => {
         onClick={handleSubmit(onSubmit, onInvalid)}
         className="w-full border-custom"
       >
-        {isLoading ? "Loading.." : "Log In"}
+        {isLoading ? "sooshubaya" : "gal"}
       </Button>
     </>
   );

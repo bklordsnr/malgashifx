@@ -40,7 +40,7 @@ export default async function RootLayout({
         />
         <CartProvider>
           <main className=" relative flex flex-col min-h-screen">
-            <News />
+            {/* <News /> */}
             <Navbar />
             <div className="flex-grow flex-1">{children}</div>
             <Footer />

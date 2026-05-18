@@ -17,18 +17,21 @@ const AboutCompany = () => {
         <div className="h-full flex flex-col sm:flex-row items-center justify-between">
           {/* left */}
           <div className="w-full max-w-[500px] flex flex-col gap-5">
-            <h2 className="text-foreground font-semibold text-xl ">About Us</h2>
+            <h2 className="text-foreground font-semibold text-xl capitalize ">
+              ku saabsan
+            </h2>
             <p className="text-muted-foreground text-sm">
-              We are a Dubai-based company focused on making trading and
-              investing simple, transparent, and secure for everyone. Our
-              platform is built to be accessible to all—not just traders, but
-              anyone looking to grow their investments with confidence.
+              waxaan nahay shirkad saldhigeedu yahay dubai oo diiradda saarta
+              fududeynta trading iyo maalgashi si hufan oo ammaan ah
+              platformkeena waxaa loo dhisay inuu qof walba u fududaado ma ahan
+              oo kaliya traders laakiin qof kasta oo raba inuu koriyo
+              maalgashigiisa si kalsooni leh
             </p>
 
             <div className="max-w-[300px] flex items-center gap-1">
               <FaArrowDownLong size={19} className="text-primary" />
               <Link href="#ceo" className={buttonVariants({ variant: "link" })}>
-                Learn More
+                Wax badan baro
               </Link>
             </div>
           </div>
@@ -58,12 +61,10 @@ const AboutCompany = () => {
             </div>
 
             <div className="w-full max-w-[400px] space-y-3">
-              <h1 className="text-base text-secondary-foreground">
-                Message from CEO
-              </h1>
+              <h1 className="text-base text-secondary-foreground">Message from CEO</h1>
               <p className="text-muted-foreground text-sm">
-                Don&apos;t worry about not knowing everything, just start and
-                you will learn about them as you grow and invest.
+                ha ka welwelin inaadan wax walba aqoon kaliya bilow markaad
+                kobocdo oo aad maalgashato ayaad wax badan baran doontaa
               </p>
 
               <div className="flex flex-col">

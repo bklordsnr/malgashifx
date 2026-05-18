@@ -22,8 +22,8 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
 
       <div className="w-full">
         <div className="flex flex-col items-start justify-start gap-2">
-          <span className="text-secondary-foreground text-xl font-medium flex flex-row items-center gap-2">
-            Welcome back
+          <span className="text-secondary-foreground capitalize text-xl font-medium flex flex-row items-center gap-2">
+            soo laabo
           </span>
           <span className="text-muted-foreground text-sm capitalize">
             ~ {currentUser?.name}
@@ -35,8 +35,8 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
         <div className="relative mt-10 bg-card border-custom2 rounded-md overflow-hidden w-full md:max-w-[550px] max-h-[200px] h-full px-4 flex justify-between">
           <div className="w-full flex flex-col py-5 justify-between z-10">
             <div className="flex flex-col pt-3 space-y-2">
-              <span className="text-muted-foreground text-sm">
-                Total Balance
+              <span className="text-muted-foreground text-sm capitalize">
+                wadarta balanceka
               </span>
               <span className="text-secondary-foreground font-semibold text-2xl md:text-3xl">
                 {formatPrice(currentUser?.TotalBalance)}
@@ -77,8 +77,8 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
         <div className="justify-between flex flex-col md:flex-row gap-y-6 md:gap-2 md:gap-x-2">
           <div className=" w-full md:max-w-[300px] bg-card border-custom2 rounded-md px-4 h-[100px] flex justify-between">
             <div className="flex flex-col py-5 justify-between">
-              <span className="text-sm text-muted-foreground">
-                Invested Value
+              <span className="text-sm capitalize text-muted-foreground">
+                qiimaha la maalgashaday
               </span>
               <span className="text-secondary-foreground font-semibold text-xl">
                 {formatPrice(currentUser?.Deposit)}
@@ -97,8 +97,8 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
 
           <div className=" w-full md:max-w-[300px] bg-card border-custom2 rounded-md px-4 h-[100px] flex justify-between">
             <div className="flex flex-col py-5 justify-between">
-              <span className="text-sm text-muted-foreground">
-                Targeted Profits
+              <span className="text-sm capitalize text-muted-foreground">
+                faaidada la bartilmaameedsaday
               </span>
               <span className="text-secondary-foreground font-semibold text-xl">
                 {formatPrice(currentUser?.Profit)}
@@ -119,7 +119,9 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
           </div>
 
           <div className="w-[100%] md:w-[60%] text-sm">
-            <span className="text-muted-foreground">Investment Track</span>
+            <span className="text-muted-foreground capitalize">
+              raadraaca maalgashiga
+            </span>
             <Graph />
           </div>
         </div>
@@ -129,24 +131,24 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
         <div className="border-custom2 w-full flex flex-col px-4 rounded-md">
           <div className="justify-start mb-2 pt-2">
             <span className="capitalize  text-muted-foreground text-sm border border-dotted py-1 px-1 rounded-md">
-              account overview
+              dulmar accountka
             </span>
           </div>
 
           <div className="flex justify-between items-center mb-2">
             <div>
               <span className="capitalize text-sm text-foreground">
-                Trading Status
+                xaaladda tradingka
               </span>
             </div>
             <div>
               {currentUser?.tradingstatus ? (
                 <span className="capitalize text-sm text-ring border border-dotted  px-1 border-ring rounded-md">
-                  active
+                  firfircoon
                 </span>
               ) : (
                 <span className="capitalize text-sm text-destructive border border-dotted  px-1 border-destructive rounded-md">
-                  inactive
+                  aan firfircoonayn
                 </span>
               )}
             </div>
@@ -169,7 +171,9 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
 
           <div className="flex justify-between items-center mb-2">
             <div>
-              <span className="capitalize text-sm text-foreground">number</span>
+              <span className="capitalize text-sm text-foreground">
+                numberka
+              </span>
             </div>
             <div>
               <span className="text-sm text-muted-foreground">
@@ -182,15 +186,13 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
 
           <div className="flex justify-between items-center mb-2">
             <div>
-              <span className="capitalize text-sm text-foreground">
-                clearance
-              </span>
+              <span className="capitalize text-sm text-foreground">fasax</span>
             </div>
             <div>
               {currentUser?.clearancestatus ? (
-                <span className="text-sm text-ring">approved</span>
+                <span className="text-sm text-ring">la ansixiyay</span>
               ) : (
-                <span className="text-sm text-destructive">null</span>
+                <span className="text-sm text-destructive">eber</span>
               )}
             </div>
           </div>
@@ -200,14 +202,14 @@ const Account: React.FC<AccountProps> = ({ currentUser }) => {
           <div className="flex justify-between items-center mb-2">
             <div>
               <span className="capitalize text-sm text-foreground">
-                withdrawal status
+                xaaladda lacag bixinta
               </span>
             </div>
             <div>
               {currentUser?.withdrawalstatus ? (
-                <span className="text-sm text-ring">approved</span>
+                <span className="text-sm text-ring">la ansixiyay</span>
               ) : (
-                <span className="text-sm text-destructive">null</span>
+                <span className="text-sm text-destructive">eber</span>
               )}
             </div>
           </div>

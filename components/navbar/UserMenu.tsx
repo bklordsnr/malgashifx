@@ -57,7 +57,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                   onClick={toggleOpen}
                   icon={LuFileSpreadsheet}
                 >
-                  Investment Plans
+                  Qorshayaasha Maalgashiga
                 </MenuItem>
               </Link>
 
@@ -67,7 +67,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                   onClick={toggleOpen}
                   icon={RiTelegram2Line}
                 >
-                  Telegram Support
+                  Taageerada Telegram
                 </MenuItem>
               </Link>
 
@@ -77,20 +77,20 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                   toggleOpen(), signOut();
                 }}
               >
-                Log Out
+                Ka Bax
               </MenuItem>
             </div>
           ) : (
             <div className=" z-30 text-sm">
               <Link href="/sign-in">
                 <MenuItem onClick={toggleOpen} icon={HiOutlineLogout}>
-                  Log In
+                  Gal Accountka
                 </MenuItem>
               </Link>
 
               <Link href="/sign-up">
                 <MenuItem onClick={toggleOpen} icon={MdOutlineNoAccounts}>
-                  Register
+                  Isdiiwaangeli
                 </MenuItem>
               </Link>
             </div>

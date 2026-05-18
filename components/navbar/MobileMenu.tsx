@@ -64,7 +64,7 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
                     onClick={handleMenu}
                     icon={LuFileSpreadsheet}
                   >
-                    Investment Plans
+                    Qorshayaasha Maalgashiga
                   </MenuItem>
                 </Link>
 
@@ -88,7 +88,7 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
                     onClick={handleMenu}
                     icon={GrCircleInformation}
                   >
-                    About company
+                    Ku Saabsan Shirkadda
                   </MenuItem>
                 </Link>
 
@@ -112,7 +112,7 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
                     onClick={handleMenu}
                     icon={RiTelegram2Line}
                   >
-                    Telegram Support
+                    Taageerada Telegram
                   </MenuItem>
                 </Link>
 
@@ -123,12 +123,12 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
                   className="mt-4 border-custom3"
                   variant="destructive"
                 >
-                  Logout
+                  Ka Bax
                 </Button>
               </div>
             </div>
           </div>
-        ) : (
+        ) : ( 
           <div className="z-30 px-4 py-3 text-sm">
             <div className="flex flex-col gap-4">
               <Link href="/investmentplans">
@@ -137,7 +137,7 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
                   onClick={handleMenu}
                   icon={LuFileSpreadsheet}
                 >
-                  Investment Plans
+                  Qorshayaasha Maalgashiga
                 </MenuItem>
               </Link>
 
@@ -149,7 +149,7 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
                   onClick={handleMenu}
                   icon={GrCircleInformation}
                 >
-                  About company
+                  Ku Saabsan Shirkadda
                 </MenuItem>
               </Link>
 
@@ -173,7 +173,7 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
                   onClick={handleMenu}
                   icon={RiTelegram2Line}
                 >
-                  Telegram Support
+                  Taageerada Telegram
                 </MenuItem>
               </Link>
             </div>
@@ -184,7 +184,7 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
                 href="/sign-in"
                 className={`border-custom2 ${buttonVariants({ variant: "outline" })}`}
               >
-                Log In
+                Gal Accountka
               </Link>
 
               <Link
@@ -192,7 +192,7 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
                 href="/sign-up"
                 className={`border-custom ${buttonVariants({ variant: "default" })}`}
               >
-                Register
+                Isdiiwaangeli
               </Link>
             </div>
           </div>

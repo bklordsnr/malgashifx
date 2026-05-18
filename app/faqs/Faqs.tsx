@@ -14,8 +14,8 @@ const Faqs = () => {
 
   return (
     <>
-      <h1 className="text-foreground text-xl font-medium">
-        Frequently asked questions.
+      <h1 className="text-foreground text-xl capitalize font-medium">
+        Suaalo badanaa la isweydiiyo
       </h1>
 
       <div className="mt-8 flex flex-col gap-4 py-4">

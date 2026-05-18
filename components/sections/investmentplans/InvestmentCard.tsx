@@ -82,7 +82,7 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product, rates }) => {
 
         <div className="mr-auto mt-2">
           <span className="text-base font-medium text-secondary-foreground">
-            Invest
+            Maalgashi
           </span>
 
           <div className="flex flex-row justify-center items-center">
@@ -120,7 +120,7 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product, rates }) => {
               <div className="flex items-center">
                 <IoCheckmarkDone size={20} className="text-primary mr-2" />
                 <span className="text-muted-foreground text-sm">
-                  Holding Period:
+                  Mudada Haynta:
                 </span>
               </div>
               <div className="text-primary text-sm">48 hrs</div>
@@ -130,10 +130,10 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product, rates }) => {
               <div className="flex items-center">
                 <IoCheckmarkDone size={20} className="text-primary mr-2" />
                 <span className="text-muted-foreground text-sm">
-                  Holding Period:
+                  Mudada Haynta:
                 </span>
               </div>
-              <div className="text-primary text-sm">24 hrs</div>
+              <div className="text-primary text-sm">24 sac</div>
             </div>
           )}
 
@@ -141,17 +141,17 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product, rates }) => {
             <div className="flex justify-between mt-2">
               <div className="flex items-center">
                 <IoCheckmarkDone size={20} className="text-primary mr-2" />
-                <span className="text-sm">Swap Discount:</span>
+                <span className="text-sm">Dhimis Swap:</span>
               </div>
-              <div className="text-primary">yes</div>
+              <div className="text-primary">Haa</div>
             </div>
           ) : (
             <div className="flex justify-between mt-2">
               <div className="flex items-center">
                 <RiCloseLine size={24} className="text-muted mr-2" />
-                <span className="text-muted text-sm">Swap Discount:</span>
+                <span className="text-muted text-sm">Dhimis Swap:</span>
               </div>
-              <div className="text-muted text-sm">No</div>
+              <div className="text-muted text-sm">Maya</div>
             </div>
           )}
 
@@ -159,39 +159,41 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product, rates }) => {
             <div className="flex justify-between mt-2">
               <div className="flex items-center">
                 <IoCheckmarkDone size={20} className="text-primary mr-2" />
-                <span className="text-sm">Customized Investment:</span>
+                <span className="text-sm">Maalgashi La Habeeyay:</span>
               </div>
-              <div className="text-primary">yes</div>
+              <div className="text-primary">Haa</div>
             </div>
           ) : (
             <div className="flex justify-between mt-2">
               <div className="flex items-center">
                 <RiCloseLine size={24} className="text-muted mr-2" />
                 <span className="text-muted text-sm">
-                  Customized Investment:
+                  Maalgashi La Habeeyay:
                 </span>
               </div>
-              <div className="text-muted text-sm">No</div>
+              <div className="text-muted text-sm">Maya</div>
             </div>
           )}
         </div>
 
         <div className="mr-auto mt-2">
           <span className="text-base font-medium text-secondary-foreground">
-            Profit
+            Faaido
           </span>
           <div className="flex flex-row items-center justify-center">
             <span className="text-xl block text-secondary-foreground font-semibold">
               {formatPrice(product.profit)}
             </span>
             <span className="text-muted-foreground mx-1">~</span>
-            <span className="text-muted-foreground text-[10px]">{mozprofitPrice.toFixed(0)}MT</span>
+            <span className="text-muted-foreground text-[10px]">
+              {mozprofitPrice.toFixed(0)}MT
+            </span>
           </div>
         </div>
 
         <div className="mt-2 w-full">
           <Link href={`/account`}>
-            <Button className="w-full border-custom">Invest</Button>
+            <Button className="w-full border-custom">Maalgashi</Button>
           </Link>
         </div>
       </div>

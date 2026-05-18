@@ -15,7 +15,7 @@ const InvestmentPlans = async () => {
   return (
     <>
       <h1 className="text-secondary-foreground font-semibold text-xl mb-8">
-        Investment Plans
+        Qorshayaasha Maalgashiga
       </h1>
 
       <div className="flex flex-wrap justify-between gap-8 pb-8 w-full">

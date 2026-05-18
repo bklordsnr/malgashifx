@@ -1,17 +1,17 @@
 export const Faq = [
   {
-    title: "What is investing?",
+    title: "Waa maxay maalgashi?",
     description:
-      "Investing is the act of allocating money or resources with the expectation of generating a profit or gaining an advantage over time. It involves putting your money into assets such as stocks, bonds, real estate, or businesses, with the goal of achieving long-term financial growth.",
+      "Maalgashi waa falka aad lacag ama hanti u geliso wax aad filayso inay faa iido ama koror keento waqti ka dib waxay noqon kartaa inaad lacag geliso stocks bonds hanti ma guurto ah ama ganacsi si aad u hesho koboc dhaqaale mustaqbalka",
   },
   {
-    title: "What are the different types of investments?",
+    title: "Noocyada kala duwan ee maalgashi waa maxay?",
     description:
-      "Common types of investments include stocks, bonds, mutual funds, real estate, commodities, and alternative investments such as cryptocurrencies. Each type has its own risk and return characteristics, and a diversified portfolio may include a mix of these assets.",
+      "noocyada caadiga ah ee maalgashi waxaa ka mid ah saamiyo bonds mutual funds hanti ma guurto ah commodities iyo maalgashi kale sida cryptocurrency nooc kasta wuxuu leeyahay khatar iyo faaido u gaar ah waxaana laga yaabaa in portfolio kala duwan lagu daro isku darka hantidan",
   },
   {
-    title: "How do I get started with investing?",
+    title: "Sidee ku bilaabaa maalgashi?",
     description:
-      "First create an account on the platfrom, then choose the investment plan you want to invest in after that you make the payment to start the investment",
+      "Marka hore samee account platformka kadib dooro qorshaha maalgashiga aad rabto kadib samee lacag bixinta si maalgashigu u bilaabmo",
   },
 ];

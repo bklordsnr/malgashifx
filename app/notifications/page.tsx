@@ -19,13 +19,13 @@ function page() {
       </div>
 
       <h1 className="text-xl text-foreground font-semibold">Oops!</h1>
-      <p className="text-sm text-muted-foreground">
-        No notification right now...
+      <p className="text-sm capitalize text-muted-foreground">
+        ma jiraan ogeysiisyo hadda
       </p>
 
       <div className="flex items-center text-sm">
         <a href="/account" className={cn(buttonVariants({ variant: "link" }))}>
-          Go to account
+          U gudub accountka
         </a>
 
         <FaArrowRightLong size={20} className="text-primary" />

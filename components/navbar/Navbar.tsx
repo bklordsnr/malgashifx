@@ -31,7 +31,7 @@ const Navbar = async () => {
                 <li>About Company</li>
               </Link>
               <Link href="/faqs">
-                <li>Faqs</li>
+                <li>Faq</li>
               </Link>
             </ul>
           </div>
@@ -53,7 +53,7 @@ const Navbar = async () => {
                   href="/sign-in"
                   className={`text-sm border-custom2 ${buttonVariants({ variant: "outline" })}`}
                 >
-                  Log In
+                  Gal Accountka
                 </Link>
 
                 <span className="h-5 w-px bg-card" />
@@ -62,7 +62,7 @@ const Navbar = async () => {
                   href="/sign-up"
                   className={`text-sm w-36 border-custom ${buttonVariants({ variant: "default" })}`}
                 >
-                  Sign Up
+                  Isdiiwaangeli
                 </Link>
               </div>
             )}

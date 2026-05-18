@@ -13,16 +13,16 @@ const page = async () => {
 
   return (
     <Container>
-      <div >
+      <div>
         <div className="h-full w-full py-10">
           <div className="flex justify-center items-center">
             <div className="w-full bg-card rounded-md max-w-[400px] border-custom2 p-8">
               <div className="space-y-1 mb-8">
                 <h1 className="text-secondary-foreground font-semibold text-2xl">
-                  Sign in 
+                  Gal Accountka
                 </h1>
                 <p className="text-muted-foreground text-sm">
-                  Enter your email below to sign in
+                  Geli emailkaaga hoose si aad u gasho accountka
                 </p>
               </div>
               <FormWrapper>

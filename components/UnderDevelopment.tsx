@@ -20,8 +20,8 @@ const UnderDevelopment = () => {
 
       <div className="flex justify-center text-center flex-col">
         <h1 className="text-foreground text-xl font-semibold">Oops!</h1>
-        <p className="text-muted-foreground text-sm">
-          Page under development...
+        <p className="text-muted-foreground text-sm capitalize">
+          boggan wali waa la diyaarinayaa
         </p>
 
         <div
@@ -31,7 +31,7 @@ const UnderDevelopment = () => {
           onClick={() => router.back()}
         >
           <FaArrowLeftLong size={19} />
-          Go Back!
+          Dib u noqo
         </div>
       </div>
     </div>

@@ -32,17 +32,19 @@ const Hero = () => {
               {/* LEFT */}
               <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left gap-8">
                 <h2 className="text-4xl md:text-5xl font-semibold">
-                  Don&apos;t be late <br /> investment is great
+                  Ha daahin
+                  <br />
+                  maalgashigu waa faaiido
                 </h2>
 
                 <p className="text-muted-foreground max-w-[700px] text-sm">
-                  Invest with us today and enjoy a 5% - 8% yield with low risk
-                  through our tokenised treasuries and corporate bonds.
+                  Nala maalgasho maanta oo hel faa’iido 5%–8% ah oo khatar hoose
+                  leh adigoo adeegsanaya binary trading.
                 </p>
 
                 <div className="max-w-[300px] w-full">
                   <Button className="w-full border-custom">
-                    <Link href="/account">Get Started Now</Link>
+                    <Link href="/account">Bilow Hadda</Link>
                   </Button>
                 </div>
               </div>
@@ -73,18 +75,18 @@ const Hero = () => {
           <div>
             <div className="flex flex-col gap-6">
               <div>
-                <Button className="border-custom">About us</Button>
+                <Button className="border-custom">Nagu Saabsan</Button>
               </div>
-              <SectionHeading title="Why choose us?" />
+              <SectionHeading title="Maxaa Noo Dooranaysaa?" />
             </div>
 
             <div className="flex items-start justify-between gap-10 flex-col lg:flex-row">
               <div className="max-w-[500px] text-muted-foreground text-sm mt-7 mr-auto">
                 <p>
-                  We provide a transparent, cost-effective service with modern
-                  technology and strong support. Our goal is to build a unique
-                  platform for both traders and investors of all experience
-                  levels—from beginners to professionals.
+                  Waxaan bixinnaa adeeg hufan, kharash-yar leh oo ku shaqeeya
+                  tiknoolajiyad casri ah iyo taageero xooggan ujeeddadeennu waa
+                  inaan dhisno madal u gaar ah traderska iyo maalqashadayaasha
+                  heer kasta leh laga bilaabo bilow ilaa xirfadle.
                 </p>
               </div>
 
@@ -92,13 +94,13 @@ const Hero = () => {
                 className="flex  flex-wrap justify-between gap-5  mt-5 w-full
                lg:m-0 "
               >
-                <AboutItem title="150" subtitle="Commercial Products" />
+                <AboutItem title="150" subtitle="Alaabo Ganacsi" />
                 <AboutItem
                   title="$0.00"
-                  subtitle="Taxes of Account Maintenance"
+                  subtitle="Kharashaadka Dayactirka Akoonka"
                 />
                 <AboutItem title="1:200" subtitle="Leverage" />
-                <AboutItem title="MT4" subtitle="Trade Version" />
+                <AboutItem title="MT4" subtitle="Nooca Tradeka" />
               </div>
             </div>
           </div>
@@ -108,9 +110,9 @@ const Hero = () => {
         <section className="py-10">
           <div className="flex flex-col gap-6">
             <div>
-              <Button className="border-custom">Currency</Button>
+              <Button className="border-custom">Lacagta</Button>
             </div>
-            <SectionHeading title="Currency Pairs" />
+            <SectionHeading title="Lammaanaha Lacagaha" />
           </div>
 
           <div className="mt-10 flex flex-row justify-between flex-wrap gap-7 md:gap-4">
@@ -132,7 +134,7 @@ const Hero = () => {
             />
             <CurrencyItem
               image={currencyyeng}
-              title="eur/usd"
+              title="eur/jpy"
               bprice="1.83"
               avgprice="+9.289%"
               graph={graphgreen}
@@ -153,23 +155,23 @@ const Hero = () => {
 
               <div className="pt-4 pb-3 flex flex-col w-full md:w-auto max-w-[400px]">
                 <div>
-                  <Button className="border-custom">Prices</Button>
+                  <Button className="border-custom">Qiimayaal</Button>
                 </div>
 
                 <h2 className="font-semibold text-xl mt-2 mb-2 text-secondary-foreground">
-                  Invest with low prices
+                  Ku maalgasho qiime hoose
                 </h2>
 
                 <p className="w-full text-muted-foreground my-3 text-sm">
-                  Enjoy clear, transparent pricing in a safe and regulated
-                  environment. Whether you’re a beginner or an experienced
-                  trader or investor, you can benefit from lower fees, reliable
-                  technology, and added advantages as you grow.
+                  Ku raaxayso qiimeyn cad oo hufan gudaha deegaan ammaan ah oo
+                  nidaamsan haddii aad tahay bilow ama trader ama maalgashade
+                  khibrad leh waxaad heli kartaa kharashyo hoose tiknoolajiyad
+                  lagu kalsoon yahay iyo faaidooyin dheeraad ah markaad kobocdo
                 </p>
 
                 <div className="w-full">
                   <Button className="w-full mt-4 sm:m-0 border-custom">
-                    <Link href="/investmentplans">Investment Prices</Link>
+                    <Link href="/investmentplans">Qiimaha Maalgashiga</Link>
                   </Button>
                 </div>
               </div>
@@ -182,51 +184,52 @@ const Hero = () => {
         <section className="py-10">
           <div className="flex flex-col gap-6">
             <div>
-              <Button className="border-custom">First steps</Button>
+              <Button className="border-custom capitalize">
+                tallaabooyinka hore
+              </Button>
             </div>
-            <SectionHeading title="Let's create your account" />
+            <SectionHeading title="aan kuu furno accountkaaga" />
           </div>
 
           <div className="pt-8 w-full flex flex-col justify-between lg:flex-row">
             <div className=" w-full max-w-[600px]">
               <div>
                 <p className="text-muted-foreground text-sm">
-                  Get started in minutes with a simple and secure sign-up
-                  process. Join a trusted Dubai-based platform designed to make
-                  trading and investing accessible, transparent, and easy for
-                  everyone.
+                  ku bilow daqiiqado gudahood adigoo maraya isdiiwaangelin fudud
+                  oo ammaan ah ku biir platform lagu kalsoon yahay oo dubai ku
+                  salaysan loona dhisay trading iyo maalgashi fudud hufan oo qof
+                  walba heli karo
                 </p>
               </div>
 
-              <div className="pt-5 flex flex-col gap-5">
-                <div className="flex justify-between">
-                  <div className="mr-2">
-                    <IoCheckmarkDone size={24} className="text-primary" />
+              <div className="pt-5 flex flex-col gap-5 space-y-1">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <IoCheckmarkDone size={24} className="text-primary mr-1" />
                   </div>
                   <div className="flex flex-col mr-auto">
                     <span className="text-secondary-foreground normal-case text-sm mb-1">
-                      First you start by creating an account followed by choosing
-                      an investment plan.
+                      Marka hore samee account kadib dooro qorshaha maalgashiga
                     </span>
                   </div>
                 </div>
-                <div className="flex justify-between">
-                  <div className="mr-2">
-                    <IoCheckmarkDone size={24} className="text-primary" />
+                <div className="flex justify-between items-center">
+                  <div>
+                    <IoCheckmarkDone size={24} className="text-primary mr-1" />
                   </div>
                   <div className="flex flex-col mr-auto">
                     <span className="text-secondary-foreground normal-case text-sm mb-1">
-                      Second, you make payment so the investment can start.
+                      Marka xigta samee lacag bixinta si maalgashigu u bilaabmo
                     </span>
                   </div>
                 </div>
-                <div className="flex justify-between">
-                  <div className="mr-2">
-                    <IoCheckmarkDone size={24} className="text-primary" />
+                <div className="flex justify-between items-center">
+                  <div>
+                    <IoCheckmarkDone size={24} className="text-primary mr-1" />
                   </div>
                   <div className="flex flex-col mr-auto">
                     <span className="text-secondary-foreground normal-case text-sm mb-1">
-                      After deposit is confirmed, the investment will start.
+                      Marka depositka la xaqiijiyo maalgashigu wuu bilaabanayaa
                     </span>
                   </div>
                 </div>
@@ -264,19 +267,19 @@ const Hero = () => {
 
               <div className="">
                 <div>
-                  <Button className="border-custom">Start</Button>
+                  <Button className="border-custom">Bilow</Button>
                 </div>
                 <h2 className="text-secondary-foreground font-semibold text-xl mt-2 mb-2">
-                  Ready to Invest?
+                  Diyaar ma u tahay maalgashi
                 </h2>
                 <p className="text-muted-foreground max-w-[400px] text-sm">
-                  Opening an account takes less than 3 minutes. Start your
-                  investment journey with us today.
+                  Furashada accountku waxay qaadataa wax ka yar 3 daqiiqo maanta
+                  nala bilow safarkaaga maalgashi
                 </p>
 
                 <div className="mt-4 pb-2">
                   <Button className="w-full border-custom">
-                    <a href="/account">Create Account</a>
+                    <a href="/account">Samee Account</a>
                   </Button>
                 </div>
               </div>

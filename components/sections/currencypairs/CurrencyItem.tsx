@@ -20,26 +20,26 @@ const CurrencyItem: React.FC<CurrencyItemProps> = ({
   return (
     <div className="border-custom2  rounded-[15px] p-5 md:max-w-[370px] w-full">
       <div className="flex flex-row  items-center">
-        <div className="mr-4 relative w-[80px]">
+        <div className="mr-4 relative w-[50px]">
           <Image src={image} alt="image" className="w-full h-auto"  loading="lazy" />
         </div>
-        <span className="uppercase text-card-foreground text-base font-semibold">
+        <span className="capitalize text-card-foreground text-base font-semibold">
           {title}
         </span>
       </div>
       <div className="mt-5 flex justify-between flex-row">
         <div className="">
-          <span className="text-muted-foreground block text-sm">Buy Price</span>
+          <span className="text-muted-foreground block text-sm">Qiimaha Iibsiga</span>
           <span className="text-card-foreground text-sm">{bprice}</span>
         </div>
 
         <div className="flex justify-end flex-col ">
-          <span className="text-muted-foreground ml-auto">Avg</span>
+          <span className="text-muted-foreground ml-auto text-sm">Avg</span>
           <span
             className={
               green
-                ? "text-primary"
-                : "bg-gradient-to-r from-[#F44D29]   to-[#D52274]  bg-clip-text text-transparent"
+                ? "text-primary text-sm"
+                : "bg-gradient-to-r from-[#F44D29]   to-[#D52274]  bg-clip-text text-transparent text-sm"
             }
           >
             {avgprice}
