@@ -89,10 +89,6 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product, rates }) => {
             <span className="text-xl text-secondary-foreground font-semibold">
               {formatPrice(product.price)}
             </span>
-            <span className="text-muted-foreground mx-1">~</span>
-            <span className="text-muted-foreground text-[10px]">
-              {mozPrice.toFixed(0)}MT
-            </span>
           </div>
         </div>
 
@@ -183,10 +179,6 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ product, rates }) => {
           <div className="flex flex-row items-center justify-center">
             <span className="text-xl block text-secondary-foreground font-semibold">
               {formatPrice(product.profit)}
-            </span>
-            <span className="text-muted-foreground mx-1">~</span>
-            <span className="text-muted-foreground text-[10px]">
-              {mozprofitPrice.toFixed(0)}MT
             </span>
           </div>
         </div>
