@@ -79,7 +79,7 @@ const Hero = () => {
             </div>
 
             {/* BOTTOM */}
-            <div className="mt-8 md:mt-12 shadow-md border bg-background rounded-xl py-2 w-full flex items-center justify-evenly">
+            <div className="mt-8 md:mt-12 border-custom2 bg-background rounded-xl py-2 w-full flex items-center justify-evenly">
               <div className="flex min-w-0 flex-1 justify-center flex-col items-center p-4 space-y-1">
                 <span className="text-green-800">
                   <SlPeople size={23} />
