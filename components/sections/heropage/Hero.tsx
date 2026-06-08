@@ -14,7 +14,13 @@ import graphgreen from "@/public/assets/graphgreen.svg";
 import graphred from "@/public/assets/graphred.svg";
 import { IoCheckmarkDone } from "react-icons/io5";
 import Link from "next/link";
-import { Button} from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
+import { TiPlus } from "react-icons/ti";
+import { FaArrowRight } from "react-icons/fa6";
+import { SlPeople } from "react-icons/sl";
+import { MdOutlinePaid } from "react-icons/md";
+import { MdOutlineCloudDone } from "react-icons/md";
+import { MdAvTimer } from "react-icons/md";
 
 const Hero = () => {
   const router = useRouter();
@@ -22,16 +28,28 @@ const Hero = () => {
     <div className="">
       <Container>
         {/* homepage section */}
-        <section>
-          <div className="h-[calc(100vh-64px)] flex flex-col justify-between z-10">
-            <div className="flex flex-col md:flex-row items-center md:items-center justify-center md:justify-between gap-10 flex-1">
+        <section className="py-8 md:py-12">
+          <div className="flex flex-col justify-between z-10 relative">
+            <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-8 md:gap-12 flex-1">
               {/* LEFT */}
-              <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left gap-8">
-                <h2 className="text-3xl md:text-4xl font-medium">
-                  Ha daahin
-                  <br />
-                  maalgashigu waa faaiido
-                </h2>
+              <div className="w-full md:w-1/2 flex flex-col items-start text-left gap-6">
+                <div className="space-y-5">
+                  <div className="bg-green-100 w-fit py-1 px-2 rounded-md space-x-1 flex items-center">
+                    <span className="text-green-600">
+                      <TiPlus />
+                    </span>
+                    <span className="text-green-900 uppercase text-sm font-semibold">
+                      maalgasho xaqiiq ah
+                    </span>
+                  </div>
+
+                  <h2 className="text-3xl md:text-4xl font-medium">
+                    Ha daahin,
+                    <br />
+                    Maalgashigu waa{" "}
+                    <span className="text-primary">Faaiido.</span>
+                  </h2>
+                </div>
 
                 <p className="text-muted-foreground max-w-[700px] text-sm">
                   Nala maalgasho maanta oo hel faa’iido 5%–8% ah oo khatar hoose
@@ -39,27 +57,79 @@ const Hero = () => {
                 </p>
 
                 <div className="max-w-[300px] w-full">
-                  <Button className="w-full border-custom">
+                  <Button className="w-full border-custom space-x-3">
                     <Link href="/account">Bilow Hadda</Link>
+                    <FaArrowRight />
                   </Button>
                 </div>
               </div>
 
               {/* RIGHT IMAGE */}
-              <div className="hidden md:flex justify-center md:justify-end w-full md:w-1/2">
-                <div className="relative aspect-square w-full max-w-[400px]">
+              <div className="flex justify-center md:justify-end w-full md:w-1/2">
+                <div className="relative w-52 sm:w-64 md:w-full md:max-w-[400px]">
                   <Image
-                    src="/assets/money.png"
-                    fill
+                    src="/assets/hero.png"
+                    width={1024}
+                    height={1536}
                     alt="technology"
-                    className="object-cover object-center"
+                    className="w-full h-auto"
                   />
                 </div>
               </div>
             </div>
 
             {/* BOTTOM */}
-            <div className="pb-5 flex justify-center">
+            <div className="mt-8 md:mt-12 shadow-md border bg-background rounded-xl py-2 w-full flex items-center justify-evenly">
+              <div className="flex min-w-0 flex-1 justify-center flex-col items-center p-4 space-y-1">
+                <span className="text-green-800">
+                  <SlPeople size={23} />
+                </span>
+                <span className="font-semibold text-sm md:text-base">100+</span>
+                <span className="max-w-full text-center text-muted-foreground capitalize text-sm truncate">
+                  maalgashadayaal
+                </span>
+              </div>
+
+              <span className="h-16 w-[2px] bg-slate-200" />
+
+              <div className="flex min-w-0 flex-1 justify-center flex-col items-center p-4 space-y-1">
+                <span className="text-green-800">
+                  <MdOutlinePaid size={23} />
+                </span>
+                <span className="font-semibold text-sm md:text-base">
+                  $50,000+
+                </span>
+                <span className="max-w-full text-center text-muted-foreground capitalize text-sm truncate">
+                  lacagta la bixiyey
+                </span>
+              </div>
+
+              <span className="h-16 w-[2px] bg-slate-200" />
+
+              <div className="flex min-w-0 flex-1 justify-center flex-col items-center p-4 space-y-1">
+                <span className="text-green-800">
+                  <MdOutlineCloudDone size={23} />
+                </span>
+                <span className="font-semibold text-sm md:text-base">98%</span>
+                <span className="max-w-full text-center text-muted-foreground capitalize text-sm truncate">
+                  boqolkiiba guusha
+                </span>
+              </div>
+
+              <span className="h-16 w-[2px] bg-slate-200" />
+
+              <div className="flex min-w-0 flex-1 justify-center flex-col items-center p-4 space-y-1">
+                <span className="text-green-800">
+                  <MdAvTimer size={23} />
+                </span>
+                <span className="font-semibold text-sm md:text-base">24/7</span>
+                <span className="max-w-full text-center text-muted-foreground capitalize text-sm truncate">
+                  taageerada macaamiisha
+                </span>
+              </div>
+            </div>
+
+            <div className="mt-12 md:mt-16">
               <Couresel />
             </div>
           </div>
