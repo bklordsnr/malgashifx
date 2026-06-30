@@ -7,7 +7,7 @@ const Footer = () => {
         <div>
           <div className="text-center">
             <span className="text-sm text-muted-foreground ">
-              &copy; {new Date().getFullYear()} Malgashi Traders
+              &copy; {new Date().getFullYear()} Somalia Malgashi
             </span>
           </div>
         </div>

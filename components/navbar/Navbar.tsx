@@ -16,7 +16,7 @@ const Navbar = async () => {
         <div className="flex justify-between items-center h-16 relative">
           {/* logo */}
           <Link href={"/"} className="cursor-pointer items-center">
-            <div className="w-[150px] relative">
+            <div className="w-[170px] relative">
               <Image src={logo} alt="logo" className="w-full h-auto" />
             </div>
           </Link>
