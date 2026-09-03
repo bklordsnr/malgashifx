@@ -62,7 +62,7 @@ const RegisterForm = () => {
           if (callback?.ok) {
             router.push("/account");
             router.refresh();
-            toast.success("Wanaag Fiican!");
+            toast.success("Wanaag fican ☺️");
           }
           if (callback?.error) {
             toast.error(callback.error);
@@ -70,7 +70,7 @@ const RegisterForm = () => {
         });
       })
       .catch(() => {
-        toast.error("Kani wuu shaqayn waayay");
+        toast.error("Kani wuu shaqayn waayay 💩");
       })
       .finally(() => {
         setIsLoading(false);

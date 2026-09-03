@@ -62,14 +62,14 @@ const LoginForm = () => {
       if (callback?.ok) {
         router.push("/account");
         router.refresh();
-        toast.success("Wanaag Fiican!");
+        toast.success("Wanaag fican ☺️");
       }
 
       if (callback?.error) {
         toast.error(callback.error);
       }
     } catch {
-      toast.error("kani wuu shaqayn waayay");
+      toast.error("kani wuu shaqayn waayay 💩");
     } finally {
       setIsLoading(false);
     }

@@ -24,9 +24,6 @@ const Navbar = async () => {
           {/* middle links*/}
           <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 ">
             <ul className="flex flex-row items-center text-sm gap-5 text-muted-foreground ">
-              <Link href="/trade">
-                <li>Trade</li>
-              </Link>
               <Link href="/aboutcompany">
                 <li>About Company</li>
               </Link>

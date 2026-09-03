@@ -208,41 +208,6 @@ const Hero = () => {
             />
           </div>
 
-          <div className="pt-20 w-full">
-            <div className="border-custom2  rounded-[15px]  pl-4 pr-4 bg-card w-full md:max-w-[800px]  flex flex-col md:flex-row items-center justify-between m-auto">
-              <div className="relative w-full aspect-square max-w-[300px]">
-                <Image
-                  src="/assets/prices.png"
-                  alt="cartoon"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              <div className="pt-4 pb-3 flex flex-col w-full md:w-auto max-w-[400px]">
-                <div>
-                  <Button className="border-custom">Qiimayaal</Button>
-                </div>
-
-                <h2 className="font-medium text-base mt-2 mb-2 text-secondary-foreground">
-                  Ku maalgasho qiime hoose
-                </h2>
-
-                <p className="w-full text-muted-foreground my-3 text-sm">
-                  Ku raaxayso qiimeyn cad oo hufan gudaha deegaan ammaan ah oo
-                  nidaamsan haddii aad tahay bilow ama trader ama maalgashade
-                  khibrad leh waxaad heli kartaa kharashyo hoose tiknoolajiyad
-                  lagu kalsoon yahay iyo faaidooyin dheeraad ah markaad kobocdo
-                </p>
-
-                <div className="w-full">
-                  <Button className="w-full mt-4 sm:m-0 border-custom">
-                    <Link href="/investmentplans">Qiimaha Maalgashiga</Link>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
         </section>
 
         {/* account opening */}

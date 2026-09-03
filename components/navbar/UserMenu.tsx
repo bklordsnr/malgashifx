@@ -9,11 +9,8 @@ import MenuItem from "./MenuItem";
 import { signOut } from "next-auth/react";
 import { SafeUser } from "@/types";
 import { MdOutlineSupervisorAccount } from "react-icons/md";
-import { LuFileSpreadsheet } from "react-icons/lu";
 import { HiOutlineLogout } from "react-icons/hi";
-import { RiTelegram2Line } from "react-icons/ri";
 import { MdOutlineNoAccounts } from "react-icons/md";
-
 
 interface UserMenuProps {
   currentUser: SafeUser | null;
@@ -51,30 +48,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 </MenuItem>
               </Link>
 
-              <Link href="/investmentplans">
-                <MenuItem
-                  url="platform"
-                  onClick={toggleOpen}
-                  icon={LuFileSpreadsheet}
-                >
-                  Qorshayaasha Maalgashiga
-                </MenuItem>
-              </Link>
-
-              <Link href="https://t.me/malgashiadmin">
-                <MenuItem
-                  url="platform"
-                  onClick={toggleOpen}
-                  icon={RiTelegram2Line}
-                >
-                  Taageerada Telegram
-                </MenuItem>
-              </Link>
-
               <MenuItem
                 icon={TbLogout2}
                 onClick={() => {
-                  toggleOpen(), signOut();
+                  (toggleOpen(), signOut());
                 }}
               >
                 Ka Bax

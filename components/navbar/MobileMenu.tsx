@@ -1,7 +1,6 @@
 "use client";
 import { MdOutlineSupervisorAccount } from "react-icons/md";
 import { GrCircleInformation } from "react-icons/gr";
-import { MdWaterfallChart } from "react-icons/md";
 import { BsPatchQuestion } from "react-icons/bs";
 import { LuFileSpreadsheet } from "react-icons/lu";
 import { RiTelegram2Line } from "react-icons/ri";
@@ -58,30 +57,6 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
 
                 <span className="w-full h-[1px] bg-secondary" />
 
-                <Link href="/investmentplans">
-                  <MenuItem
-                    url="platform"
-                    onClick={handleMenu}
-                    icon={LuFileSpreadsheet}
-                  >
-                    Qorshayaasha Maalgashiga
-                  </MenuItem>
-                </Link>
-
-                <span className="w-full h-[1px] bg-secondary" />
-
-                <Link href="/trade">
-                  <MenuItem
-                    url="trade"
-                    onClick={handleMenu}
-                    icon={MdWaterfallChart}
-                  >
-                    Trade
-                  </MenuItem>
-                </Link>
-
-                <span className="w-full h-[1px] bg-secondary" />
-
                 <Link href="/aboutcompany">
                   <MenuItem
                     url="aboutcompany"
@@ -106,16 +81,6 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
 
                 <span className="w-full h-[1px] bg-secondary" />
 
-                <Link href="https://t.me/malgashiadmin">
-                  <MenuItem
-                    url="platform"
-                    onClick={handleMenu}
-                    icon={RiTelegram2Line}
-                  >
-                    Taageerada Telegram
-                  </MenuItem>
-                </Link>
-
                 <Button
                   onClick={() => {
                     (handleMenu(), signOut());
@@ -131,18 +96,6 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
         ) : ( 
           <div className="z-30 px-4 py-3 text-sm">
             <div className="flex flex-col gap-4">
-              <Link href="/investmentplans">
-                <MenuItem
-                  url="platform"
-                  onClick={handleMenu}
-                  icon={LuFileSpreadsheet}
-                >
-                  Qorshayaasha Maalgashiga
-                </MenuItem>
-              </Link>
-
-              <span className="w-full h-[1px] bg-secondary" />
-
               <Link href="/aboutcompany">
                 <MenuItem
                   url="aboutcompany"
@@ -166,16 +119,6 @@ const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
               </Link>
 
               <span className="w-full h-[1px] bg-secondary" />
-
-              <Link href="https://t.me/malgashiadmin">
-                <MenuItem
-                  url="platform"
-                  onClick={handleMenu}
-                  icon={RiTelegram2Line}
-                >
-                  Taageerada Telegram
-                </MenuItem>
-              </Link>
             </div>
 
             <div className="mt-6 flex flex-col space-y-5">
