@@ -5,52 +5,68 @@ interface CurrencyItemProps {
   title: string;
   bprice: string;
   avgprice: string;
-  graph: string;
+  graph: string | StaticImageData;
   green?: boolean;
 }
 
-const CurrencyItem: React.FC<CurrencyItemProps> = ({
+const CurrencyItem = ({
   image,
   title,
   bprice,
   avgprice,
   graph,
-  green,
-}) => {
+  green = true,
+}: CurrencyItemProps) => {
   return (
-    <div className="border-custom2  rounded-[15px] p-5 md:max-w-[370px] w-full">
-      <div className="flex flex-row  items-center">
-        <div className="mr-4 relative w-[50px]">
-          <Image src={image} alt="image" className="w-full h-auto"  loading="lazy" />
+    <div className="w-full rounded-2xl border-custom2 p-5 sm:p-6 lg:max-w-[370px]">
+      <div className="flex items-center">
+        <div className="relative mr-4 w-10 shrink-0 sm:w-[50px]">
+          <Image
+            src={image}
+            alt={`${title} currency pair`}
+            className="h-auto w-full"
+            loading="lazy"
+          />
         </div>
-        <span className="capitalize text-card-foreground text-base font-medium">
+
+        <span className="text-base font-medium capitalize text-card-foreground">
           {title}
         </span>
       </div>
-      <div className="mt-5 flex justify-between flex-row">
-        <div className="">
-          <span className="text-muted-foreground block text-sm">Qiimaha Iibsiga</span>
-          <span className="text-card-foreground text-sm">{bprice}</span>
+
+      <div className="mt-6 flex items-end justify-between gap-6">
+        <div>
+          <span className="block text-xs font-medium text-muted-foreground sm:text-sm">
+            Buy Price
+          </span>
+          <span className="mt-1 block text-sm text-card-foreground">
+            {bprice}
+          </span>
         </div>
 
-        <div className="flex justify-end flex-col ">
-          <span className="text-muted-foreground ml-auto text-sm">Avg</span>
+        <div className="text-right">
+          <span className="block text-xs font-medium text-muted-foreground sm:text-sm">
+            Average
+          </span>
           <span
-            className={
+            className={`mt-1 block text-sm font-medium ${
               green
-                ? "text-primary text-sm"
-                : "bg-gradient-to-r from-[#F44D29]   to-[#D52274]  bg-clip-text text-transparent text-sm"
-            }
+                ? "text-primary"
+                : "bg-gradient-to-r from-[#F44D29] to-[#D52274] bg-clip-text text-transparent"
+            }`}
           >
             {avgprice}
           </span>
         </div>
       </div>
 
-      <div className="mt-5">
-        <div className="w-full">
-          <Image src={graph} alt="graph" className="w-full h-auto" />
-        </div>
+      <div className="mt-6 w-full">
+        <Image
+          src={graph}
+          alt={`${title} performance graph`}
+          className="h-auto w-full"
+          loading="lazy"
+        />
       </div>
     </div>
   );

@@ -1,195 +1,218 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import { IoCheckmarkDone } from "react-icons/io5";
+import { TiPlus } from "react-icons/ti";
+import { FaArrowRight } from "react-icons/fa6";
+import { SlPeople } from "react-icons/sl";
+import { MdOutlinePaid, MdOutlineCloudDone, MdAvTimer } from "react-icons/md";
+
 import Container from "../../Container";
-import { Couresel } from "./Couresel";
 import { SectionHeading } from "../../SectionHeading";
 import { AboutItem } from "../aboutsection/AboutItem";
 import CurrencyItem from "../currencypairs/CurrencyItem";
-import Image from "next/image";
+
+import { Button } from "@/components/ui/button";
+
 import currencyeur from "@/public/assets/currencyeur.png";
 import currencycad from "@/public/assets/currencycad.png";
 import currencyyeng from "@/public/assets/currencyyeng.png";
 import graphgreen from "@/public/assets/graphgreen.svg";
 import graphred from "@/public/assets/graphred.svg";
-import { IoCheckmarkDone } from "react-icons/io5";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { TiPlus } from "react-icons/ti";
-import { FaArrowRight } from "react-icons/fa6";
-import { SlPeople } from "react-icons/sl";
-import { MdOutlinePaid } from "react-icons/md";
-import { MdOutlineCloudDone } from "react-icons/md";
-import { MdAvTimer } from "react-icons/md";
+import Couresel from "./Couresel";
 
 const Hero = () => {
-  const router = useRouter();
   return (
-    <div className="">
+    <div>
       <Container>
-        {/* homepage section */}
-        <section className="py-8 md:py-12">
-          <div className="flex flex-col justify-between z-10 relative">
-            <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-8 md:gap-12 flex-1">
-              {/* LEFT */}
-              <div className="w-full md:w-1/2 flex flex-col items-start text-left gap-6">
-                <div className="space-y-5">
-                  <div className="bg-green-100 w-fit py-1 px-2 rounded-md space-x-1 flex items-center">
-                    <span className="text-green-600">
-                      <TiPlus />
-                    </span>
-                    <span className="text-green-900 uppercase text-sm font-semibold">
-                      maalgasho xaqiiq ah
+        {/* Hero */}
+        <section className="py-10 sm:py-12 md:py-16 lg:py-20">
+          <div className="relative z-10">
+            <div className="flex flex-col items-center gap-10 md:flex-row md:items-center md:gap-12 lg:gap-16">
+              {/* Left */}
+              <div className="flex w-full flex-col items-start text-left md:w-1/2">
+                <div className="space-y-5 sm:space-y-6">
+                  <div className="flex w-fit items-center gap-1.5 rounded-full bg-green-100 px-3 py-1.5">
+                    <TiPlus className="text-green-700" size={16} />
+
+                    <span className="text-xs font-semibold uppercase tracking-wide text-green-900 sm:text-sm">
+                      Real investment
                     </span>
                   </div>
 
-                  <h2 className="text-3xl md:text-4xl font-medium">
-                    Ha daahin,
+                  <h1 className="max-w-[650px] text-4xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-5xl lg:text-6xl">
+                    Don&apos;t wait,
                     <br />
-                    Maalgashigu waa{" "}
-                    <span className="text-primary">Faaiido.</span>
-                  </h2>
+                    <span className="text-foreground">
+                      investment means{" "}
+                    </span>
+                    <span className="text-primary">growth.</span>
+                  </h1>
                 </div>
 
-                <p className="text-muted-foreground max-w-[700px] text-sm">
-                  Nala maalgasho maanta oo hel faa’iido 5%–8% ah oo khatar hoose
-                  leh adigoo adeegsanaya binary trading.
+                <p className="mt-6 max-w-[580px] text-sm leading-7 text-muted-foreground sm:text-base">
+                  Invest with us today and earn returns of 5%–8% with lower
+                  risk through binary trading.
                 </p>
 
-                <div className="max-w-[300px] w-full">
-                  <Button className="w-full border-custom space-x-3">
-                    <Link href="/account">Bilow Hadda</Link>
-                    <FaArrowRight />
+                <div className="mt-7 w-full max-w-[320px]">
+                  <Button
+                    asChild
+                    className="h-12 w-full gap-3 border-custom text-sm font-semibold sm:text-base"
+                  >
+                    <Link href="/account">
+                      Get Started
+                      <FaArrowRight size={15} />
+                    </Link>
                   </Button>
                 </div>
               </div>
 
-              {/* RIGHT IMAGE */}
-              <div className="flex justify-center md:justify-end w-full md:w-1/2">
-                <div className="relative w-52 sm:w-64 md:w-full md:max-w-[400px]">
+              {/* Right Image */}
+              <div className="flex w-full justify-center md:w-1/2 md:justify-end">
+                <div className="relative w-[230px] sm:w-[280px] md:w-full md:max-w-[400px] lg:max-w-[440px]">
                   <Image
                     src="/assets/hero.png"
                     width={1024}
                     height={1536}
-                    alt="technology"
-                    className="w-full h-auto"
+                    alt="Investment and trading technology"
+                    priority
+                    className="h-auto w-full"
                   />
                 </div>
               </div>
             </div>
 
-            {/* BOTTOM */}
-            <div className="mt-8 md:mt-12 border-custom2 bg-background rounded-xl py-2 w-full flex items-center justify-evenly">
-              <div className="flex min-w-0 flex-1 justify-center flex-col items-center p-4 space-y-1">
-                <span className="text-green-800">
-                  <SlPeople size={23} />
+            {/* Stats */}
+            <div className="mt-12 grid w-full grid-cols-2 overflow-hidden rounded-2xl border-custom2 bg-background sm:mt-14 md:grid-cols-4">
+              <div className="flex min-w-0 flex-col items-center justify-center px-3 py-5 text-center sm:px-4 sm:py-6">
+                <SlPeople size={23} className="text-primary" />
+
+                <span className="mt-2 text-base font-bold text-foreground sm:text-lg">
+                  100+
                 </span>
-                <span className="font-semibold text-sm md:text-base">100+</span>
-                <span className="max-w-full text-center text-muted-foreground capitalize text-sm truncate">
-                  maalgashadayaal
+
+                <span className="mt-1 text-xs font-medium text-muted-foreground sm:text-sm">
+                  Investors
                 </span>
               </div>
 
-              <span className="h-16 w-[2px] bg-slate-200" />
+              <div className="hidden h-16 w-px self-center bg-border md:block" />
 
-              <div className="flex min-w-0 flex-1 justify-center flex-col items-center p-4 space-y-1">
-                <span className="text-green-800">
-                  <MdOutlinePaid size={23} />
-                </span>
-                <span className="font-semibold text-sm md:text-base">
+              <div className="flex min-w-0 flex-col items-center justify-center border-t border-border px-3 py-5 text-center sm:px-4 sm:py-6 md:border-t-0">
+                <MdOutlinePaid size={23} className="text-primary" />
+
+                <span className="mt-2 text-base font-bold text-foreground sm:text-lg">
                   $50,000+
                 </span>
-                <span className="max-w-full text-center text-muted-foreground capitalize text-sm truncate">
-                  lacagta la bixiyey
+
+                <span className="mt-1 text-xs font-medium text-muted-foreground sm:text-sm">
+                  Paid out
                 </span>
               </div>
 
-              <span className="h-16 w-[2px] bg-slate-200" />
+              <div className="hidden h-16 w-px self-center bg-border md:block" />
 
-              <div className="flex min-w-0 flex-1 justify-center flex-col items-center p-4 space-y-1">
-                <span className="text-green-800">
-                  <MdOutlineCloudDone size={23} />
+              <div className="flex min-w-0 flex-col items-center justify-center border-t border-border px-3 py-5 text-center sm:px-4 sm:py-6 md:border-t-0">
+                <MdOutlineCloudDone size={23} className="text-primary" />
+
+                <span className="mt-2 text-base font-bold text-foreground sm:text-lg">
+                  98%
                 </span>
-                <span className="font-semibold text-sm md:text-base">98%</span>
-                <span className="max-w-full text-center text-muted-foreground capitalize text-sm truncate">
-                  boqolkiiba guusha
+
+                <span className="mt-1 text-xs font-medium text-muted-foreground sm:text-sm">
+                  Success rate
                 </span>
               </div>
 
-              <span className="h-16 w-[2px] bg-slate-200" />
+              <div className="hidden h-16 w-px self-center bg-border md:block" />
 
-              <div className="flex min-w-0 flex-1 justify-center flex-col items-center p-4 space-y-1">
-                <span className="text-green-800">
-                  <MdAvTimer size={23} />
+              <div className="flex min-w-0 flex-col items-center justify-center border-t border-border px-3 py-5 text-center sm:px-4 sm:py-6 md:border-t-0">
+                <MdAvTimer size={23} className="text-primary" />
+
+                <span className="mt-2 text-base font-bold text-foreground sm:text-lg">
+                  24/7
                 </span>
-                <span className="font-semibold text-sm md:text-base">24/7</span>
-                <span className="max-w-full text-center text-muted-foreground capitalize text-sm truncate">
-                  taageerada macaamiisha
+
+                <span className="mt-1 text-xs font-medium text-muted-foreground sm:text-sm">
+                  Customer support
                 </span>
               </div>
             </div>
 
-            <div className="mt-12 md:mt-16">
+            {/* Carousel */}
+            <div className="mt-12 sm:mt-14 md:mt-16">
               <Couresel />
             </div>
           </div>
         </section>
 
-        {/* about section */}
-
-        <section className="py-10">
-          <div>
-            <div className="flex flex-col gap-6">
-              <div>
-                <Button className="border-custom">Nagu Saabsan</Button>
-              </div>
-              <SectionHeading title="Maxaa Noo Dooranaysaa?" />
+        {/* About Section */}
+        <section className="py-12 sm:py-14 md:py-16">
+          <div className="flex flex-col gap-6">
+            <div>
+              <Button
+                variant="outline"
+                className="h-9 border-custom px-4 text-xs font-semibold sm:text-sm"
+              >
+                About Us
+              </Button>
             </div>
 
-            <div className="flex items-start justify-between gap-10 flex-col lg:flex-row">
-              <div className="max-w-[500px] text-muted-foreground text-sm mt-7 mr-auto">
-                <p>
-                  Waxaan bixinnaa adeeg hufan, kharash-yar leh oo ku shaqeeya
-                  tiknoolajiyad casri ah iyo taageero xooggan ujeeddadeennu waa
-                  inaan dhisno madal u gaar ah traderska iyo maalqashadayaasha
-                  heer kasta leh laga bilaabo bilow ilaa xirfadle.
-                </p>
-              </div>
+            <SectionHeading title="Why Choose Us?" />
+          </div>
 
-              <div
-                className="flex  flex-wrap justify-between gap-5  mt-5 w-full
-               lg:m-0 "
-              >
-                <AboutItem title="150" subtitle="Alaabo Ganacsi" />
-                <AboutItem
-                  title="$0.00"
-                  subtitle="Kharashaadka Dayactirka Akoonka"
-                />
-                <AboutItem title="1:200" subtitle="Leverage" />
-                <AboutItem title="MT4" subtitle="Nooca Tradeka" />
-              </div>
+          <div className="mt-8 flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-14">
+            <div className="w-full max-w-[520px] text-sm leading-7 text-muted-foreground">
+              <p>
+                We provide a transparent, cost-effective service powered by
+                modern technology and strong customer support. Our goal is to
+                build a dedicated platform for traders and investors at every
+                level, from beginners to experienced professionals.
+              </p>
+            </div>
+
+            <div className="grid w-full grid-cols-2 gap-4 sm:grid-cols-4 lg:max-w-[650px]">
+              <AboutItem title="150" subtitle="Trading Products" />
+
+              <AboutItem
+                title="$0.00"
+                subtitle="Account Maintenance Fees"
+              />
+
+              <AboutItem title="1:200" subtitle="Leverage" />
+
+              <AboutItem title="MT4" subtitle="Trading Platform" />
             </div>
           </div>
         </section>
 
-        {/* currency pairs section */}
-        <section className="py-10">
+        {/* Currency Pairs */}
+        <section className="py-12 sm:py-14 md:py-16">
           <div className="flex flex-col gap-6">
             <div>
-              <Button className="border-custom">Lacagta</Button>
+              <Button
+                variant="outline"
+                className="h-9 border-custom px-4 text-xs font-semibold sm:text-sm"
+              >
+                Markets
+              </Button>
             </div>
-            <SectionHeading title="Lammaanaha Lacagaha" />
+
+            <SectionHeading title="Currency Pairs" />
           </div>
 
-          <div className="mt-10 flex flex-row justify-between flex-wrap gap-7 md:gap-4">
+          <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <CurrencyItem
               image={currencyeur}
               title="eur/usd"
               bprice="5.82"
               avgprice="+1.245%"
               graph={graphgreen}
-              green={true}
+              green
             />
+
             <CurrencyItem
               image={currencycad}
               title="eur/cad"
@@ -198,80 +221,85 @@ const Hero = () => {
               graph={graphred}
               green={false}
             />
+
             <CurrencyItem
               image={currencyyeng}
               title="eur/jpy"
               bprice="1.83"
               avgprice="+9.289%"
               graph={graphgreen}
-              green={true}
+              green
             />
           </div>
-
         </section>
 
-        {/* account opening */}
-
-        <section className="py-10">
+        {/* Account Opening */}
+        <section className="py-12 sm:py-14 md:py-16">
           <div className="flex flex-col gap-6">
             <div>
-              <Button className="border-custom capitalize">
-                tallaabooyinka hore
+              <Button
+                variant="outline"
+                className="h-9 border-custom px-4 text-xs font-semibold sm:text-sm"
+              >
+                Get Started
               </Button>
             </div>
-            <SectionHeading title="aan kuu furno accountkaaga" />
+
+            <SectionHeading title="Let&apos;s Open Your Account" />
           </div>
 
-          <div className="pt-8 w-full flex flex-col justify-between lg:flex-row">
-            <div className=" w-full max-w-[600px]">
-              <div>
-                <p className="text-muted-foreground text-sm">
-                  ku bilow daqiiqado gudahood adigoo maraya isdiiwaangelin fudud
-                  oo ammaan ah ku biir platform lagu kalsoon yahay oo dubai ku
-                  salaysan loona dhisay trading iyo maalgashi fudud hufan oo qof
-                  walba heli karo
-                </p>
-              </div>
+          <div className="mt-10 flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
+            {/* Text */}
+            <div className="w-full max-w-[600px]">
+              <p className="text-sm leading-7 text-muted-foreground sm:text-base">
+                Get started in just a few minutes with a simple and secure
+                registration process. Join a trusted Dubai-based platform
+                built to make trading and investing simple, transparent, and
+                accessible to everyone.
+              </p>
 
-              <div className="pt-5 flex flex-col gap-5 space-y-1">
-                <div className="flex justify-between items-center">
-                  <div>
-                    <IoCheckmarkDone size={24} className="text-primary mr-1" />
-                  </div>
-                  <div className="flex flex-col mr-auto">
-                    <span className="text-secondary-foreground normal-case text-sm mb-1">
-                      Marka hore samee account kadib dooro qorshaha maalgashiga
-                    </span>
-                  </div>
+              <div className="mt-7 flex flex-col gap-5">
+                <div className="flex items-start gap-3">
+                  <IoCheckmarkDone
+                    size={24}
+                    className="mt-0.5 shrink-0 text-primary"
+                  />
+
+                  <span className="text-sm leading-6 text-secondary-foreground">
+                    First, create your account and choose your investment plan.
+                  </span>
                 </div>
-                <div className="flex justify-between items-center">
-                  <div>
-                    <IoCheckmarkDone size={24} className="text-primary mr-1" />
-                  </div>
-                  <div className="flex flex-col mr-auto">
-                    <span className="text-secondary-foreground normal-case text-sm mb-1">
-                      Marka xigta samee lacag bixinta si maalgashigu u bilaabmo
-                    </span>
-                  </div>
+
+                <div className="flex items-start gap-3">
+                  <IoCheckmarkDone
+                    size={24}
+                    className="mt-0.5 shrink-0 text-primary"
+                  />
+
+                  <span className="text-sm leading-6 text-secondary-foreground">
+                    Next, make your payment to begin your investment.
+                  </span>
                 </div>
-                <div className="flex justify-between items-center">
-                  <div>
-                    <IoCheckmarkDone size={24} className="text-primary mr-1" />
-                  </div>
-                  <div className="flex flex-col mr-auto">
-                    <span className="text-secondary-foreground normal-case text-sm mb-1">
-                      Marka depositka la xaqiijiyo maalgashigu wuu bilaabanayaa
-                    </span>
-                  </div>
+
+                <div className="flex items-start gap-3">
+                  <IoCheckmarkDone
+                    size={24}
+                    className="mt-0.5 shrink-0 text-primary"
+                  />
+
+                  <span className="text-sm leading-6 text-secondary-foreground">
+                    Once your deposit is confirmed, your investment begins.
+                  </span>
                 </div>
               </div>
             </div>
 
-            <div className="w-full flex justify-center items-center mt-5 md:justify-end md:mt-[-50px]">
-              <div className="aspect-square relative w-full max-w-[400px] ">
+            {/* Image */}
+            <div className="flex w-full justify-center lg:w-1/2 lg:justify-end">
+              <div className="relative aspect-square w-full max-w-[360px]">
                 <Image
                   src="/assets/createacc.png"
-                  alt="account"
+                  alt="Create an investment account"
                   fill
                   className="object-contain object-center"
                   loading="lazy"
@@ -281,38 +309,45 @@ const Hero = () => {
           </div>
         </section>
 
-        {/* create account */}
+        {/* Final CTA */}
+        <section className="pb-10 pt-8 sm:pb-12">
+          <div className="mx-auto flex w-full max-w-[900px] flex-col items-center gap-8 rounded-2xl border-custom2 bg-background px-6 py-8 sm:px-8 sm:py-10 md:flex-row md:justify-between md:gap-10 md:px-10">
+            {/* Image */}
+            <div className="relative hidden aspect-square w-full max-w-[220px] shrink-0 md:block">
+              <Image
+                src="/assets/ready.png"
+                alt="Ready to start investing"
+                fill
+                className="object-contain"
+                loading="lazy"
+              />
+            </div>
 
-        <section className="pb-8 ">
-          <div className="w-full">
-            <div className="flex flex-col md:flex-row items-center justify-between border-custom2 rounded-[15px] max-w-[800px] py-7 pr-7 gap-5 pl-7 m-auto ">
-              <div className="relative w-full aspect-square rounded-[15px] max-w-[250px] hidden md:flex">
-                <Image
-                  src="/assets/ready.png"
-                  alt="sample1"
-                  fill
-                  className="object-contain"
-                  loading="lazy"
-                />
-              </div>
+            {/* Content */}
+            <div className="w-full">
+              <Button
+                variant="outline"
+                className="h-9 border-custom px-4 text-xs font-semibold sm:text-sm"
+              >
+                Get Started
+              </Button>
 
-              <div>
-                <div>
-                  <Button className="border-custom">Bilow</Button>
-                </div>
-                <h2 className="text-secondary-foreground font-medium text-base mt-2 mb-2">
-                  Diyaar ma u tahay maalgashi
-                </h2>
-                <p className="text-muted-foreground max-w-[400px] text-sm">
-                  Furashada accountku waxay qaadataa wax ka yar 3 daqiiqo maanta
-                  nala bilow safarkaaga maalgashi
-                </p>
+              <h2 className="mt-3 text-xl font-semibold tracking-tight text-secondary-foreground sm:text-2xl">
+                Are you ready to start investing?
+              </h2>
 
-                <div className="mt-4 pb-2">
-                  <Button className="w-full border-custom">
-                    <a href="/account">Samee Account</a>
-                  </Button>
-                </div>
+              <p className="mt-2 max-w-[500px] text-sm leading-6 text-muted-foreground">
+                Opening an account takes less than 3 minutes. Start your
+                investment journey with us today.
+              </p>
+
+              <div className="mt-5">
+                <Button
+                  asChild
+                  className="h-12 w-full border-custom text-sm font-semibold sm:w-[220px]"
+                >
+                  <Link href="/account">Create Account</Link>
+                </Button>
               </div>
             </div>
           </div>

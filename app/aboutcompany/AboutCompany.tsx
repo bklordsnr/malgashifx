@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/Container";
@@ -9,74 +7,92 @@ import { buttonVariants } from "@/components/ui/button";
 import { FaArrowDownLong } from "react-icons/fa6";
 
 const AboutCompany = () => {
-  const router = useRouter();
-
   return (
     <Container>
-      <div className="pt-10 ">
-        <div className="h-full flex flex-col sm:flex-row items-center justify-between">
-          {/* left */}
-          <div className="w-full max-w-[500px] flex flex-col gap-5">
-            <span className="text-foreground font-medium text-xl capitalize ">
-              ku saabsan
+      <main className="py-10 sm:py-12 md:py-16 lg:py-20">
+        {/* About */}
+        <section className="flex flex-col items-center justify-between gap-10 md:flex-row md:gap-14 lg:gap-20">
+          <div className="flex w-full max-w-[520px] flex-col items-start gap-5">
+            <span className="text-xl font-semibold tracking-tight text-foreground">
+              About Us
             </span>
-            <p className="text-muted-foreground text-sm">
-              waxaan nahay shirkad saldhigeedu yahay dubai oo diiradda saarta
-              fududeynta trading iyo maalgashi si hufan oo ammaan ah
-              platformkeena waxaa loo dhisay inuu qof walba u fududaado ma ahan
-              oo kaliya traders laakiin qof kasta oo raba inuu koriyo
-              maalgashigiisa si kalsooni leh
+
+            <p className="text-sm leading-7 text-muted-foreground sm:text-base">
+              We are a Dubai-based company focused on making trading and
+              investing simple, accessible, and transparent. Our platform is
+              designed for everyone, not only experienced traders, but anyone
+              looking to grow their investments with confidence.
             </p>
 
-            <div className="max-w-[300px] flex items-center gap-1">
-              <FaArrowDownLong size={19} className="text-primary" />
-              <Link href="#ceo" className={buttonVariants({ variant: "link" })}>
-                Wax badan baro
-              </Link>
-            </div>
+            <Link
+              href="#ceo"
+              className={buttonVariants({
+                variant: "link",
+                className: "h-auto gap-2 px-0 text-sm font-medium",
+              })}
+            >
+              <FaArrowDownLong size={18} className="text-primary" />
+              Learn more
+            </Link>
           </div>
 
-          {/* right */}
-          <div className="w-full flex justify-center items-center md:justify-end">
-            <div className="w-full max-w-[400px] relative aspect-square">
+          <div className="flex w-full justify-center md:justify-end">
+            <div className="relative aspect-square w-full max-w-[400px] overflow-hidden rounded-2xl border-custom2">
               <Image
                 src="/assets/about-us.png"
-                alt="about"
+                alt="About Somalia Malgashi"
                 fill
                 className="object-cover object-center"
+                priority
               />
             </div>
           </div>
-        </div>
+        </section>
 
-        <div id="ceo" className="py-10">
-          <div className="flex flex-col sm:flex-row items-center justify-between">
-            <div className="w-full max-w-[400px] relative aspect-square overflow-hidden border mb-10 sm:mb-0 border-custom2">
+        {/* CEO Message */}
+        <section
+          id="ceo"
+          className="scroll-mt-24 py-14 sm:py-16 md:py-20"
+        >
+          <div className="flex flex-col items-center justify-between gap-10 md:flex-row md:gap-14 lg:gap-20">
+            <div className="relative aspect-square w-full max-w-[400px] overflow-hidden rounded-2xl border-custom2">
               <Image
                 src="/assets/marktebo.png"
-                alt="ceo img"
+                alt="Somalia Malgashi founder"
                 fill
                 className="object-cover object-center"
+                loading="lazy"
               />
             </div>
 
-            <div className="w-full max-w-[400px] space-y-3">
-              <h1 className="text-xl text-secondary-foreground">Message from CEO</h1>
-              <p className="text-muted-foreground text-sm">
-                ha ka welwelin inaadan wax walba aqoon kaliya bilow markaad
-                kobocdo oo aad maalgashato ayaad wax badan baran doontaa
+            <div className="w-full max-w-[520px]">
+              <span className="text-sm font-semibold uppercase tracking-wide text-primary">
+                Leadership
+              </span>
+
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-secondary-foreground sm:text-3xl">
+                Message from the CEO
+              </h2>
+
+              <p className="mt-5 text-sm leading-7 text-muted-foreground sm:text-base">
+                Don&apos;t worry if you don&apos;t know everything yet. Start
+                where you are, keep learning, and grow along the way. With
+                every step you take toward investing, you gain more knowledge
+                and confidence in your financial journey.
               </p>
 
-              <div className="flex flex-col">
-                <span className="text-secondary-foreground">Tebo</span>
-                <span className="text-muted-foreground text-sm">
-                  Ceo/Founder
+              <div className="mt-6">
+                <span className="block font-semibold text-secondary-foreground">
+                  Tebo
+                </span>
+                <span className="mt-1 block text-sm text-muted-foreground">
+                  CEO & Founder
                 </span>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
     </Container>
   );
 };

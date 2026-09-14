@@ -1,21 +1,20 @@
 export const dynamic = "force-dynamic";
 
 import { getCurrentUser } from "@/actions/GetUser";
-import Account from "./Account";
 import Container from "@/components/Container";
 
-const page = async () => {
+import Account from "./Account";
+
+const AccountPage = async () => {
   const currentUser = await getCurrentUser();
+
   return (
     <Container>
-      <div
-        className="flex justify-between py-8 flex-col lg:flex-row"
-        suppressHydrationWarning
-      >
+      <main className="py-8 sm:py-10">
         <Account currentUser={currentUser} />
-      </div>
+      </main>
     </Container>
   );
 };
 
-export default page;
+export default AccountPage;

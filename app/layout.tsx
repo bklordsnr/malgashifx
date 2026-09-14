@@ -4,11 +4,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/navbar/Navbar";
-import { CartProvider } from "@/providers/CartProvider";
 import { Toaster } from "react-hot-toast";
 import Footer from "../components/footer/Footer";
 import { cn } from "@/lib/utils";
-import News from "./Annoucement";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,7 +14,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Somalia Malgashi",
+  title: "SOMALIA MALGASHI",
+  description:
+    "Somalia Malgashi is an online investment platform designed to provide accessible investment opportunities and trading solutions for individuals looking to grow their finances.",
 };
 
 export default async function RootLayout({
@@ -38,14 +38,12 @@ export default async function RootLayout({
             },
           }}
         />
-        <CartProvider>
-          <main className=" relative flex flex-col min-h-screen">
-            {/* <News /> */}
-            <Navbar />
-            <div className="flex-grow flex-1">{children}</div>
-            <Footer />
-          </main>
-        </CartProvider>
+
+        <main className=" relative flex flex-col min-h-screen">
+          <Navbar />
+          <div className="flex-grow flex-1">{children}</div>
+          <Footer />
+        </main>
       </body>
     </html>
   );

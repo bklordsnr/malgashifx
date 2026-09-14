@@ -1,73 +1,107 @@
 import Image from "next/image";
-import logo from "@/public/logo-image/logo.png";
 import Link from "next/link";
 import { IoMdNotifications } from "react-icons/io";
-import UserMenu from "./UserMenu";
+
 import { getCurrentUser } from "@/actions/GetUser";
-import MobileMenu from "./MobileMenu";
+import logo from "@/public/logo-image/logo.png";
+
 import Container from "../Container";
+import MobileMenu from "./MobileMenu";
+import UserMenu from "./UserMenu";
 import { buttonVariants } from "../ui/button";
 
 const Navbar = async () => {
   const currentUser = await getCurrentUser();
+
   return (
-    <nav className="sticky top-0 w-full z-50 inset-x-0 py-2 border border-border backdrop-blur-md  ">
+    <nav className="sticky inset-x-0 top-0 z-50 w-full border-b border-border bg-background">
       <Container>
-        <div className="flex justify-between items-center h-16 relative">
-          {/* logo */}
-          <Link href={"/"} className="cursor-pointer items-center">
-            <div className="w-[170px] relative">
-              <Image src={logo} alt="logo" className="w-full h-auto" />
+        <div className="relative flex h-16 items-center justify-between">
+          {/* Logo */}
+          <Link
+            href="/"
+            className="flex shrink-0 items-center"
+            aria-label="Somalia Malgashi home"
+          >
+            <div className="relative w-[145px] sm:w-[160px] lg:w-[170px]">
+              <Image
+                src={logo}
+                alt="Somalia Malgashi"
+                priority
+                className="h-auto w-full"
+              />
             </div>
           </Link>
 
-          {/* middle links*/}
-          <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 ">
-            <ul className="flex flex-row items-center text-sm gap-5 text-muted-foreground ">
-              <Link href="/aboutcompany">
-                <li>About Company</li>
-              </Link>
-              <Link href="/faqs">
-                <li>Faq</li>
-              </Link>
-            </ul>
-          </div>
+          {/* Desktop Navigation */}
+          <nav className="absolute left-1/2 hidden -translate-x-1/2 lg:block">
+            <ul className="flex items-center gap-7 text-sm font-medium text-muted-foreground">
+              <li>
+                <Link
+                  href="/aboutcompany"
+                  className="transition-colors hover:text-foreground"
+                >
+                  About Company
+                </Link>
+              </li>
 
-          {/* right side carticon login n signup */}
-          <div className="text-secondary-foreground flex flex-row items-center gap-3 md:gap-5 justify-end">
-            <Link href="/notifications" className="flex items-center ">
-              <div className="relative cursor-pointer flex items-center">
-                <div className="flex items-center">
-                  <IoMdNotifications size={24} />
-                  <div className="absolute h-[5px] w-[4px] rounded-full bg-card top-[-1px] right-[-1px] bg-gray-200" />
-                </div>
-              </div>
+              <li>
+                <Link
+                  href="/faqs"
+                  className="transition-colors hover:text-foreground"
+                >
+                  FAQs
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
+          {/* Right Side */}
+          <div className="flex items-center gap-1 text-secondary-foreground sm:gap-2 md:gap-5">
+            {/* Notifications */}
+            <Link
+              href="/notifications"
+              aria-label="Notifications"
+              className="flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-muted active:scale-95"
+            >
+              <span className="relative flex items-center justify-center">
+                <IoMdNotifications size={24} />
+
+                <span className="absolute right-0 top-0 h-1.5 w-1.5 rounded-full bg-destructive" />
+              </span>
             </Link>
 
-            {currentUser ? null : (
-              <div className="hidden md:flex md:items-center md:gap-3 ">
+            {/* Desktop Authentication */}
+            {!currentUser && (
+              <div className="hidden items-center gap-3 md:flex">
                 <Link
                   href="/sign-in"
-                  className={`text-sm border-custom2 ${buttonVariants({ variant: "outline" })}`}
+                  className={buttonVariants({
+                    variant: "outline",
+                    className: "h-10 border-custom2 text-sm",
+                  })}
                 >
-                  Gal Accountka
+                  Sign In
                 </Link>
 
-                <span className="h-5 w-px bg-card" />
+                <span className="h-5 w-px bg-border" />
 
                 <Link
                   href="/sign-up"
-                  className={`text-sm w-36 border-custom ${buttonVariants({ variant: "default" })}`}
+                  className={buttonVariants({
+                    variant: "default",
+                    className: "h-10 w-36 border-custom text-sm",
+                  })}
                 >
-                  Isdiiwaangeli
+                  Sign Up
                 </Link>
               </div>
             )}
 
-            {/* side menu for large devices */}
+            {/* Desktop User Menu */}
             <UserMenu currentUser={currentUser} />
 
-            {/* side menu for mobile devices*/}
+            {/* Mobile Menu */}
             <MobileMenu currentUser={currentUser} />
           </div>
         </div>

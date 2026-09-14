@@ -1,39 +1,38 @@
-import React from "react";
-import LoginForm from "./LoginForm";
-import { getCurrentUser } from "@/actions/GetUser";
 import { redirect } from "next/navigation";
-import Image from "next/image";
+
+import { getCurrentUser } from "@/actions/GetUser";
 import Container from "@/components/Container";
 import FormWrapper from "@/components/FormWrapper";
 
-const page = async () => {
+import LoginForm from "./LoginForm";
+
+const SignInPage = async () => {
   const currentUser = await getCurrentUser();
 
-  if (currentUser) redirect("/account");
+  if (currentUser) {
+    redirect("/account");
+  }
 
   return (
     <Container>
-      <div>
-        <div className="h-full w-full py-10">
-          <div className="flex justify-center items-center">
-            <div className="w-full bg-card rounded-md max-w-[400px] border-custom2 p-8">
-              <div className="space-y-1 mb-8">
-                <h1 className="text-secondary-foreground font-medium text-base">
-                  Gal Accountka
-                </h1>
-                <p className="text-muted-foreground text-sm">
-                  Geli emailkaaga hoose si aad u gasho accountka
-                </p>
-              </div>
-              <FormWrapper>
-                <LoginForm />
-              </FormWrapper>
-            </div>
+      <div className="flex min-h-full w-full justify-center py-10">
+        <div className="w-full max-w-[400px] rounded-md border-custom2 bg-card p-8">
+          <div className="mb-8 space-y-1">
+            <h1 className="text-base font-medium text-secondary-foreground">
+              Sign In to Your Account
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              Enter your email and password below to access your account.
+            </p>
           </div>
+
+          <FormWrapper>
+            <LoginForm />
+          </FormWrapper>
         </div>
       </div>
     </Container>
   );
 };
 
-export default page;
+export default SignInPage;

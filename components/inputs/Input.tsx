@@ -1,6 +1,11 @@
 "use client";
 
-import { UseFormRegister, FieldValues, FieldPath } from "react-hook-form";
+import {
+  type FieldErrors,
+  type FieldPath,
+  type FieldValues,
+  type UseFormRegister,
+} from "react-hook-form";
 
 interface InputProps<T extends FieldValues> {
   id: FieldPath<T>;
@@ -9,69 +14,41 @@ interface InputProps<T extends FieldValues> {
   disabled?: boolean;
   required?: boolean;
   register: UseFormRegister<T>;
-  errors: any;
+  errors: FieldErrors<T>;
 }
 
 const Input = <T extends FieldValues>({
   id,
   label,
-  type,
-  disabled,
+  type = "text",
+  disabled = false,
+  required = false,
   register,
-  required,
   errors,
 }: InputProps<T>) => {
+  const hasError = Boolean(errors[id]);
+
   return (
-    <div className="w-full relative">
+    <div className="relative w-full">
       <input
-        autoComplete="off"
-        id={String(id)}
-        disabled={disabled}
-        type={type}
-        placeholder=""
         {...register(id, { required })}
-        className={`
-          peer
-          w-full
-          pt-6
-          px-4 
-          py-2
-          text-sm
-          text-muted-foreground
-          font-light
-          bg-background
-          focus:text-muted-foreground
-          rounded-md
-          transition
-          disabled:opacity-70
-          disabled:cursor-not-allowed
-          ${
-            errors?.[id]
-              ? "border border-destructive focus:border-destructive"
-              : "border border-border focus:border-border"
-          }
-        `}
+        id={String(id)}
+        type={type}
+        autoComplete="off"
+        disabled={disabled}
+        placeholder=""
+        className={`peer w-full rounded-md border bg-background px-4 py-2 pt-6 text-sm font-light text-muted-foreground transition focus:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-70 ${
+          hasError
+            ? "border-destructive focus:border-destructive"
+            : "border-border focus:border-border"
+        }`}
       />
 
       <label
         htmlFor={String(id)}
-        className={`
-          absolute
-          cursor-text
-          text-sm
-          duration-150
-          transform
-          -translate-y-4
-          top-4
-          z-10
-          origin-[0]
-          left-4
-          peer-placeholder-shown:scale-100
-          peer-placeholder-shown:translate-y-0
-          peer-focus:scale-75
-          peer-focus:-translate-y-4
-          ${errors?.[id] ? "text-red-400" : "text-muted-foreground"}
-        `}
+        className={`absolute left-4 top-4 z-10 origin-[0] -translate-y-4 transform cursor-text text-sm duration-150 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-4 peer-focus:scale-75 ${
+          hasError ? "text-destructive" : "text-muted-foreground"
+        }`}
       >
         {label}
       </label>

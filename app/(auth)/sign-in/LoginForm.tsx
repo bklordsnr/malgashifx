@@ -1,19 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { useForm, SubmitHandler, FieldErrors } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema } from "@/lib/loginSchema";
 import { z } from "zod";
-
+import { useForm, type FieldErrors, type SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-
-import Input from "@/components/inputs/Input";
-import { Button } from "@/components/ui/button";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
+
+import { loginSchema } from "@/lib/loginSchema";
+import Input from "@/components/inputs/Input";
+import { Button } from "@/components/ui/button";
 
 type FormData = z.infer<typeof loginSchema>;
 
@@ -33,11 +32,11 @@ const LoginForm = () => {
     },
   });
 
-  const onInvalid = (errors: FieldErrors<FormData>) => {
-    const firstError = Object.values(errors)[0];
+  const onInvalid = (formErrors: FieldErrors<FormData>) => {
+    const firstError = Object.values(formErrors)[0];
 
     if (firstError?.message) {
-      toast.error(firstError.message as string);
+      toast.error(String(firstError.message));
     }
 
     if (typeof navigator !== "undefined" && navigator.vibrate) {
@@ -62,14 +61,14 @@ const LoginForm = () => {
       if (callback?.ok) {
         router.push("/account");
         router.refresh();
-        toast.success("Wanaag fican ☺️");
+        toast.success("Welcome back! ☺️");
       }
 
       if (callback?.error) {
         toast.error(callback.error);
       }
     } catch {
-      toast.error("kani wuu shaqayn waayay 💩");
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -78,16 +77,19 @@ const LoginForm = () => {
   return (
     <>
       <Button
-        className="w-full flex items-center gap-x-3 border-custom2"
+        type="button"
         variant="outline"
         onClick={() => signIn("google")}
+        className="flex w-full items-center gap-x-3 border-custom2"
       >
-        <FcGoogle size={18} /> ku gal googleka
+        <FcGoogle size={18} />
+        Continue with Google
       </Button>
 
       <Input
         id="email"
-        label="Geli Emailkaaga"
+        label="Enter your email"
+        type="email"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -95,25 +97,27 @@ const LoginForm = () => {
 
       <Input
         id="password"
-        label="Geli Passwordkaaga"
+        label="Enter your password"
+        type="password"
         disabled={isLoading}
         register={register}
         errors={errors}
-        type="password"
       />
 
-      <p className="mr-auto text-muted-foreground text-sm">
-        Ma lihid account
-        <Link href="/sign-up" className="underline ml-1">
-          Isdiiwaangeli
+      <p className="mr-auto text-sm text-muted-foreground">
+        Don&apos;t have an account?
+        <Link href="/sign-up" className="ml-1 underline">
+          Sign Up
         </Link>
       </p>
 
       <Button
+        type="button"
         onClick={handleSubmit(onSubmit, onInvalid)}
+        disabled={isLoading}
         className="w-full border-custom"
       >
-        {isLoading ? "sooshubaya" : "gal"}
+        {isLoading ? "Signing in..." : "Sign In"}
       </Button>
     </>
   );

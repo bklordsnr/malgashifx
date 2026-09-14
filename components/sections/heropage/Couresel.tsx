@@ -1,44 +1,115 @@
-import React, {  useEffect, useMemo, useState } from "react";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import axios from "axios";
 import Autoplay from "embla-carousel-autoplay";
+import axios from "axios";
+
 import { TruncateText } from "../../TruncateText";
 
-export const Couresel = () => {
-  const [coins, setcoins] = useState<any[]>([]);
-  const [emblaRef] = useEmblaCarousel({ loop: false }, [Autoplay()]);
+interface Exchange {
+  id: string;
+  name: string;
+  trade_volume_24h_btc: number | null;
+}
+
+interface ValidExchange {
+  id: string;
+  name: string;
+  volume: number;
+}
+
+const Couresel = () => {
+  const [exchanges, setExchanges] = useState<ValidExchange[]>([]);
+
+  const autoplay = useRef(
+    Autoplay({
+      delay: 2500,
+      stopOnInteraction: false,
+      stopOnMouseEnter: true,
+    })
+  );
+
+  const [emblaRef] = useEmblaCarousel(
+    {
+      loop: true,
+      align: "start",
+      dragFree: true,
+    },
+    [autoplay.current]
+  );
 
   useEffect(() => {
-    axios
-      .get("https://api.coingecko.com/api/v3/exchanges")
-      .then((res) => {
-        setcoins(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    let mounted = true;
+
+    const fetchExchanges = async () => {
+      try {
+        const response = await axios.get<Exchange[]>(
+          "https://api.coingecko.com/api/v3/exchanges"
+        );
+
+        if (mounted) {
+          const validExchanges = response.data
+            .filter(
+              (exchange): exchange is Exchange & {
+                trade_volume_24h_btc: number;
+              } =>
+                Boolean(exchange.name) &&
+                typeof exchange.trade_volume_24h_btc === "number"
+            )
+            .map((exchange) => ({
+              id: exchange.id,
+              name: exchange.name,
+              volume: exchange.trade_volume_24h_btc,
+            }));
+
+          setExchanges(validExchanges);
+        }
+      } catch {
+        if (mounted) {
+          setExchanges([]);
+        }
+      }
+    };
+
+    fetchExchanges();
+
+    return () => {
+      mounted = false;
+    };
   }, []);
 
-  const seriesCoins = useMemo(() => coins, [coins]);
-
-  
+  if (!exchanges.length) {
+    return null;
+  }
 
   return (
-    <div className="embla overflow-hidden" ref={emblaRef}>
-      <div className="embla__container flex gap-10">
-        {seriesCoins.map((coin) => (
-          <div key={coin.id} className="embla__slide  flex-1 w-full">
-            <div className="flex flex-row gap-4">
-              <span className="text-muted-foreground text-sm">
-                {TruncateText(coin.name)}
+    <div
+      ref={emblaRef}
+      className="overflow-hidden rounded-xl border border-border bg-background"
+    >
+      <div className="flex">
+        {exchanges.map((exchange) => (
+          <div
+            key={exchange.id}
+            className="min-w-0 shrink-0 grow-0 basis-auto"
+          >
+            <div className="flex items-center gap-3 px-5 py-3">
+              <span className="text-xs font-medium text-muted-foreground sm:text-sm">
+                {TruncateText(exchange.name)}
               </span>
-              <span className="bg-primary bg-clip-text text-transparent text-sm">
-                {parseFloat(coin.trade_volume_24h_btc).toFixed(2)}
+
+              <span className="h-1 w-1 shrink-0 rounded-full bg-primary/40" />
+
+              <span className="text-xs font-semibold text-primary sm:text-sm">
+                {exchange.volume.toFixed(2)} BTC
               </span>
             </div>
           </div>
-        )) }
+        ))}
       </div>
     </div>
   );
 };
+
+export default Couresel;

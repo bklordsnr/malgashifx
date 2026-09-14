@@ -1,145 +1,180 @@
 "use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
 import { MdOutlineSupervisorAccount } from "react-icons/md";
 import { GrCircleInformation } from "react-icons/gr";
 import { BsPatchQuestion } from "react-icons/bs";
-import { LuFileSpreadsheet } from "react-icons/lu";
-import { RiTelegram2Line } from "react-icons/ri";
-import { IoMdClose } from "react-icons/io";
-import { useState } from "react";
-import { MdMenu } from "react-icons/md";
-import Link from "next/link";
-import MenuItem from "./MenuItem";
 import { signOut } from "next-auth/react";
+
 import { SafeUser } from "@/types";
+
+import MenuItem from "./MenuItem";
 import { Button, buttonVariants } from "../ui/button";
 
 interface MobileProps {
   currentUser: SafeUser | null;
 }
 
-const MobileMenu: React.FC<MobileProps> = ({ currentUser }) => {
+const MobileMenu = ({ currentUser }: MobileProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleMenu = () => {
-    setMenuOpen(!menuOpen);
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev);
   };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
+  const handleSignOut = async () => {
+    closeMenu();
+    await signOut();
+  };
+
+  useEffect(() => {
+    if (!menuOpen) {
+      document.body.style.overflow = "";
+      return;
+    }
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   return (
     <>
-      <div className="flex lg:hidden cursor-pointer" onClick={handleMenu}>
-        {menuOpen ? (
-          <IoMdClose className="text-foreground" size={36} />
-        ) : (
-          <MdMenu className="text-foreground" size={36} />
-        )}
-      </div>
-
-      <div
-        className={
-          menuOpen
-            ? "top-[80px] h-screen right-0 fixed  text-secondary-foreground  w-[100%] border bg-background ease-in duration-500 z-30"
-            : "top-[80px] h-screen fixed hidden text-secondary-foreground w-[100%] border bg-background ease-in duration-500 z-30"
-        }
+      {/* Menu Button */}
+      <button
+        type="button"
+        onClick={toggleMenu}
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        aria-expanded={menuOpen}
+        className="relative z-[70] flex h-10 w-10 items-center justify-center rounded-full lg:hidden"
       >
-        {currentUser ? (
-          <div className="z-30 px-4 py-3 text-sm">
-            <div>
-              <div className="px-1 py-2 flex flex-col gap-3 z-30">
-                <Link href="/account">
-                  <MenuItem
-                    url="account"
-                    onClick={handleMenu}
-                    icon={MdOutlineSupervisorAccount}
-                  >
-                    Account
-                  </MenuItem>
-                </Link>
+        <span className="relative flex h-6 w-6 items-center justify-center">
+          <span
+            className={`absolute h-[2px] w-6 rounded-full bg-foreground transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+              menuOpen ? "rotate-45" : "-translate-y-[5px]"
+            }`}
+          />
 
-                <span className="w-full h-[1px] bg-secondary" />
+          <span
+            className={`absolute h-[2px] w-6 rounded-full bg-foreground transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+              menuOpen ? "-rotate-45" : "translate-y-[5px]"
+            }`}
+          />
+        </span>
+      </button>
 
-                <Link href="/aboutcompany">
-                  <MenuItem
-                    url="aboutcompany"
-                    onClick={handleMenu}
-                    icon={GrCircleInformation}
-                  >
-                    Ku Saabsan Shirkadda
-                  </MenuItem>
-                </Link>
+      {/* Mobile Menu */}
+      <div
+        className={`absolute left-1/2 top-full z-40 h-[calc(100dvh-4rem)] w-screen -translate-x-1/2 overflow-hidden lg:hidden ${
+          menuOpen ? "pointer-events-auto" : "pointer-events-none"
+        }`}
+      >
+        {/* Backdrop */}
+        <button
+          type="button"
+          aria-label="Close menu"
+          onClick={closeMenu}
+          className={`absolute inset-0 bg-black/20 backdrop-blur-md transition-opacity duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+            menuOpen ? "opacity-100" : "opacity-0"
+          }`}
+        />
 
-                <span className="w-full h-[1px] bg-secondary" />
+        {/* Drawer */}
+        <aside
+          className={`absolute bottom-0 right-0 top-0 flex w-[82%] max-w-[420px] flex-col border-l border-border bg-background shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+            menuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          {/* Navigation */}
+          <div className="flex-1 overflow-y-auto px-4 py-6">
+            <div className="flex flex-col gap-2">
+              {currentUser && (
+                <>
+                  <Link href="/account" onClick={closeMenu}>
+                    <MenuItem
+                      url="account"
+                      onClick={closeMenu}
+                      icon={MdOutlineSupervisorAccount}
+                    >
+                      Account
+                    </MenuItem>
+                  </Link>
 
-                <Link href="/faqs">
-                  <MenuItem
-                    url="faqs"
-                    onClick={handleMenu}
-                    icon={BsPatchQuestion}
-                  >
-                    Faqs
-                  </MenuItem>
-                </Link>
+                  <div className="my-2 h-px w-full bg-border" />
+                </>
+              )}
 
-                <span className="w-full h-[1px] bg-secondary" />
-
-                <Button
-                  onClick={() => {
-                    (handleMenu(), signOut());
-                  }}
-                  className="mt-4 border-custom3"
-                  variant="destructive"
-                >
-                  Ka Bax
-                </Button>
-              </div>
-            </div>
-          </div>
-        ) : ( 
-          <div className="z-30 px-4 py-3 text-sm">
-            <div className="flex flex-col gap-4">
-              <Link href="/aboutcompany">
+              <Link href="/aboutcompany" onClick={closeMenu}>
                 <MenuItem
                   url="aboutcompany"
-                  onClick={handleMenu}
+                  onClick={closeMenu}
                   icon={GrCircleInformation}
                 >
-                  Ku Saabsan Shirkadda
+                  About Company
                 </MenuItem>
               </Link>
 
-              <span className="w-full h-[1px] bg-secondary" />
+              <div className="my-2 h-px w-full bg-border" />
 
-              <Link href="/faqs">
+              <Link href="/faqs" onClick={closeMenu}>
                 <MenuItem
                   url="faqs"
-                  onClick={handleMenu}
+                  onClick={closeMenu}
                   icon={BsPatchQuestion}
                 >
-                  Faqs
+                  FAQs
                 </MenuItem>
-              </Link>
-
-              <span className="w-full h-[1px] bg-secondary" />
-            </div>
-
-            <div className="mt-6 flex flex-col space-y-5">
-              <Link
-                onClick={handleMenu}
-                href="/sign-in"
-                className={`border-custom2 ${buttonVariants({ variant: "outline" })}`}
-              >
-                Gal Accountka
-              </Link>
-
-              <Link
-                onClick={handleMenu}
-                href="/sign-up"
-                className={`border-custom ${buttonVariants({ variant: "default" })}`}
-              >
-                Isdiiwaangeli
               </Link>
             </div>
           </div>
-        )}
+
+          {/* Bottom Actions */}
+          <div className="border-t border-border bg-background px-4 pb-6 pt-5">
+            {currentUser ? (
+              <Button
+                type="button"
+                onClick={handleSignOut}
+                variant="destructive"
+                className="h-12 w-full rounded-xl border-custom3 text-sm font-medium"
+              >
+                Sign Out
+              </Button>
+            ) : (
+              <div className="flex flex-col gap-3">
+                <Link
+                  href="/sign-in"
+                  onClick={closeMenu}
+                  className={`h-12 w-full rounded-xl border-custom2 ${buttonVariants(
+                    {
+                      variant: "outline",
+                    }
+                  )}`}
+                >
+                  Sign In
+                </Link>
+
+                <Link
+                  href="/sign-up"
+                  onClick={closeMenu}
+                  className={`h-12 w-full rounded-xl border-custom ${buttonVariants(
+                    {
+                      variant: "default",
+                    }
+                  )}`}
+                >
+                  Sign Up
+                </Link>
+              </div>
+            )}
+          </div>
+        </aside>
       </div>
     </>
   );
