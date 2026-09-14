@@ -4,7 +4,7 @@ datasource db {
 }
 
 generator client {
-  provider        = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 model Account {
@@ -13,12 +13,12 @@ model Account {
   type               String
   provider           String
   providerAccountId  String
-  refresh_token      String?  @db.String
-  access_token       String?  @db.String
+  refresh_token      String? @db.String
+  access_token       String? @db.String
   expires_at         Int?
   token_type         String?
   scope              String?
-  id_token           String?  @db.String
+  id_token           String? @db.String
   session_state      String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -27,67 +27,51 @@ model Account {
 }
 
 model User {
-  id            String  @id @default(auto()) @map("_id") @db.ObjectId
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  TotalBalance       Int?     @default(0)
-  Deposit       Int?     @default(0)
-  Profit       Int?     @default(0)
-  Rate       Int?     @default(0)
-  withdrawal String?  @default("null")
-  tradingstatus Boolean @default(false)
-  number  String? @default("null")
-  clearancestatus Boolean @default(false)
-  withdrawalstatus Boolean @default(false)
-  image         String?
-  hashedPassword String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  role Role  @default(USER)
+  id              String       @id @default(auto()) @map("_id") @db.ObjectId
+  name            String?
+  email           String?      @unique
+  emailVerified   DateTime?
 
-  accounts      Account[]
-  order          Order[]
+  TotalBalance    Int?         @default(0)
+  Deposit         Int?         @default(0)
+  Profit          Int?         @default(0)
+
+  tradingstatus   Boolean      @default(false)
+  number          String?      @default("null")
+  clearancestatus Boolean      @default(false)
+
+  image           String?
+  hashedPassword  String?
+
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  role            Role         @default(USER)
+
+  accounts        Account[]
+  withdrawals     Withdrawal[]
 }
 
-model Order {
-  id      String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId  String  @db.ObjectId 
-  amount Int
-  currency String
-  status String
-  ProfitStatus String
-  createdDate DateTime @default(now())
-  paymentIntentId String @unique
-  products CartPlanType[]
-  adress Address?
+model Withdrawal {
+  id          String           @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String           @db.ObjectId
+  amount      Int
+  phoneNumber String
+  network     String
+  status      WithdrawalStatus @default(PENDING)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
 
-   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-} 
-
-
- type CartPlanType{
-  id String
-  name String
-  price String
-  profit String
-  category String
-  customizedinvestment Boolean
-  swapdiscount Boolean
-  personalAccount Boolean
-  availability Boolean
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-type Address {
- city String
- country String
- line1 String
- line2 String?
- postal_code  String
- state String
+enum WithdrawalStatus {
+  PENDING
+  APPROVED
+  REJECTED
 }
 
-enum Role{
-    USER
-    ADMIN
+enum Role {
+  USER
+  ADMIN
 }

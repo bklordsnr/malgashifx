@@ -74,13 +74,24 @@ const RegisterForm = () => {
         router.push("/account");
         router.refresh();
         toast.success("Welcome! ☺️");
+        return;
       }
 
       if (callback?.error) {
         toast.error(callback.error);
       }
-    } catch {
-      toast.error("Something went wrong. Please try again.");
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const message = error.response?.data?.message;
+
+        if (message) {
+          toast.error(message);
+        } else {
+          toast.error("Something went wrong. Please try again.");
+        }
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
     } finally {
       setIsLoading(false);
     }

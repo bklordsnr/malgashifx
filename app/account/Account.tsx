@@ -2,18 +2,18 @@
 
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { AiOutlineRise } from "react-icons/ai";
 import { GiProfit } from "react-icons/gi";
 import { LuBadgeDollarSign, LuCircleDollarSign } from "react-icons/lu";
 import { MdOutlineEmail, MdOutlinePhone } from "react-icons/md";
-import {
-  HiOutlineCheckCircle,
-  HiOutlineXCircle,
-} from "react-icons/hi";
+import { HiOutlineCheckCircle, HiOutlineXCircle } from "react-icons/hi";
 import { FiArrowDownLeft, FiArrowRight, FiLock } from "react-icons/fi";
+import toast from "react-hot-toast";
 
 import { SafeUser } from "@/types";
 import { formatPrice } from "@/utils/formatPrice";
+import { withdraw } from "@/actions/Withdraw";
 
 import btcimage01 from "@/public/assets/btcimage01.svg";
 import btcimage02 from "@/public/assets/btcimage02.svg";
@@ -28,14 +28,22 @@ const MIN_WITHDRAWAL = 5;
 const MAX_WITHDRAWAL = 600;
 
 const Account = ({ currentUser }: AccountProps) => {
+  const router = useRouter();
+
   const [amount, setAmount] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [withdrawalComplete, setWithdrawalComplete] = useState(false);
+  const [isWithdrawing, setIsWithdrawing] = useState(false);
+  const [completedWithdrawal, setCompletedWithdrawal] = useState<{
+    amount: number;
+    phoneNumber: string;
+    network: Network;
+    balance: number;
+  } | null>(null);
 
   const isTradingActive = Boolean(currentUser?.tradingstatus);
   const isClearanceApproved = Boolean(currentUser?.clearancestatus);
-  const isWithdrawalApproved = Boolean(currentUser?.withdrawalstatus);
 
   const balance = Number(currentUser?.TotalBalance ?? 0);
   const withdrawalAmount = Number(amount);
@@ -104,9 +112,7 @@ const Account = ({ currentUser }: AccountProps) => {
     withdrawalAmount <= balance &&
     isPhoneValid;
 
-  const handleAmountChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
 
     if (value === "") {
@@ -121,9 +127,7 @@ const Account = ({ currentUser }: AccountProps) => {
     setAmount(value);
   };
 
-  const handlePhoneChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value.replace(/\D/g, "");
 
     setPhoneNumber(value);
@@ -137,13 +141,48 @@ const Account = ({ currentUser }: AccountProps) => {
     setShowConfirmation(true);
   };
 
-  const handleConfirmWithdrawal = () => {
-    setShowConfirmation(false);
-    setWithdrawalComplete(true);
+  const handleConfirmWithdrawal = async () => {
+    if (!canWithdraw || !network) {
+      return;
+    }
+
+    setIsWithdrawing(true);
+
+    try {
+      const result = await withdraw({
+        amount: withdrawalAmount,
+        phoneNumber,
+      });
+
+      if (!result.success) {
+        toast.error(result.message);
+        setShowConfirmation(false);
+        return;
+      }
+
+      setShowConfirmation(false);
+
+      setCompletedWithdrawal({
+        amount: result.amount,
+        phoneNumber: result.phoneNumber,
+        network: result.network as Network,
+        balance: result.balance,
+      });
+
+      setWithdrawalComplete(true);
+
+      router.refresh();
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+      setShowConfirmation(false);
+    } finally {
+      setIsWithdrawing(false);
+    }
   };
 
   const handleCloseSuccess = () => {
     setWithdrawalComplete(false);
+    setCompletedWithdrawal(null);
     setAmount("");
     setPhoneNumber("");
   };
@@ -216,10 +255,7 @@ const Account = ({ currentUser }: AccountProps) => {
 
               <div className="relative flex h-11 w-11 items-center justify-center rounded-full bg-primary/10">
                 <span className="absolute right-1 top-1 h-1.5 w-1.5 rounded-full bg-primary" />
-                <LuBadgeDollarSign
-                  size={26}
-                  className="text-primary"
-                />
+                <LuBadgeDollarSign size={26} className="text-primary" />
               </div>
             </div>
 
@@ -330,7 +366,8 @@ const Account = ({ currentUser }: AccountProps) => {
                     value={amount}
                     onChange={handleAmountChange}
                     placeholder="0.00"
-                    className={`w-full rounded-xl border bg-background py-3 pl-9 pr-4 text-sm text-foreground outline-none transition placeholder:text-muted-foreground/60 ${
+                    disabled={isWithdrawing}
+                    className={`w-full rounded-xl border bg-background py-3 pl-9 pr-4 text-sm text-foreground outline-none transition placeholder:text-muted-foreground/60 disabled:cursor-not-allowed disabled:opacity-60 ${
                       amountError
                         ? "border-destructive focus:border-destructive"
                         : "border-border focus:border-primary"
@@ -344,9 +381,7 @@ const Account = ({ currentUser }: AccountProps) => {
                 </div>
 
                 {amountError && (
-                  <p className="mt-2 text-xs text-destructive">
-                    {amountError}
-                  </p>
+                  <p className="mt-2 text-xs text-destructive">{amountError}</p>
                 )}
               </div>
 
@@ -366,7 +401,8 @@ const Account = ({ currentUser }: AccountProps) => {
                   onChange={handlePhoneChange}
                   placeholder="Enter mobile number"
                   maxLength={10}
-                  className={`w-full rounded-xl border bg-background px-4 py-3 text-sm text-foreground outline-none transition placeholder:text-muted-foreground/60 ${
+                  disabled={isWithdrawing}
+                  className={`w-full rounded-xl border bg-background px-4 py-3 text-sm text-foreground outline-none transition placeholder:text-muted-foreground/60 disabled:cursor-not-allowed disabled:opacity-60 ${
                     phoneError
                       ? "border-destructive focus:border-destructive"
                       : "border-border focus:border-primary"
@@ -380,9 +416,7 @@ const Account = ({ currentUser }: AccountProps) => {
                       <span>{network} mobile wallet detected</span>
                     </div>
                   ) : phoneError ? (
-                    <p className="text-xs text-destructive">
-                      {phoneError}
-                    </p>
+                    <p className="text-xs text-destructive">{phoneError}</p>
                   ) : (
                     <p className="text-xs text-muted-foreground">
                       EVC, Telesom, and Golis numbers are supported.
@@ -394,7 +428,7 @@ const Account = ({ currentUser }: AccountProps) => {
               <button
                 type="button"
                 onClick={handleWithdraw}
-                disabled={!canWithdraw}
+                disabled={!canWithdraw || isWithdrawing}
                 className="flex h-12 w-full items-center justify-center gap-2 rounded-xl border-custom bg-primary px-4 text-sm font-semibold text-primary-foreground transition-all hover:opacity-95 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-40"
               >
                 Withdraw Funds
@@ -425,23 +459,15 @@ const Account = ({ currentUser }: AccountProps) => {
             </div>
 
             <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
-              <span className="text-sm text-muted-foreground">
-                Minimum
-              </span>
+              <span className="text-sm text-muted-foreground">Minimum</span>
 
-              <span className="text-sm font-medium text-foreground">
-                $5
-              </span>
+              <span className="text-sm font-medium text-foreground">$5</span>
             </div>
 
             <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
-              <span className="text-sm text-muted-foreground">
-                Maximum
-              </span>
+              <span className="text-sm text-muted-foreground">Maximum</span>
 
-              <span className="text-sm font-medium text-foreground">
-                $600
-              </span>
+              <span className="text-sm font-medium text-foreground">$600</span>
             </div>
 
             <div className="flex items-center justify-between gap-4">
@@ -449,7 +475,7 @@ const Account = ({ currentUser }: AccountProps) => {
                 Supported wallets
               </span>
 
-              <span className="text-sm font-medium text-foreground">
+              <span className="text-right text-sm font-medium text-foreground">
                 EVC · Telesom · Golis
               </span>
             </div>
@@ -470,9 +496,7 @@ const Account = ({ currentUser }: AccountProps) => {
 
         <div className="divide-y divide-border">
           <div className="flex items-center justify-between gap-4 px-5 py-4 sm:px-6">
-            <span className="text-sm text-foreground">
-              Trading Status
-            </span>
+            <span className="text-sm text-foreground">Trading Status</span>
 
             {isTradingActive ? (
               <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">
@@ -489,10 +513,7 @@ const Account = ({ currentUser }: AccountProps) => {
 
           <div className="flex items-center justify-between gap-4 px-5 py-4 sm:px-6">
             <span className="flex items-center gap-2 text-sm text-foreground">
-              <MdOutlineEmail
-                size={18}
-                className="text-muted-foreground"
-              />
+              <MdOutlineEmail size={18} className="text-muted-foreground" />
               Email
             </span>
 
@@ -503,10 +524,7 @@ const Account = ({ currentUser }: AccountProps) => {
 
           <div className="flex items-center justify-between gap-4 px-5 py-4 sm:px-6">
             <span className="flex items-center gap-2 text-sm text-foreground">
-              <MdOutlinePhone
-                size={18}
-                className="text-muted-foreground"
-              />
+              <MdOutlinePhone size={18} className="text-muted-foreground" />
               Phone Number
             </span>
 
@@ -516,29 +534,9 @@ const Account = ({ currentUser }: AccountProps) => {
           </div>
 
           <div className="flex items-center justify-between gap-4 px-5 py-4 sm:px-6">
-            <span className="text-sm text-foreground">
-              Clearance Status
-            </span>
+            <span className="text-sm text-foreground">Clearance Status</span>
 
             {isClearanceApproved ? (
-              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary">
-                <HiOutlineCheckCircle size={17} />
-                Approved
-              </span>
-            ) : (
-              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-destructive">
-                <HiOutlineXCircle size={17} />
-                Not Approved
-              </span>
-            )}
-          </div>
-
-          <div className="flex items-center justify-between gap-4 px-5 py-4 sm:px-6">
-            <span className="text-sm text-foreground">
-              Withdrawal Status
-            </span>
-
-            {isWithdrawalApproved ? (
               <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary">
                 <HiOutlineCheckCircle size={17} />
                 Approved
@@ -570,9 +568,7 @@ const Account = ({ currentUser }: AccountProps) => {
 
             <div className="mt-6 rounded-xl border border-border bg-muted/30 p-4">
               <div className="flex items-center justify-between gap-4">
-                <span className="text-sm text-muted-foreground">
-                  Amount
-                </span>
+                <span className="text-sm text-muted-foreground">Amount</span>
 
                 <span className="text-lg font-semibold text-foreground">
                   ${withdrawalAmount.toFixed(2)}
@@ -590,9 +586,7 @@ const Account = ({ currentUser }: AccountProps) => {
               </div>
 
               <div className="mt-4 flex items-center justify-between gap-4">
-                <span className="text-sm text-muted-foreground">
-                  Wallet
-                </span>
+                <span className="text-sm text-muted-foreground">Wallet</span>
 
                 <span className="text-sm font-medium text-primary">
                   {network}
@@ -611,7 +605,8 @@ const Account = ({ currentUser }: AccountProps) => {
               <button
                 type="button"
                 onClick={() => setShowConfirmation(false)}
-                className="h-11 rounded-xl border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+                disabled={isWithdrawing}
+                className="h-11 rounded-xl border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Cancel
               </button>
@@ -619,23 +614,21 @@ const Account = ({ currentUser }: AccountProps) => {
               <button
                 type="button"
                 onClick={handleConfirmWithdrawal}
-                className="h-11 rounded-xl border-custom bg-primary px-4 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-95"
+                disabled={isWithdrawing}
+                className="h-11 rounded-xl border-custom bg-primary px-4 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-95 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                Confirm
+                {isWithdrawing ? "Processing..." : "Confirm"}
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {withdrawalComplete && (
+      {withdrawalComplete && completedWithdrawal && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/30 px-5 backdrop-blur-sm">
           <div className="w-full max-w-[400px] rounded-2xl border-custom2 bg-background p-6 text-center shadow-2xl">
             <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-              <HiOutlineCheckCircle
-                size={38}
-                className="text-primary"
-              />
+              <HiOutlineCheckCircle size={38} className="text-primary" />
             </div>
 
             <h2 className="mt-5 text-xl font-semibold text-foreground">
@@ -647,18 +640,26 @@ const Account = ({ currentUser }: AccountProps) => {
             </p>
 
             <div className="mt-6 rounded-xl border border-border bg-muted/30 p-4">
-              <p className="text-xs text-muted-foreground">
-                Withdrawal amount
-              </p>
+              <p className="text-xs text-muted-foreground">Withdrawal amount</p>
 
               <p className="mt-1 text-2xl font-semibold tracking-tight text-foreground">
-                ${withdrawalAmount.toFixed(2)}
+                ${completedWithdrawal.amount.toFixed(2)}
               </p>
 
               <div className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
-                <span>{network}</span>
+                <span>{completedWithdrawal.network}</span>
                 <span>•</span>
-                <span>{phoneNumber}</span>
+                <span>{completedWithdrawal.phoneNumber}</span>
+              </div>
+
+              <div className="mt-4 border-t border-border pt-4">
+                <p className="text-xs text-muted-foreground">
+                  Remaining balance
+                </p>
+
+                <p className="mt-1 text-sm font-semibold text-foreground">
+                  ${completedWithdrawal.balance.toFixed(2)}
+                </p>
               </div>
             </div>
 
