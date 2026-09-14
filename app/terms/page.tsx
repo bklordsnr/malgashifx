@@ -82,7 +82,7 @@ const TermsPage = () => {
                   <p className="mt-3">
                     You agree to use the platform lawfully and responsibly. You
                     must not attempt to interfere with the operation of the
-                    platform, access another user's account, or use the service
+                    platform, access another users account, or use the service
                     for fraudulent or unauthorized activities.
                   </p>
                 </div>
