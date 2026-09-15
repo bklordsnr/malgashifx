@@ -7,6 +7,7 @@ import logo from "@/public/logo-image/logo.png";
 
 import Container from "../Container";
 import MobileMenu from "./MobileMenu";
+import ThemeToggle from "../ThemeToggle";
 import UserMenu from "./UserMenu";
 import { buttonVariants } from "../ui/button";
 
@@ -58,6 +59,11 @@ const Navbar = async () => {
 
           {/* Right Side */}
           <div className="flex items-center gap-1 text-secondary-foreground sm:gap-2 md:gap-5">
+            {/* Theme Toggle - Desktop */}
+            <div className="hidden md:block">
+              <ThemeToggle />
+            </div>
+
             {/* Notifications */}
             <Link
               href="/notifications"
