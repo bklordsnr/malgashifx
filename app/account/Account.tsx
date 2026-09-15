@@ -18,8 +18,24 @@ import { withdraw } from "@/actions/Withdraw";
 import btcimage01 from "@/public/assets/btcimage01.svg";
 import btcimage02 from "@/public/assets/btcimage02.svg";
 
+import WithdrawalHistory from "./WithdrawalHistory";
+
 interface AccountProps {
   currentUser: SafeUser | null;
+}
+
+interface Withdrawal {
+  id: string;
+  amount: number;
+  phoneNumber: string;
+  network: string;
+  status: "PENDING" | "APPROVED" | "REJECTED";
+  createdAt: string;
+}
+
+interface AccountProps {
+  currentUser: SafeUser | null;
+  withdrawals: Withdrawal[];
 }
 
 type Network = "EVC" | "Telesom" | "Golis";
@@ -27,7 +43,7 @@ type Network = "EVC" | "Telesom" | "Golis";
 const MIN_WITHDRAWAL = 5;
 const MAX_WITHDRAWAL = 600;
 
-const Account = ({ currentUser }: AccountProps) => {
+const Account = ({ currentUser, withdrawals }: AccountProps) => {
   const router = useRouter();
 
   const [amount, setAmount] = useState("");
@@ -550,6 +566,8 @@ const Account = ({ currentUser }: AccountProps) => {
           </div>
         </div>
       </section>
+
+      <WithdrawalHistory withdrawals={withdrawals} />
 
       {showConfirmation && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/30 px-5 backdrop-blur-sm">

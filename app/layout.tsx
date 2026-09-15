@@ -7,6 +7,7 @@ import Navbar from "../components/navbar/Navbar";
 import { Toaster } from "react-hot-toast";
 import Footer from "../components/footer/Footer";
 import { cn } from "@/lib/utils";
+import ThemeProvider from "@/components/providers/ThemeProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,25 +26,30 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className="h-full" suppressHydrationWarning>
       <link rel="icon" href="/favicon.ico" sizes="any" />
-      <body className={cn("relative antialiased", inter.className)}>
-        <Toaster
-          position="bottom-center"
-          reverseOrder={false}
-          toastOptions={{
-            style: {
-              background: "#1C1917",
-              color: "white",
-            },
-          }}
-        />
 
-        <main className=" relative flex flex-col min-h-screen">
-          <Navbar />
-          <div className="flex-grow flex-1">{children}</div>
-          <Footer />
-        </main>
+      <body className={cn("relative antialiased", inter.className)}>
+        <ThemeProvider>
+          <Toaster
+            position="bottom-center"
+            reverseOrder={false}
+            toastOptions={{
+              style: {
+                background: "#1C1917",
+                color: "white",
+              },
+            }}
+          />
+
+          <main className="relative flex min-h-screen flex-col">
+            <Navbar />
+
+            <div className="flex-1">{children}</div>
+
+            <Footer />
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );
