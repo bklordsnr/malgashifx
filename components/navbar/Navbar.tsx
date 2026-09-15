@@ -61,7 +61,7 @@ const Navbar = async () => {
           <div className="flex items-center gap-1 text-secondary-foreground sm:gap-2 md:gap-5">
             {/* Theme Toggle - Desktop */}
             <div className="hidden md:block">
-              <ThemeToggle />
+              <ThemeToggle compact />
             </div>
 
             {/* Notifications */}

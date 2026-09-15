@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { FiMoon, FiSun } from "react-icons/fi";
 
-const ThemeToggle = () => {
+interface ThemeToggleProps {
+  compact?: boolean;
+}
+
+const ThemeToggle = ({ compact = false }: ThemeToggleProps) => {
   const { theme, setTheme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -13,16 +17,16 @@ const ThemeToggle = () => {
   }, []);
 
   if (!mounted) {
-    return (
+    return compact ? (
+      <div className="h-10 w-10" aria-hidden="true" />
+    ) : (
       <div className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-sm font-medium text-secondary-foreground">
         <span className="flex items-center gap-3">
           <FiMoon size={21} className="shrink-0" />
           <span>Dark Mode</span>
         </span>
 
-        <span className="text-xs text-muted-foreground">
-          Theme
-        </span>
+        <span className="text-xs text-muted-foreground">Theme</span>
       </div>
     );
   }
@@ -33,6 +37,30 @@ const ThemeToggle = () => {
   const toggleTheme = () => {
     setTheme(isDark ? "light" : "dark");
   };
+
+  if (compact) {
+    return (
+      <button
+        type="button"
+        onClick={toggleTheme}
+        aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+        title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+        className="flex h-10 w-10 items-center justify-center rounded-full text-secondary-foreground transition-colors hover:bg-muted hover:text-foreground active:scale-95"
+      >
+        {isDark ? (
+          <FiSun
+            size={21}
+            className="transition-transform duration-200 hover:rotate-12"
+          />
+        ) : (
+          <FiMoon
+            size={21}
+            className="transition-transform duration-200 hover:rotate-12"
+          />
+        )}
+      </button>
+    );
+  }
 
   return (
     <button
