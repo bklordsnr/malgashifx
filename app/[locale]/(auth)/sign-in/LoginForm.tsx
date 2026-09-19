@@ -2,11 +2,7 @@
 
 import { useState } from "react";
 import { z } from "zod";
-import {
-  useForm,
-  type FieldErrors,
-  type SubmitHandler,
-} from "react-hook-form";
+import { useForm, type FieldErrors, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useTranslations } from "next-intl";
@@ -21,6 +17,7 @@ import { Link } from "@/i18n/navigation";
 
 const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
   const t = useTranslations("SignIn");
 
@@ -58,21 +55,18 @@ const LoginForm = () => {
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     setIsLoading(true);
 
-    const normalizedData = {
-      ...data,
-      email: data.email.toLowerCase().trim(),
-    };
-
     try {
       const callback = await signIn("credentials", {
-        ...normalizedData,
+        email: data.email.trim().toLowerCase(),
+        password: data.password,
         redirect: false,
       });
 
       if (callback?.ok) {
+        toast.success(t("welcomeBack"));
         router.push("/account");
         router.refresh();
-        toast.success(t("welcomeBack"));
+        return;
       }
 
       if (callback?.error) {
@@ -85,12 +79,26 @@ const LoginForm = () => {
     }
   };
 
+  const handleGoogleSignIn = async () => {
+    setIsLoading(true);
+
+    try {
+      await signIn("google", {
+        callbackUrl: "/account",
+      });
+    } catch {
+      toast.error(t("somethingWentWrong"));
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
       <Button
         type="button"
         variant="outline"
         onClick={() => signIn("google")}
+        disabled={isLoading}
         className="flex w-full items-center gap-x-3 border-custom2"
       >
         <FcGoogle size={18} />
@@ -127,7 +135,7 @@ const LoginForm = () => {
       <p className="mr-auto text-sm text-muted-foreground">
         {t("noAccount")}
 
-        <Link href="/sign-up" className="ml-1 underline">
+        <Link href="/sign-up" className="ml-1 underline underline-offset-4">
           {t("signUp")}
         </Link>
       </p>

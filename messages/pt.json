@@ -368,5 +368,20 @@
     "passwordTooShort": "A senha deve ter pelo menos 6 caracteres",
     "passwordsDoNotMatch": "As senhas não coincidem",
     "somethingWentWrong": "Algo deu errado. Tente novamente."
+  },
+  "VerifyEmail": {
+    "title": "Verifique seu e-mail",
+    "checkEmail": "Enviamos um link de verificação para o seu endereço de e-mail. Verifique sua caixa de entrada. Se não encontrar, verifique a pasta de Spam ou Lixo eletrônico.",
+    "success": "Seu e-mail foi verificado com sucesso. Agora você pode entrar.",
+    "invalidLink": "Este link de verificação é inválido ou expirou. Solicite um novo e-mail de verificação.",
+    "alreadyVerified": "Seu e-mail já foi verificado. Você pode entrar na sua conta.",
+    "somethingWentWrong": "Algo deu errado ao verificar seu e-mail. Tente novamente.",
+    "signIn": "Entrar",
+    "didntReceive": "Não recebeu o e-mail?",
+    "email": "E-mail",
+    "emailPlaceholder": "Digite seu endereço de e-mail",
+    "emailRequired": "Digite seu endereço de e-mail.",
+    "resend": "Reenviar e-mail de verificação",
+    "sending": "Enviando..."
   }
 }

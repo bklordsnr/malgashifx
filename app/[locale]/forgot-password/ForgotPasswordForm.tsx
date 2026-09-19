@@ -42,7 +42,6 @@ const ForgotPasswordForm = () => {
       });
 
       toast.success(t("success"));
-
       router.push("/sign-in");
     } catch (error) {
       if (axios.isAxiosError(error)) {

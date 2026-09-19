@@ -2,9 +2,8 @@ import { getTranslations } from "next-intl/server";
 
 import Container from "@/components/Container";
 import FormWrapper from "@/components/FormWrapper";
+
 import ForgotPasswordForm from "./ForgotPasswordForm";
-
-
 
 const ForgotPasswordPage = async () => {
   const t = await getTranslations("ForgotPassword");
@@ -18,9 +17,7 @@ const ForgotPasswordPage = async () => {
               {t("title")}
             </h1>
 
-            <p className="text-sm text-muted-foreground">
-              {t("description")}
-            </p>
+            <p className="text-sm text-muted-foreground">{t("description")}</p>
           </div>
 
           <FormWrapper>

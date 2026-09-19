@@ -15,7 +15,6 @@ type SignInPageProps = {
 
 const SignInPage = async ({ params }: SignInPageProps) => {
   const { locale } = await params;
-
   const currentUser = await getCurrentUser();
   const t = await getTranslations("SignIn");
 
@@ -35,7 +34,9 @@ const SignInPage = async ({ params }: SignInPageProps) => {
               {t("title")}
             </h1>
 
-            <p className="text-sm text-muted-foreground">{t("description")}</p>
+            <p className="text-sm text-muted-foreground">
+              {t("description")}
+            </p>
           </div>
 
           <FormWrapper>

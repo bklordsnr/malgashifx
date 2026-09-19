@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 
 import Container from "@/components/Container";
 import FormWrapper from "@/components/FormWrapper";
+
 import ResetPasswordForm from "./ResetPasswordForm";
 
 type ResetPasswordPageProps = {

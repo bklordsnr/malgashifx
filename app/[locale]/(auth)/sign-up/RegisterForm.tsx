@@ -15,9 +15,7 @@ import { useRouter } from "@/i18n/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
-import PhoneInput, {
-  isValidPhoneNumber,
-} from "react-phone-number-input";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
 import { createRegisterSchema } from "@/lib/registerSchema";
@@ -100,31 +98,13 @@ const RegisterForm = () => {
 
       toast.success(t("accountCreated"));
 
-      const callback = await signIn("credentials", {
-        email: normalizedData.email,
-        password: normalizedData.password,
-        redirect: false,
-      });
-
-      if (callback?.ok) {
-        router.push("/account");
-        router.refresh();
-        toast.success(t("welcome"));
-        return;
-      }
-
-      if (callback?.error) {
-        toast.error(callback.error);
-      }
+      router.push("/verify-email");
+      router.refresh();
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const message = error.response?.data?.message;
 
-        if (message) {
-          toast.error(message);
-        } else {
-          toast.error(t("somethingWentWrong"));
-        }
+        toast.error(message || t("somethingWentWrong"));
       } else {
         toast.error(t("somethingWentWrong"));
       }
@@ -189,7 +169,7 @@ const RegisterForm = () => {
               }}
               disabled={isLoading}
               className="phone-input"
-              aria-invalid={!!errors.number}
+              aria-invalid={Boolean(errors.number)}
             />
           )}
         />

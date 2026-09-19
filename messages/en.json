@@ -367,5 +367,20 @@
     "passwordTooShort": "Password must be at least 6 characters",
     "passwordsDoNotMatch": "Passwords do not match",
     "somethingWentWrong": "Something went wrong. Please try again."
+  },
+  "VerifyEmail": {
+    "title": "Verify your email",
+    "checkEmail": "We've sent a verification link to your email address. Please check your inbox. If you don't see it, check your Spam or Junk folder.",
+    "success": "Your email has been verified successfully. You can now sign in.",
+    "invalidLink": "This verification link is invalid or has expired. Please request a new verification email.",
+    "alreadyVerified": "Your email is already verified. You can sign in to your account.",
+    "somethingWentWrong": "Something went wrong while verifying your email. Please try again.",
+    "signIn": "Sign in",
+    "didntReceive": "Didn't receive the email?",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email address",
+    "emailRequired": "Please enter your email address.",
+    "resend": "Resend verification email",
+    "sending": "Sending..."
   }
 }

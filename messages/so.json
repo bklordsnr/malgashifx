@@ -360,5 +360,20 @@
     "passwordTooShort": "Erayga sirta ah waa inuu ahaadaa ugu yaraan 6 xaraf",
     "passwordsDoNotMatch": "Erayada sirta ahi isma waafaqayaan",
     "somethingWentWrong": "Waxbaa khaldamay. Fadlan mar kale isku day."
+  },
+  "VerifyEmail": {
+    "title": "Xaqiiji iimaylkaaga",
+    "checkEmail": "Waxaan kuu soo dirnay xiriir xaqiijin ah cinwaankaaga iimaylka. Fadlan hubi sanduuqaaga iimaylka. Haddii aadan ka helin, hubi galka Spam ama Junk.",
+    "success": "Iimaylkaaga si guul leh ayaa loo xaqiijiyay. Hadda waad gali kartaa.",
+    "invalidLink": "Xiriirkan xaqiijinta waa khalad ama wuu dhacay. Fadlan codso iimayl xaqiijin cusub.",
+    "alreadyVerified": "Iimaylkaaga hore ayaa loo xaqiijiyay. Waad gali kartaa akoonkaaga.",
+    "somethingWentWrong": "Waxbaa khaldamay intii lagu jiray xaqiijinta iimaylkaaga. Fadlan mar kale isku day.",
+    "signIn": "Gal",
+    "didntReceive": "Ma aadan helin iimaylka?",
+    "email": "Iimayl",
+    "emailPlaceholder": "Geli cinwaankaaga iimaylka",
+    "emailRequired": "Fadlan geli cinwaankaaga iimaylka.",
+    "resend": "Dib u dir iimaylka xaqiijinta",
+    "sending": "Waa la dirayaa..."
   }
 }

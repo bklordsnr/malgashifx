@@ -7,13 +7,13 @@ import FormWrapper from "@/components/FormWrapper";
 
 import RegisterForm from "./RegisterForm";
 
-type SignUnPageProps = {
+type SignUpPageProps = {
   params: Promise<{
     locale: string;
   }>;
 };
 
-const SignUpPage = async ({ params }: SignUnPageProps) => {
+const SignUpPage = async ({ params }: SignUpPageProps) => {
   const { locale } = await params;
   const currentUser = await getCurrentUser();
   const t = await getTranslations("SignUp");

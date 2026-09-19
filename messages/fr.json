@@ -367,5 +367,20 @@
     "passwordTooShort": "Le mot de passe doit comporter au moins 6 caractères",
     "passwordsDoNotMatch": "Les mots de passe ne correspondent pas",
     "somethingWentWrong": "Une erreur s'est produite. Veuillez réessayer."
+  },
+  "VerifyEmail": {
+    "title": "Vérifiez votre adresse e-mail",
+    "checkEmail": "Nous avons envoyé un lien de vérification à votre adresse e-mail. Veuillez consulter votre boîte de réception. Si vous ne le voyez pas, vérifiez votre dossier Spam ou Courrier indésirable.",
+    "success": "Votre adresse e-mail a été vérifiée avec succès. Vous pouvez maintenant vous connecter.",
+    "invalidLink": "Ce lien de vérification est invalide ou a expiré. Veuillez demander un nouvel e-mail de vérification.",
+    "alreadyVerified": "Votre adresse e-mail est déjà vérifiée. Vous pouvez vous connecter à votre compte.",
+    "somethingWentWrong": "Une erreur s'est produite lors de la vérification de votre adresse e-mail. Veuillez réessayer.",
+    "signIn": "Se connecter",
+    "didntReceive": "Vous n'avez pas reçu l'e-mail ?",
+    "email": "E-mail",
+    "emailPlaceholder": "Entrez votre adresse e-mail",
+    "emailRequired": "Veuillez saisir votre adresse e-mail.",
+    "resend": "Renvoyer l'e-mail de vérification",
+    "sending": "Envoi..."
   }
 }
