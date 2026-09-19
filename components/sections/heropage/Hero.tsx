@@ -1,12 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import {Link} from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { IoCheckmarkDone } from "react-icons/io5";
 import { TiPlus } from "react-icons/ti";
 import { FaArrowRight } from "react-icons/fa6";
 import { SlPeople } from "react-icons/sl";
-import { MdOutlinePaid, MdOutlineCloudDone, MdAvTimer } from "react-icons/md";
+import {
+  MdOutlinePaid,
+  MdOutlineCloudDone,
+  MdAvTimer,
+} from "react-icons/md";
 
 import Container from "../../Container";
 import { SectionHeading } from "../../SectionHeading";
@@ -20,9 +25,12 @@ import currencycad from "@/public/assets/currencycad.png";
 import currencyyeng from "@/public/assets/currencyyeng.png";
 import graphgreen from "@/public/assets/graphgreen.svg";
 import graphred from "@/public/assets/graphred.svg";
+
 import Couresel from "./Couresel";
 
 const Hero = () => {
+  const t = useTranslations("Home");
+
   return (
     <div>
       <Container>
@@ -37,23 +45,24 @@ const Hero = () => {
                     <TiPlus className="text-green-700" size={16} />
 
                     <span className="text-xs font-semibold uppercase tracking-wide text-green-900 sm:text-sm">
-                      Real investment
+                      {t("hero.badge")}
                     </span>
                   </div>
 
                   <h1 className="max-w-[650px] text-4xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-5xl lg:text-6xl">
-                    Don&apos;t wait,
+                    {t("hero.titleLine1")}
                     <br />
                     <span className="text-foreground">
-                      investment means{" "}
+                      {t("hero.titleLine2")}{" "}
                     </span>
-                    <span className="text-primary">growth.</span>
+                    <span className="text-primary">
+                      {t("hero.titleHighlight")}
+                    </span>
                   </h1>
                 </div>
 
                 <p className="mt-6 max-w-[580px] text-sm leading-7 text-muted-foreground sm:text-base">
-                  Invest with us today and earn returns of 5%–8% with lower
-                  risk through binary trading.
+                  {t("hero.description")}
                 </p>
 
                 <div className="mt-7 w-full max-w-[320px]">
@@ -62,7 +71,7 @@ const Hero = () => {
                     className="h-12 w-full gap-3 border-custom text-sm font-semibold sm:text-base"
                   >
                     <Link href="/account">
-                      Get Started
+                      {t("hero.cta")}
                       <FaArrowRight size={15} />
                     </Link>
                   </Button>
@@ -76,7 +85,7 @@ const Hero = () => {
                     src="/assets/hero.png"
                     width={1024}
                     height={1536}
-                    alt="Investment and trading technology"
+                    alt={t("hero.imageAlt")}
                     priority
                     className="h-auto w-full"
                   />
@@ -94,7 +103,7 @@ const Hero = () => {
                 </span>
 
                 <span className="mt-1 text-xs font-medium text-muted-foreground sm:text-sm">
-                  Investors
+                  {t("stats.investors")}
                 </span>
               </div>
 
@@ -108,7 +117,7 @@ const Hero = () => {
                 </span>
 
                 <span className="mt-1 text-xs font-medium text-muted-foreground sm:text-sm">
-                  Paid out
+                  {t("stats.paidOut")}
                 </span>
               </div>
 
@@ -122,7 +131,7 @@ const Hero = () => {
                 </span>
 
                 <span className="mt-1 text-xs font-medium text-muted-foreground sm:text-sm">
-                  Success rate
+                  {t("stats.successRate")}
                 </span>
               </div>
 
@@ -136,7 +145,7 @@ const Hero = () => {
                 </span>
 
                 <span className="mt-1 text-xs font-medium text-muted-foreground sm:text-sm">
-                  Customer support
+                  {t("stats.customerSupport")}
                 </span>
               </div>
             </div>
@@ -156,34 +165,35 @@ const Hero = () => {
                 variant="outline"
                 className="h-9 border-custom px-4 text-xs font-semibold sm:text-sm"
               >
-                About Us
+                {t("about.label")}
               </Button>
             </div>
 
-            <SectionHeading title="Why Choose Us?" />
+            <SectionHeading title={t("about.title")} />
           </div>
 
           <div className="mt-8 flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-14">
             <div className="w-full max-w-[520px] text-sm leading-7 text-muted-foreground">
-              <p>
-                We provide a transparent, cost-effective service powered by
-                modern technology and strong customer support. Our goal is to
-                build a dedicated platform for traders and investors at every
-                level, from beginners to experienced professionals.
-              </p>
+              <p>{t("about.description")}</p>
             </div>
 
             <div className="grid w-full grid-cols-2 gap-4 sm:grid-cols-4 lg:max-w-[650px]">
-              <AboutItem title="150" subtitle="Trading Products" />
+              <AboutItem
+                title="150"
+                subtitle={t("about.tradingProducts")}
+              />
 
               <AboutItem
                 title="$0.00"
-                subtitle="Account Maintenance Fees"
+                subtitle={t("about.accountMaintenanceFees")}
               />
 
-              <AboutItem title="1:200" subtitle="Leverage" />
+              <AboutItem title="1:200" subtitle={t("about.leverage")} />
 
-              <AboutItem title="MT4" subtitle="Trading Platform" />
+              <AboutItem
+                title="MT4"
+                subtitle={t("about.tradingPlatform")}
+              />
             </div>
           </div>
         </section>
@@ -196,11 +206,11 @@ const Hero = () => {
                 variant="outline"
                 className="h-9 border-custom px-4 text-xs font-semibold sm:text-sm"
               >
-                Markets
+                {t("markets.label")}
               </Button>
             </div>
 
-            <SectionHeading title="Currency Pairs" />
+            <SectionHeading title={t("markets.title")} />
           </div>
 
           <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -241,21 +251,18 @@ const Hero = () => {
                 variant="outline"
                 className="h-9 border-custom px-4 text-xs font-semibold sm:text-sm"
               >
-                Get Started
+                {t("accountOpening.label")}
               </Button>
             </div>
 
-            <SectionHeading title="Let&apos;s Open Your Account" />
+            <SectionHeading title={t("accountOpening.title")} />
           </div>
 
           <div className="mt-10 flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
             {/* Text */}
             <div className="w-full max-w-[600px]">
               <p className="text-sm leading-7 text-muted-foreground sm:text-base">
-                Get started in just a few minutes with a simple and secure
-                registration process. Join a trusted Dubai-based platform
-                built to make trading and investing simple, transparent, and
-                accessible to everyone.
+                {t("accountOpening.description")}
               </p>
 
               <div className="mt-7 flex flex-col gap-5">
@@ -266,7 +273,7 @@ const Hero = () => {
                   />
 
                   <span className="text-sm leading-6 text-secondary-foreground">
-                    First, create your account and choose your investment plan.
+                    {t("accountOpening.stepOne")}
                   </span>
                 </div>
 
@@ -277,7 +284,7 @@ const Hero = () => {
                   />
 
                   <span className="text-sm leading-6 text-secondary-foreground">
-                    Next, make your payment to begin your investment.
+                    {t("accountOpening.stepTwo")}
                   </span>
                 </div>
 
@@ -288,7 +295,7 @@ const Hero = () => {
                   />
 
                   <span className="text-sm leading-6 text-secondary-foreground">
-                    Once your deposit is confirmed, your investment begins.
+                    {t("accountOpening.stepThree")}
                   </span>
                 </div>
               </div>
@@ -299,7 +306,7 @@ const Hero = () => {
               <div className="relative aspect-square w-full max-w-[360px]">
                 <Image
                   src="/assets/createacc.png"
-                  alt="Create an investment account"
+                  alt={t("accountOpening.imageAlt")}
                   fill
                   className="object-contain object-center"
                   loading="lazy"
@@ -316,7 +323,7 @@ const Hero = () => {
             <div className="relative hidden aspect-square w-full max-w-[220px] shrink-0 md:block">
               <Image
                 src="/assets/ready.png"
-                alt="Ready to start investing"
+                alt={t("finalCta.imageAlt")}
                 fill
                 className="object-contain"
                 loading="lazy"
@@ -329,16 +336,15 @@ const Hero = () => {
                 variant="outline"
                 className="h-9 border-custom px-4 text-xs font-semibold sm:text-sm"
               >
-                Get Started
+                {t("finalCta.label")}
               </Button>
 
               <h2 className="mt-3 text-xl font-semibold tracking-tight text-secondary-foreground sm:text-2xl">
-                Are you ready to start investing?
+                {t("finalCta.title")}
               </h2>
 
               <p className="mt-2 max-w-[500px] text-sm leading-6 text-muted-foreground">
-                Opening an account takes less than 3 minutes. Start your
-                investment journey with us today.
+                {t("finalCta.description")}
               </p>
 
               <div className="mt-5">
@@ -346,7 +352,7 @@ const Hero = () => {
                   asChild
                   className="h-12 w-full border-custom text-sm font-semibold sm:w-[220px]"
                 >
-                  <Link href="/account">Create Account</Link>
+                  <Link href="/account">{t("finalCta.button")}</Link>
                 </Button>
               </div>
             </div>

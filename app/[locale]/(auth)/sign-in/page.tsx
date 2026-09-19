@@ -1,13 +1,15 @@
+import { getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
 
 import { getCurrentUser } from "@/actions/GetUser";
 import Container from "@/components/Container";
 import FormWrapper from "@/components/FormWrapper";
 
-import RegisterForm from "./RegisterForm";
+import LoginForm from "./LoginForm";
 
-const SignUpPage = async () => {
+const SignInPage = async () => {
   const currentUser = await getCurrentUser();
+  const t = await getTranslations("SignIn");
 
   if (currentUser) {
     redirect("/account");
@@ -19,15 +21,16 @@ const SignUpPage = async () => {
         <div className="w-full max-w-[400px] rounded-md border-custom2 bg-card p-8">
           <div className="mb-8 space-y-1">
             <h1 className="text-base font-medium text-secondary-foreground">
-              Create Your Account
+              {t("title")}
             </h1>
+
             <p className="text-sm text-muted-foreground">
-              Enter your details below to create your account.
+              {t("description")}
             </p>
           </div>
 
           <FormWrapper>
-            <RegisterForm />
+            <LoginForm />
           </FormWrapper>
         </div>
       </div>
@@ -35,4 +38,4 @@ const SignUpPage = async () => {
   );
 };
 
-export default SignUpPage;
+export default SignInPage;

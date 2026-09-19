@@ -9,30 +9,35 @@ import {
 } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 
-import { registerSchema } from "@/lib/registerSchema";
+import { createLoginSchema } from "@/lib/loginSchema";
 import Input from "@/components/inputs/Input";
 import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
 
-type FormData = z.infer<typeof registerSchema>;
-
-const RegisterForm = () => {
+const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const t = useTranslations("SignIn");
+
+  const loginSchema = createLoginSchema({
+    invalidEmail: t("validation.invalidEmail"),
+    passwordRequired: t("validation.passwordRequired"),
+  });
+
+  type FormData = z.infer<typeof loginSchema>;
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    resolver: zodResolver(registerSchema),
+    resolver: zodResolver(loginSchema),
     defaultValues: {
-      name: "",
       email: "",
       password: "",
     },
@@ -55,43 +60,26 @@ const RegisterForm = () => {
 
     const normalizedData = {
       ...data,
-      name: data.name.trim(),
       email: data.email.toLowerCase().trim(),
     };
 
     try {
-      await axios.post("/api/register", normalizedData);
-
-      toast.success("Account created successfully");
-
       const callback = await signIn("credentials", {
-        email: normalizedData.email,
-        password: normalizedData.password,
+        ...normalizedData,
         redirect: false,
       });
 
       if (callback?.ok) {
         router.push("/account");
         router.refresh();
-        toast.success("Welcome! ☺️");
-        return;
+        toast.success(t("welcomeBack"));
       }
 
       if (callback?.error) {
         toast.error(callback.error);
       }
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        const message = error.response?.data?.message;
-
-        if (message) {
-          toast.error(message);
-        } else {
-          toast.error("Something went wrong. Please try again.");
-        }
-      } else {
-        toast.error("Something went wrong. Please try again.");
-      }
+    } catch {
+      toast.error(t("somethingWentWrong"));
     } finally {
       setIsLoading(false);
     }
@@ -106,20 +94,12 @@ const RegisterForm = () => {
         className="flex w-full items-center gap-x-3 border-custom2"
       >
         <FcGoogle size={18} />
-        Continue with Google
+        {t("continueWithGoogle")}
       </Button>
 
       <Input
-        id="name"
-        label="Enter your name"
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
-
-      <Input
         id="email"
-        label="Enter your email"
+        label={t("email")}
         type="email"
         disabled={isLoading}
         register={register}
@@ -128,7 +108,7 @@ const RegisterForm = () => {
 
       <Input
         id="password"
-        label="Enter your password"
+        label={t("password")}
         type="password"
         disabled={isLoading}
         register={register}
@@ -136,9 +116,10 @@ const RegisterForm = () => {
       />
 
       <p className="mr-auto text-sm text-muted-foreground">
-        Already have an account?
-        <Link href="/sign-in" className="ml-1 underline">
-          Sign In
+        {t("noAccount")}
+
+        <Link href="/sign-up" className="ml-1 underline">
+          {t("signUp")}
         </Link>
       </p>
 
@@ -148,10 +129,10 @@ const RegisterForm = () => {
         disabled={isLoading}
         className="w-full border-custom"
       >
-        {isLoading ? "Creating account..." : "Create Account"}
+        {isLoading ? t("signingIn") : t("signIn")}
       </Button>
     </>
   );
 };
 
-export default RegisterForm;
+export default LoginForm;

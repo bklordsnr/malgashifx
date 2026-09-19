@@ -1,3 +1,7 @@
+const createNextIntlPlugin = require("next-intl/plugin");
+
+const withNextIntl = createNextIntlPlugin();
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -10,7 +14,7 @@ const nextConfig = {
     ],
   },
 
-  allowedDevOrigins: ["172.20.10.4"],
+  allowedDevOrigins: ["192.168.100.9"],
 };
 
-module.exports = nextConfig;
+module.exports = withNextIntl(nextConfig);

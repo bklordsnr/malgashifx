@@ -1,0 +1,335 @@
+{
+  "Navbar": {
+    "aboutCompany": "About Company",
+    "faqs": "FAQs",
+    "notifications": "Notifications",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out"
+  },
+
+  "Home": {
+    "hero": {
+      "badge": "Real Investment",
+      "titleLine1": "Don't wait,",
+      "titleLine2": "start investing and",
+      "titleHighlight": "grow.",
+      "description": "Discover smarter ways to invest and grow your portfolio with flexible opportunities designed for both new and experienced investors.",
+      "cta": "Get Started",
+      "imageAlt": "Investment and trading technology"
+    },
+
+    "stats": {
+      "investors": "Investors",
+      "paidOut": "Paid Out",
+      "successRate": "Success Rate",
+      "customerSupport": "Customer Support"
+    },
+
+    "about": {
+      "label": "About Us",
+      "title": "Why Choose Us?",
+      "description": "We provide a transparent and cost-effective platform powered by modern technology and dedicated customer support. Our goal is to create a reliable environment where traders and investors of all experience levels can access modern financial opportunities.",
+      "tradingProducts": "Trading Products",
+      "accountMaintenanceFees": "Account Maintenance Fees",
+      "leverage": "Leverage",
+      "tradingPlatform": "Trading Platform"
+    },
+
+    "markets": {
+      "label": "Markets",
+      "title": "Currency Pairs"
+    },
+
+    "accountOpening": {
+      "label": "Get Started",
+      "title": "Let's Open Your Account",
+      "description": "Get started in just a few minutes with a simple and secure registration process. Create your account, choose your investment plan, and take the first step toward your financial goals.",
+      "stepOne": "First, create your account and choose the investment plan that suits you.",
+      "stepTwo": "Next, make your payment to activate your investment.",
+      "stepThree": "Once your deposit is confirmed, your investment can begin.",
+      "imageAlt": "Create an investment account"
+    },
+
+    "finalCta": {
+      "label": "Get Started",
+      "title": "Ready to Start Investing?",
+      "description": "Opening an account takes less than 3 minutes. Create your account today and take the next step in your investment journey.",
+      "button": "Create Account",
+      "imageAlt": "Ready to start investing"
+    }
+  },
+
+  "Terms": {
+    "legal": "Legal",
+    "title": "Terms & Conditions",
+    "intro": "Please read these terms carefully before using the Somalia Malgashi platform and its services.",
+    "lastUpdated": "Last updated: 14/09/2026",
+
+    "terms": {
+      "introduction": {
+        "title": "1. Introduction",
+        "content": "Welcome to Somalia Malgashi. By accessing or using our website and services, you agree to be bound by these Terms & Conditions. If you do not agree with these terms, please do not use our services."
+      },
+      "accountRegistration": {
+        "title": "2. Account Registration",
+        "content": "You may be required to create an account to access certain services. You are responsible for providing accurate information and keeping your account credentials secure."
+      },
+      "investmentTrading": {
+        "title": "3. Investment & Trading",
+        "content": "All investment and trading activities involve risk. Information displayed on our platform is provided for general informational purposes and should not be considered a guarantee of profit or financial advice."
+      },
+      "paymentsWithdrawals": {
+        "title": "4. Payments & Withdrawals",
+        "content": "You are responsible for ensuring that the payment and withdrawal information you provide is accurate. Processing times and applicable requirements may vary depending on the service used."
+      },
+      "userResponsibilities": {
+        "title": "5. User Responsibilities",
+        "content": "You agree to use the platform lawfully and responsibly. You must not attempt to interfere with the operation of the platform, access another user's account, or use the service for fraudulent or unauthorized activities."
+      },
+      "limitationOfLiability": {
+        "title": "6. Limitation of Liability",
+        "content": "To the extent permitted by applicable law, Somalia Malgashi shall not be responsible for losses resulting from market conditions, technical interruptions, or other circumstances beyond our reasonable control."
+      },
+      "changesToTerms": {
+        "title": "7. Changes to These Terms",
+        "content": "We may update these Terms & Conditions from time to time. Any changes will become effective when posted on this page. Continued use of the platform after changes are posted constitutes acceptance of the updated terms."
+      }
+    },
+
+    "privacy": {
+      "label": "Privacy",
+      "title": "Privacy Policy",
+      "intro": "This section explains how Somalia Malgashi may collect, use, and protect information provided through our platform.",
+
+      "informationWeCollect": {
+        "title": "1. Information We Collect",
+        "content": "We may collect information that you provide when creating an account, contacting us, or using our services. This may include your name, contact information, account details, and other information necessary to provide our services."
+      },
+      "howWeUseInformation": {
+        "title": "2. How We Use Information",
+        "content": "Information may be used to provide and improve our services, communicate with users, maintain account security, process requests, and meet applicable legal or operational requirements."
+      },
+      "informationProtection": {
+        "title": "3. Information Protection",
+        "content": "We take reasonable measures to protect information collected through our platform. However, no method of electronic transmission or storage can be guaranteed to be completely secure."
+      },
+      "cookies": {
+        "title": "4. Cookies",
+        "content": "Our website may use cookies or similar technologies to maintain sessions, improve functionality, and understand how users interact with the platform."
+      },
+      "thirdPartyServices": {
+        "title": "5. Third-Party Services",
+        "content": "Our platform may use third-party services to support payments, authentication, analytics, hosting, or other functionality. These services may process information in accordance with their own privacy policies."
+      },
+      "yourRights": {
+        "title": "6. Your Rights",
+        "content": "Depending on applicable laws, you may have rights regarding the information we hold about you, including requesting access, correction, or deletion of certain information."
+      },
+      "contact": {
+        "title": "7. Contact",
+        "content": "If you have questions about these Terms & Conditions or this Privacy Policy, please contact our support team."
+      }
+    }
+  },
+
+  "AboutCompany": {
+    "about": {
+      "label": "About Us",
+      "description": "We are focused on making investing and trading simple, accessible, and transparent. Our platform is designed for both new and experienced investors, providing a straightforward environment to explore financial opportunities and grow with confidence.",
+      "learnMore": "Learn More",
+      "imageAlt": "About Somalia Malgashi"
+    },
+    "leadership": {
+      "label": "Leadership",
+      "title": "Message from the CEO",
+      "message": "Don't worry if you don't know everything yet. Start where you are, keep learning, and grow along the way. Every step you take toward investing can help you build knowledge, experience, and confidence in your financial journey.",
+      "name": "Tebo",
+      "role": "CEO & Founder",
+      "imageAlt": "Somalia Malgashi founder"
+    }
+  },
+
+  "Faqs": {
+    "title": "Frequently Asked Questions",
+    "items": {
+      "whatIsInvesting": {
+        "title": "What is investing?",
+        "description": "Investing is the act of putting money or assets into something with the expectation that it will generate profit or increase in value over time. This can include investing in stocks, bonds, real estate, or businesses to achieve financial growth in the future."
+      },
+      "investmentTypes": {
+        "title": "What are the different types of investments?",
+        "description": "Common types of investments include stocks, bonds, mutual funds, real estate, commodities, and other investments such as cryptocurrency. Each type has its own level of risk and potential return, and a diversified portfolio may combine several of these assets."
+      },
+      "howToStart": {
+        "title": "How do I start investing?",
+        "description": "First, create an account on the platform. Then choose the investment plan you want and make your payment to begin your investment."
+      }
+    }
+  },
+
+  "Footer": {
+    "description": "Simple, accessible investment solutions built for people looking to grow their financial future.",
+    "tagline": "Invest today. Build tomorrow.",
+    "company": "Company",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "contact": "Get in touch",
+    "contactDescription": "Have a question or need assistance? Reach out to our support team directly.",
+    "telegramSupport": "Telegram Support",
+    "homeAriaLabel": "Somalia Malgashi home",
+    "logoAlt": "Somalia Malgashi",
+    "copyright": "Somalia Malgashi. All rights reserved.",
+    "riskNotice": "Investment involves risk. Past performance does not guarantee future results."
+  },
+
+  "Notifications": {
+    "label": "Notifications",
+    "title": "You're all caught up",
+    "description": "There are no new notifications right now. We'll let you know when something important needs your attention.",
+    "accountLink": "Go to your account"
+  },
+  "Account": {
+    "welcome": "Welcome 😎",
+    "goodToSeeYou": "Good to see you, {name}.",
+
+    "balance": {
+      "total": "Total Balance",
+      "leverage": "Leverage",
+      "investedValue": "Invested Value",
+      "targetProfit": "Target Profit"
+    },
+
+    "withdrawal": {
+      "title": "Withdraw Funds",
+      "description": "Withdraw available funds directly to your mobile wallet.",
+
+      "unavailable": "Withdrawal unavailable",
+      "clearanceRestriction": "Your account currently has a clearance restriction. Withdrawals will become available once your account is approved.",
+
+      "noBalance": "No available balance",
+      "noBalanceDescription": "You need an available balance before you can make a withdrawal.",
+
+      "amount": "Withdrawal Amount",
+      "available": "Available: {amount}",
+      "placeholder": "0.00",
+      "minimum": "Minimum $5",
+      "maximum": "Maximum $600",
+
+      "mobileNumber": "Mobile Number",
+      "mobilePlaceholder": "Enter mobile number",
+      "walletDetected": "{network} mobile wallet detected",
+      "supportedWallets": "EVC, Telesom, and Golis numbers are supported.",
+
+      "button": "Withdraw Funds",
+
+      "information": {
+        "title": "Withdrawal Information",
+        "description": "Keep your withdrawal details accurate to avoid delays.",
+        "availableBalance": "Available Balance",
+        "minimum": "Minimum",
+        "maximum": "Maximum",
+        "supportedWallets": "Supported wallets"
+      },
+
+      "validation": {
+        "invalidAmount": "Enter a valid amount",
+        "minimum": "Minimum withdrawal is $5",
+        "maximum": "Maximum withdrawal is $600",
+        "exceedsBalance": "Amount exceeds your available balance",
+        "invalidPhone": "Enter a valid EVC, Telesom, or Golis number"
+      },
+
+      "confirmation": {
+        "title": "Confirm withdrawal",
+        "description": "Please review your withdrawal details before confirming.",
+        "amount": "Amount",
+        "mobileNumber": "Mobile number",
+        "wallet": "Wallet",
+        "warning": "Make sure the mobile number belongs to your wallet before confirming this withdrawal.",
+        "cancel": "Cancel",
+        "processing": "Processing...",
+        "confirm": "Confirm"
+      },
+
+      "success": {
+        "title": "Withdrawal submitted",
+        "description": "Your withdrawal request has been submitted successfully.",
+        "amount": "Withdrawal amount",
+        "remainingBalance": "Remaining balance",
+        "done": "Done"
+      },
+
+      "errors": {
+        "generic": "Something went wrong. Please try again."
+      }
+    },
+
+    "overview": {
+      "title": "Account Overview",
+      "description": "Your account and trading status",
+      "tradingStatus": "Trading Status",
+      "active": "Active",
+      "inactive": "Inactive",
+      "email": "Email",
+      "phoneNumber": "Phone Number",
+      "clearanceStatus": "Clearance Status",
+      "approved": "Approved",
+      "notApproved": "Not Approved",
+      "notProvided": "Not provided"
+    },
+
+    "history": {
+      "title": "Withdrawal History",
+      "description": "View your recent withdrawal requests and their status.",
+      "emptyTitle": "No withdrawals yet",
+      "emptyDescription": "Your withdrawal requests will appear here once you make a withdrawal.",
+      "status": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      }
+    }
+  },
+
+  "SignIn": {
+    "title": "Sign In to Your Account",
+    "description": "Enter your email and password below to access your account.",
+    "continueWithGoogle": "Continue with Google",
+    "email": "Enter your email",
+    "password": "Enter your password",
+    "noAccount": "Don't have an account?",
+    "signUp": "Sign Up",
+    "signingIn": "Signing in...",
+    "signIn": "Sign In",
+    "welcomeBack": "Welcome back! ☺️",
+    "somethingWentWrong": "Something went wrong. Please try again.",
+    "validation": {
+      "invalidEmail": "Please enter a valid email address",
+      "passwordRequired": "Password is required"
+    }
+  },
+
+  "SignUp": {
+    "title": "Create Your Account",
+    "description": "Enter your details below to create your account.",
+    "continueWithGoogle": "Continue with Google",
+    "name": "Enter your name",
+    "email": "Enter your email",
+    "password": "Enter your password",
+    "alreadyHaveAccount": "Already have an account?",
+    "signIn": "Sign In",
+    "creatingAccount": "Creating account...",
+    "createAccount": "Create Account",
+    "accountCreated": "Account created successfully",
+    "welcome": "Welcome! ☺️",
+    "somethingWentWrong": "Something went wrong. Please try again.",
+    "validation": {
+      "nameTooShort": "Name is too short",
+      "nameTooLong": "Name is too long",
+      "nameLettersOnly": "Name must contain letters only",
+      "invalidEmail": "Please enter a valid email address",
+      "passwordTooShort": "Password must be at least 6 characters"
+    }
+  }
+}

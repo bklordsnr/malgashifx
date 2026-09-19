@@ -1,0 +1,336 @@
+{
+  "Navbar": {
+    "aboutCompany": "Sobre a Empresa",
+    "faqs": "Perguntas Frequentes",
+    "notifications": "Notificações",
+    "signIn": "Entrar",
+    "signUp": "Criar Conta",
+    "signOut": "Sair"
+  },
+
+  "Home": {
+    "hero": {
+      "badge": "Investimento Real",
+      "titleLine1": "Não espere,",
+      "titleLine2": "comece a investir e",
+      "titleHighlight": "cresça.",
+      "description": "Descubra formas mais inteligentes de investir e aumentar o seu portfólio com oportunidades flexíveis, desenvolvidas tanto para novos investidores como para investidores experientes.",
+      "cta": "Começar",
+      "imageAlt": "Tecnologia de investimento e negociação"
+    },
+
+    "stats": {
+      "investors": "Investidores",
+      "paidOut": "Valores Pagos",
+      "successRate": "Taxa de Sucesso",
+      "customerSupport": "Suporte ao Cliente"
+    },
+
+    "about": {
+      "label": "Sobre Nós",
+      "title": "Por Que Escolher-nos?",
+      "description": "Oferecemos uma plataforma transparente e económica, apoiada por tecnologia moderna e suporte dedicado ao cliente. O nosso objetivo é criar um ambiente confiável onde traders e investidores de todos os níveis de experiência possam ter acesso a oportunidades financeiras modernas.",
+      "tradingProducts": "Produtos de Negociação",
+      "accountMaintenanceFees": "Taxas de Manutenção da Conta",
+      "leverage": "Alavancagem",
+      "tradingPlatform": "Plataforma de Negociação"
+    },
+
+    "markets": {
+      "label": "Mercados",
+      "title": "Pares de Moedas"
+    },
+
+    "accountOpening": {
+      "label": "Começar",
+      "title": "Vamos Abrir a Sua Conta",
+      "description": "Comece em apenas alguns minutos com um processo de registo simples e seguro. Crie a sua conta, escolha o seu plano de investimento e dê o primeiro passo em direção aos seus objetivos financeiros.",
+      "stepOne": "Primeiro, crie a sua conta e escolha o plano de investimento que melhor se adapta às suas necessidades.",
+      "stepTwo": "Em seguida, efetue o seu pagamento para ativar o seu investimento.",
+      "stepThree": "Assim que o seu depósito for confirmado, o seu investimento poderá começar.",
+      "imageAlt": "Criar uma conta de investimento"
+    },
+
+    "finalCta": {
+      "label": "Começar",
+      "title": "Pronto para Começar a Investir?",
+      "description": "Abrir uma conta demora menos de 3 minutos. Crie a sua conta hoje e dê o próximo passo na sua jornada de investimento.",
+      "button": "Criar Conta",
+      "imageAlt": "Pronto para começar a investir"
+    }
+  },
+
+  "Terms": {
+    "legal": "Legal",
+    "title": "Termos e Condições",
+    "intro": "Leia atentamente estes termos antes de utilizar a plataforma Somalia Malgashi e os seus serviços.",
+    "lastUpdated": "Última atualização: 14/09/2026",
+
+    "terms": {
+      "introduction": {
+        "title": "1. Introdução",
+        "content": "Bem-vindo à Somalia Malgashi. Ao aceder ou utilizar o nosso website e os nossos serviços, concorda em ficar vinculado a estes Termos e Condições. Se não concordar com estes termos, não utilize os nossos serviços."
+      },
+      "accountRegistration": {
+        "title": "2. Registo da Conta",
+        "content": "Poderá ser necessário criar uma conta para aceder a determinados serviços. É responsável por fornecer informações precisas e por manter as credenciais da sua conta seguras."
+      },
+      "investmentTrading": {
+        "title": "3. Investimento e Negociação",
+        "content": "Todas as atividades de investimento e negociação envolvem riscos. As informações apresentadas na nossa plataforma são fornecidas apenas para fins informativos gerais e não devem ser consideradas uma garantia de lucro ou aconselhamento financeiro."
+      },
+      "paymentsWithdrawals": {
+        "title": "4. Pagamentos e Levantamentos",
+        "content": "É responsável por garantir que as informações de pagamento e levantamento fornecidas por si estão corretas. Os tempos de processamento e os requisitos aplicáveis podem variar dependendo do serviço utilizado."
+      },
+      "userResponsibilities": {
+        "title": "5. Responsabilidades do Utilizador",
+        "content": "Concorda em utilizar a plataforma de forma legal e responsável. Não deve tentar interferir com o funcionamento da plataforma, aceder à conta de outro utilizador ou utilizar o serviço para atividades fraudulentas ou não autorizadas."
+      },
+      "limitationOfLiability": {
+        "title": "6. Limitação de Responsabilidade",
+        "content": "Na medida permitida pela legislação aplicável, a Somalia Malgashi não será responsável por perdas resultantes de condições de mercado, interrupções técnicas ou outras circunstâncias fora do nosso controlo razoável."
+      },
+      "changesToTerms": {
+        "title": "7. Alterações a Estes Termos",
+        "content": "Podemos atualizar estes Termos e Condições periodicamente. Quaisquer alterações entrarão em vigor quando forem publicadas nesta página. A utilização continuada da plataforma após a publicação das alterações constitui aceitação dos termos atualizados."
+      }
+    },
+
+    "privacy": {
+      "label": "Privacidade",
+      "title": "Política de Privacidade",
+      "intro": "Esta secção explica como a Somalia Malgashi pode recolher, utilizar e proteger as informações fornecidas através da nossa plataforma.",
+
+      "informationWeCollect": {
+        "title": "1. Informações que Recolhemos",
+        "content": "Podemos recolher informações fornecidas por si ao criar uma conta, contactar-nos ou utilizar os nossos serviços. Isto pode incluir o seu nome, informações de contacto, dados da conta e outras informações necessárias para prestar os nossos serviços."
+      },
+      "howWeUseInformation": {
+        "title": "2. Como Utilizamos as Informações",
+        "content": "As informações podem ser utilizadas para fornecer e melhorar os nossos serviços, comunicar com os utilizadores, manter a segurança das contas, processar pedidos e cumprir requisitos legais ou operacionais aplicáveis."
+      },
+      "informationProtection": {
+        "title": "3. Proteção das Informações",
+        "content": "Tomamos medidas razoáveis para proteger as informações recolhidas através da nossa plataforma. No entanto, nenhum método de transmissão ou armazenamento eletrónico pode ser garantido como totalmente seguro."
+      },
+      "cookies": {
+        "title": "4. Cookies",
+        "content": "O nosso website pode utilizar cookies ou tecnologias semelhantes para manter sessões, melhorar a funcionalidade e compreender como os utilizadores interagem com a plataforma."
+      },
+      "thirdPartyServices": {
+        "title": "5. Serviços de Terceiros",
+        "content": "A nossa plataforma pode utilizar serviços de terceiros para apoiar pagamentos, autenticação, análise, alojamento ou outras funcionalidades. Estes serviços podem processar informações de acordo com as suas próprias políticas de privacidade."
+      },
+      "yourRights": {
+        "title": "6. Os Seus Direitos",
+        "content": "Dependendo das leis aplicáveis, poderá ter direitos relativamente às informações que mantemos sobre si, incluindo solicitar acesso, correção ou eliminação de determinadas informações."
+      },
+      "contact": {
+        "title": "7. Contacto",
+        "content": "Se tiver dúvidas sobre estes Termos e Condições ou sobre esta Política de Privacidade, contacte a nossa equipa de suporte."
+      }
+    }
+  },
+
+  "AboutCompany": {
+    "about": {
+      "label": "Sobre Nós",
+      "description": "Estamos focados em tornar o investimento e a negociação simples, acessíveis e transparentes. A nossa plataforma foi concebida tanto para novos investidores como para investidores experientes, proporcionando um ambiente simples para explorar oportunidades financeiras e crescer com confiança.",
+      "learnMore": "Saiba Mais",
+      "imageAlt": "Sobre a Somalia Malgashi"
+    },
+    "leadership": {
+      "label": "Liderança",
+      "title": "Mensagem do CEO",
+      "message": "Não se preocupe se ainda não sabe tudo. Comece onde está, continue a aprender e cresça ao longo do caminho. Cada passo que dá em direção ao investimento pode ajudá-lo a desenvolver conhecimento, experiência e confiança na sua jornada financeira.",
+      "name": "Tebo",
+      "role": "CEO e Fundador",
+      "imageAlt": "Fundador da Somalia Malgashi"
+    }
+  },
+
+  "Faqs": {
+    "title": "Perguntas Frequentes",
+    "items": {
+      "whatIsInvesting": {
+        "title": "O que é investir?",
+        "description": "Investir é o ato de colocar dinheiro ou ativos em algo com a expectativa de que isso gere lucro ou aumente de valor ao longo do tempo. Isto pode incluir investimentos em ações, obrigações, imóveis ou empresas para alcançar crescimento financeiro no futuro."
+      },
+      "investmentTypes": {
+        "title": "Quais são os diferentes tipos de investimentos?",
+        "description": "Os tipos comuns de investimentos incluem ações, obrigações, fundos de investimento, imóveis, matérias-primas e outros investimentos, como criptomoedas. Cada tipo apresenta o seu próprio nível de risco e potencial de retorno, e uma carteira diversificada pode combinar vários destes ativos."
+      },
+      "howToStart": {
+        "title": "Como começo a investir?",
+        "description": "Primeiro, crie uma conta na plataforma. Depois, escolha o plano de investimento que pretende e efetue o pagamento para iniciar o seu investimento."
+      }
+    }
+  },
+
+  "Footer": {
+    "description": "Soluções de investimento simples e acessíveis, criadas para pessoas que procuram construir um futuro financeiro melhor.",
+    "tagline": "Invista hoje. Construa o amanhã.",
+    "company": "Empresa",
+    "terms": "Termos e Condições",
+    "privacy": "Política de Privacidade",
+    "contact": "Entre em Contacto",
+    "contactDescription": "Tem alguma dúvida ou precisa de assistência? Contacte diretamente a nossa equipa de suporte.",
+    "telegramSupport": "Suporte via Telegram",
+    "homeAriaLabel": "Página inicial da Somalia Malgashi",
+    "logoAlt": "Somalia Malgashi",
+    "copyright": "Somalia Malgashi. Todos os direitos reservados.",
+    "riskNotice": "Investir envolve riscos. O desempenho passado não garante resultados futuros."
+  },
+
+  "Notifications": {
+    "label": "Notificações",
+    "title": "Está tudo em dia",
+    "description": "Não existem novas notificações neste momento. Avisaremos quando houver algo importante que precise da sua atenção.",
+    "accountLink": "Ir para a sua conta"
+  },
+
+  "Account": {
+    "welcome": "Bem-vindo 😎",
+    "goodToSeeYou": "É bom vê-lo, {name}.",
+
+    "balance": {
+      "total": "Saldo Total",
+      "leverage": "Alavancagem",
+      "investedValue": "Valor Investido",
+      "targetProfit": "Lucro Alvo"
+    },
+
+    "withdrawal": {
+      "title": "Levantar Fundos",
+      "description": "Levante fundos disponíveis diretamente para a sua carteira móvel.",
+
+      "unavailable": "Levantamento indisponível",
+      "clearanceRestriction": "A sua conta possui atualmente uma restrição de liberação. Os levantamentos ficarão disponíveis quando a sua conta for aprovada.",
+
+      "noBalance": "Sem saldo disponível",
+      "noBalanceDescription": "Precisa de ter saldo disponível antes de poder efetuar um levantamento.",
+
+      "amount": "Valor do Levantamento",
+      "available": "Disponível: {amount}",
+      "placeholder": "0,00",
+      "minimum": "Mínimo $5",
+      "maximum": "Máximo $600",
+
+      "mobileNumber": "Número de Telemóvel",
+      "mobilePlaceholder": "Introduza o número de telemóvel",
+      "walletDetected": "Carteira móvel {network} detetada",
+      "supportedWallets": "São suportados números EVC, Telesom e Golis.",
+
+      "button": "Levantar Fundos",
+
+      "information": {
+        "title": "Informações sobre o Levantamento",
+        "description": "Mantenha os seus dados de levantamento corretos para evitar atrasos.",
+        "availableBalance": "Saldo Disponível",
+        "minimum": "Mínimo",
+        "maximum": "Máximo",
+        "supportedWallets": "Carteiras suportadas"
+      },
+
+      "validation": {
+        "invalidAmount": "Introduza um valor válido",
+        "minimum": "O levantamento mínimo é de $5",
+        "maximum": "O levantamento máximo é de $600",
+        "exceedsBalance": "O valor excede o seu saldo disponível",
+        "invalidPhone": "Introduza um número EVC, Telesom ou Golis válido"
+      },
+
+      "confirmation": {
+        "title": "Confirmar levantamento",
+        "description": "Reveja os dados do seu levantamento antes de confirmar.",
+        "amount": "Valor",
+        "mobileNumber": "Número de telemóvel",
+        "wallet": "Carteira",
+        "warning": "Certifique-se de que o número de telemóvel pertence à sua carteira antes de confirmar este levantamento.",
+        "cancel": "Cancelar",
+        "processing": "A processar...",
+        "confirm": "Confirmar"
+      },
+
+      "success": {
+        "title": "Levantamento enviado",
+        "description": "O seu pedido de levantamento foi enviado com sucesso.",
+        "amount": "Valor do levantamento",
+        "remainingBalance": "Saldo restante",
+        "done": "Concluído"
+      },
+
+      "errors": {
+        "generic": "Algo correu mal. Tente novamente."
+      }
+    },
+
+    "overview": {
+      "title": "Visão Geral da Conta",
+      "description": "Estado da sua conta e negociação",
+      "tradingStatus": "Estado da Negociação",
+      "active": "Ativo",
+      "inactive": "Inativo",
+      "email": "Email",
+      "phoneNumber": "Número de Telemóvel",
+      "clearanceStatus": "Estado da Liberação",
+      "approved": "Aprovado",
+      "notApproved": "Não Aprovado",
+      "notProvided": "Não fornecido"
+    },
+
+    "history": {
+      "title": "Histórico de Levantamentos",
+      "description": "Veja os seus pedidos de levantamento recentes e o respetivo estado.",
+      "emptyTitle": "Ainda não existem levantamentos",
+      "emptyDescription": "Os seus pedidos de levantamento aparecerão aqui assim que efetuar um levantamento.",
+      "status": {
+        "pending": "Pendente",
+        "approved": "Aprovado",
+        "rejected": "Rejeitado"
+      }
+    }
+  },
+
+  "SignIn": {
+    "title": "Entrar na Sua Conta",
+    "description": "Introduza o seu email e palavra-passe abaixo para aceder à sua conta.",
+    "continueWithGoogle": "Continuar com Google",
+    "email": "Introduza o seu email",
+    "password": "Introduza a sua palavra-passe",
+    "noAccount": "Ainda não tem uma conta?",
+    "signUp": "Criar Conta",
+    "signingIn": "A entrar...",
+    "signIn": "Entrar",
+    "welcomeBack": "Bem-vindo de volta! ☺️",
+    "somethingWentWrong": "Algo correu mal. Tente novamente.",
+    "validation": {
+      "invalidEmail": "Introduza um endereço de email válido",
+      "passwordRequired": "A palavra-passe é obrigatória"
+    }
+  },
+
+  "SignUp": {
+    "title": "Crie a Sua Conta",
+    "description": "Introduza os seus dados abaixo para criar a sua conta.",
+    "continueWithGoogle": "Continuar com Google",
+    "name": "Introduza o seu nome",
+    "email": "Introduza o seu email",
+    "password": "Introduza a sua palavra-passe",
+    "alreadyHaveAccount": "Já tem uma conta?",
+    "signIn": "Entrar",
+    "creatingAccount": "A criar conta...",
+    "createAccount": "Criar Conta",
+    "accountCreated": "Conta criada com sucesso",
+    "welcome": "Bem-vindo! ☺️",
+    "somethingWentWrong": "Algo correu mal. Tente novamente.",
+    "validation": {
+      "nameTooShort": "O nome é demasiado curto",
+      "nameTooLong": "O nome é demasiado longo",
+      "nameLettersOnly": "O nome deve conter apenas letras",
+      "invalidEmail": "Introduza um endereço de email válido",
+      "passwordTooShort": "A palavra-passe deve ter pelo menos 6 caracteres"
+    }
+  }
+}

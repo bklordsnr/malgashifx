@@ -1,18 +1,21 @@
 import Image from "next/image";
-import Link from "next/link";
 import { IoMdNotifications } from "react-icons/io";
+import { getTranslations } from "next-intl/server";
 
 import { getCurrentUser } from "@/actions/GetUser";
 import logo from "@/public/logo-image/logo.png";
 
 import Container from "../Container";
 import MobileMenu from "./MobileMenu";
-import ThemeToggle from "../ThemeToggle";
 import UserMenu from "./UserMenu";
+import ThemeToggle from "../ThemeToggle";
+import LanguageSwitcher from "../LanguageSwitcher";
 import { buttonVariants } from "../ui/button";
+import { Link } from "@/i18n/navigation";
 
 const Navbar = async () => {
   const currentUser = await getCurrentUser();
+  const t = await getTranslations("Navbar");
 
   return (
     <nav className="sticky inset-x-0 top-0 z-50 w-full border-b border-border bg-background">
@@ -42,7 +45,7 @@ const Navbar = async () => {
                   href="/aboutcompany"
                   className="transition-colors hover:text-foreground"
                 >
-                  About Company
+                  {t("aboutCompany")}
                 </Link>
               </li>
 
@@ -51,7 +54,7 @@ const Navbar = async () => {
                   href="/faqs"
                   className="transition-colors hover:text-foreground"
                 >
-                  FAQs
+                  {t("faqs")}
                 </Link>
               </li>
             </ul>
@@ -59,15 +62,18 @@ const Navbar = async () => {
 
           {/* Right Side */}
           <div className="flex items-center gap-1 text-secondary-foreground sm:gap-2 md:gap-5">
-            {/* Theme Toggle - Desktop */}
+            {/* Theme Toggle */}
             <div className="hidden md:block">
               <ThemeToggle compact />
             </div>
 
+            {/* Language */}
+            <LanguageSwitcher compact />
+
             {/* Notifications */}
             <Link
               href="/notifications"
-              aria-label="Notifications"
+              aria-label={t("notifications")}
               className="flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-muted active:scale-95"
             >
               <span className="relative flex items-center justify-center">
@@ -87,7 +93,7 @@ const Navbar = async () => {
                     className: "h-10 border-custom2 text-sm",
                   })}
                 >
-                  Sign In
+                  {t("signIn")}
                 </Link>
 
                 <span className="h-5 w-px bg-border" />
@@ -99,15 +105,13 @@ const Navbar = async () => {
                     className: "h-10 w-36 border-custom text-sm",
                   })}
                 >
-                  Sign Up
+                  {t("signUp")}
                 </Link>
               </div>
             )}
 
-            {/* Desktop User Menu */}
             <UserMenu currentUser={currentUser} />
 
-            {/* Mobile Menu */}
             <MobileMenu currentUser={currentUser} />
           </div>
         </div>

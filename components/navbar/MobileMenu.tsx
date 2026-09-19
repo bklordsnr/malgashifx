@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { MdOutlineSupervisorAccount } from "react-icons/md";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { GrCircleInformation } from "react-icons/gr";

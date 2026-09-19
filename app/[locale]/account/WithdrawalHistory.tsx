@@ -1,5 +1,6 @@
 "use client";
 
+import { useLocale, useTranslations } from "next-intl";
 import { FiArrowDownLeft } from "react-icons/fi";
 import {
   HiOutlineCheckCircle,
@@ -22,42 +23,44 @@ interface WithdrawalHistoryProps {
 
 const statusConfig = {
   PENDING: {
-    label: "Pending",
+    key: "pending",
     icon: HiOutlineClock,
-    className:
-      "border-yellow-500/20 bg-yellow-500/10 text-yellow-700",
+    className: "border-yellow-500/20 bg-yellow-500/10 text-yellow-700",
   },
   APPROVED: {
-    label: "Approved",
+    key: "approved",
     icon: HiOutlineCheckCircle,
     className: "border-primary/20 bg-primary/10 text-primary",
   },
   REJECTED: {
-    label: "Rejected",
+    key: "rejected",
     icon: HiOutlineXCircle,
     className: "border-destructive/20 bg-destructive/10 text-destructive",
   },
-};
-
-const formatDate = (date: string) => {
-  return new Intl.DateTimeFormat("en-US", {
-    dateStyle: "medium",
-    timeStyle: "short",
-  }).format(new Date(date));
-};
+} as const;
 
 const WithdrawalHistory = ({
   withdrawals,
 }: WithdrawalHistoryProps) => {
+  const t = useTranslations("Account.history");
+  const locale = useLocale();
+
+  const formatDate = (date: string) => {
+    return new Intl.DateTimeFormat(locale, {
+      dateStyle: "medium",
+      timeStyle: "short",
+    }).format(new Date(date));
+  };
+
   return (
     <section className="mt-8 rounded-2xl border-custom2 bg-card">
       <div className="border-b border-border px-5 py-4 sm:px-6">
         <h2 className="text-sm font-semibold text-foreground">
-          Withdrawal History
+          {t("title")}
         </h2>
 
         <p className="mt-1 text-xs text-muted-foreground">
-          View your recent withdrawal requests and their status.
+          {t("description")}
         </p>
       </div>
 
@@ -71,12 +74,11 @@ const WithdrawalHistory = ({
           </div>
 
           <h3 className="mt-4 text-sm font-semibold text-foreground">
-            No withdrawals yet
+            {t("emptyTitle")}
           </h3>
 
           <p className="mt-1 max-w-sm text-xs leading-5 text-muted-foreground">
-            Your withdrawal requests will appear here once you make a
-            withdrawal.
+            {t("emptyDescription")}
           </p>
         </div>
       ) : (
@@ -115,7 +117,7 @@ const WithdrawalHistory = ({
                       className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium ${status.className}`}
                     >
                       <StatusIcon size={14} />
-                      {status.label}
+                      {t(`status.${status.key}`)}
                     </span>
 
                     <span className="text-xs text-muted-foreground">

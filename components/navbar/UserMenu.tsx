@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { signOut } from "next-auth/react";
 import { IoChevronDown } from "react-icons/io5";
 import { TbLogout2 } from "react-icons/tb";

@@ -1,18 +1,25 @@
 import { z } from "zod";
 
-export const registerSchema = z.object({
-  name: z
-    .string()
-    .min(2, "Name is too short")
-    .max(50, "Name is too long")
-    .regex(/^[A-Za-z\s]+$/, "Name must contain letters only"),
+export const createRegisterSchema = (messages: {
+  nameTooShort: string;
+  nameTooLong: string;
+  nameLettersOnly: string;
+  invalidEmail: string;
+  passwordTooShort: string;
+}) =>
+  z.object({
+    name: z
+      .string()
+      .min(2, messages.nameTooShort)
+      .max(50, messages.nameTooLong)
+      .regex(/^[A-Za-z\s]+$/, messages.nameLettersOnly),
 
-  email: z
-    .string()
-    .email("Please enter a valid email address")
-    .transform((value) => value.toLowerCase().trim()),
+    email: z
+      .string()
+      .email(messages.invalidEmail)
+      .transform((value) => value.toLowerCase().trim()),
 
-  password: z
-    .string()
-    .min(6, "Password must be at least 6 characters"),
-});
+    password: z
+      .string()
+      .min(6, messages.passwordTooShort),
+  });
