@@ -93,54 +93,42 @@
   @apply border-t-[2px] border-r-[2px] border-l-[2px] border-b-[4px] border-destructive;
 }
 
-@keyframes borderPulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.6);
-  }
-
-  70% {
-    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0);
-  }
-
-  100% {
-    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
-  }
-}
-
-.avatar-pulse {
-  animation: borderPulse 2s infinite;
-  border-radius: 9999px;
-}
-
-@keyframes whiteBloomPulse {
-  0% {
-    background: rgba(255, 255, 255, 0);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
-  }
-
-  50% {
-    background: rgba(255, 255, 255, 0.65);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-    filter: brightness(1.08);
-  }
-
-  100% {
-    background: rgba(255, 255, 255, 0);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
-    filter: brightness(1);
-  }
-}
-
-.dimPulse {
+.avatar-shell {
   position: relative;
-  overflow: hidden;
+  border-radius: 9999px;
+  padding: 2px;
+  background: hsl(var(--background));
+  box-shadow:
+    0 0 0 1px hsl(var(--border)),
+    0 2px 8px rgba(0, 0, 0, 0.08);
+  transition:
+    box-shadow 180ms ease,
+    transform 180ms ease;
 }
 
-.dimPulse::after {
+.avatar-shell::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px solid hsl(var(--primary) / 0.18);
   pointer-events: none;
-  background: rgba(255, 255, 255, 0.75);
-  animation: whiteBloomPulse 2.2s ease-in-out infinite;
+}
+
+.avatar-shell:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 0 1px hsl(var(--primary) / 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-status {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 7px;
+  height: 7px;
+  border: 2px solid hsl(var(--background));
+  border-radius: 9999px;
+  background: hsl(var(--primary));
 }
