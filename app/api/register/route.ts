@@ -73,7 +73,7 @@ export async function POST(request: Request) {
     const verificationUrl = `${baseUrl}/en/verify-email?token=${token}`;
 
     await resend.emails.send({
-      from: "Smalia Malgashi <noreply@malgashitraders.xyz>",
+      from: "Somali Malgashi <noreply@malgashitraders.xyz>",
       to: email,
       subject: "Verify your Somalia Malgashi email",
       html: `
@@ -238,14 +238,14 @@ export async function POST(request: Request) {
                 "
               >
                 This is an automated security email from
-                SOMALIA MALGASHI.
+                Somali Malgashi.
               </p>
             </div>
           </div>
         </div>
       `,
       text: `
-Welcome to SOMALIA MALGASHI
+Welcome to Somali Malgashi
 
 Please verify your email address to complete your account registration.
 

@@ -72,7 +72,7 @@ export async function POST(request: Request) {
     await resend.emails.send({
       from: "SOMALIA MALGASHI <noreply@malgashitraders.xyz>",
       to: email,
-      subject: "Verify your SOMALIA MALGASHI email",
+      subject: "Verify your Somali Malgashi email",
       html: `
         <div style="margin:0;padding:40px 20px;background:#f8fafc;font-family:Arial,sans-serif;color:#111827;">
           <div style="max-width:520px;margin:0 auto;background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:40px;">
@@ -119,7 +119,7 @@ export async function POST(request: Request) {
         </div>
       `,
       text: `
-Welcome to SOMALIA MALGASHI
+Welcome to Somali Malgashi
 
 Please verify your email address to complete your account registration.
 

@@ -245,7 +245,7 @@ export async function POST(request: Request) {
   </div>
 `,
       text: `
-Reset your SOMALIA MALGASHI password
+Reset your Somali Malgashi password
 
 We received a request to reset the password for your SOMALIA MALGASHI account.
 
@@ -257,7 +257,7 @@ This link will expire in 1 hour.
 
 If you didn't request a password reset, you can safely ignore this email. Your password will not be changed.
 
-SOMALIA MALGASHI
+Somali Malgashi
 This is an automated security email.
   `,
     });
