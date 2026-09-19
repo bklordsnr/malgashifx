@@ -1,13 +1,19 @@
 {
   "Navbar": {
-    "aboutCompany": "À propos de l'entreprise",
+    "aboutCompany": "À propos",
     "faqs": "FAQ",
     "notifications": "Notifications",
-    "signIn": "Se connecter",
-    "signUp": "Créer un compte",
-    "signOut": "Se déconnecter"
+    "signIn": "Connexion",
+    "signUp": "Inscription",
+    "signOut": "Déconnexion",
+    "account": "Compte",
+    "adminPanel": "Admin",
+    "dashboard": "Accueil",
+    "users": "Utilisateurs",
+    "withdrawals": "Retraits",
+    "openMenu": "Ouvrir",
+    "closeMenu": "Fermer"
   },
-
   "Home": {
     "hero": {
       "badge": "Investissement réel",

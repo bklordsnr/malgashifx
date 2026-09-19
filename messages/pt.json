@@ -1,11 +1,18 @@
 {
   "Navbar": {
-    "aboutCompany": "Sobre a Empresa",
-    "faqs": "Perguntas Frequentes",
+    "aboutCompany": "Sobre Nós",
+    "faqs": "FAQ",
     "notifications": "Notificações",
     "signIn": "Entrar",
     "signUp": "Criar Conta",
-    "signOut": "Sair"
+    "signOut": "Sair",
+    "account": "Conta",
+    "adminPanel": "Admin",
+    "dashboard": "Início",
+    "users": "Utilizadores",
+    "withdrawals": "Levantamentos",
+    "openMenu": "Abrir",
+    "closeMenu": "Fechar"
   },
 
   "Home": {

@@ -5,7 +5,14 @@
     "notifications": "الإشعارات",
     "signIn": "تسجيل الدخول",
     "signUp": "إنشاء حساب",
-    "signOut": "تسجيل الخروج"
+    "signOut": "تسجيل الخروج",
+    "account": "الحساب",
+    "adminPanel": "لوحة الإدارة",
+    "dashboard": "لوحة التحكم",
+    "users": "المستخدمون",
+    "withdrawals": "عمليات السحب",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة"
   },
 
   "Home": {

@@ -1,11 +1,18 @@
 {
   "Navbar": {
-    "aboutCompany": "About Company",
-    "faqs": "FAQs",
-    "notifications": "Ogeysiisyada",
+    "aboutCompany": "Ku Saabsan",
+    "faqs": "Su'aalo",
+    "notifications": "Ogeysiisyo",
     "signIn": "Soo Gal",
-    "signUp": "Isdiiwaangeli",
-    "signOut": "Ka Bax"
+    "signUp": "Is Diiwaangeli",
+    "signOut": "Ka Bax",
+    "account": "Akoon",
+    "adminPanel": "Maamul",
+    "dashboard": "Guudmar",
+    "users": "Isticmaalayaal",
+    "withdrawals": "Lacag-bixin",
+    "openMenu": "Fur menu",
+    "closeMenu": "Xir menu"
   },
 
   "Home": {

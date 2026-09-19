@@ -1,11 +1,18 @@
 {
   "Navbar": {
     "aboutCompany": "ስለ ኩባንያው",
-    "faqs": "በተደጋጋሚ የሚጠየቁ ጥያቄዎች",
+    "faqs": "ተደጋጋሚ ጥያቄዎች",
     "notifications": "ማሳወቂያዎች",
     "signIn": "ግባ",
-    "signUp": "መለያ ፍጠር",
-    "signOut": "ውጣ"
+    "signUp": "ተመዝገብ",
+    "signOut": "ውጣ",
+    "account": "መለያ",
+    "adminPanel": "የአስተዳደር ፓነል",
+    "dashboard": "ዳሽቦርድ",
+    "users": "ተጠቃሚዎች",
+    "withdrawals": "የገንዘብ ማውጣቶች",
+    "openMenu": "ምናሌውን ክፈት",
+    "closeMenu": "ምናሌውን ዝጋ"
   },
 
   "Home": {

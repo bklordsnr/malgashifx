@@ -3,6 +3,7 @@
 import { useCallback, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { signOut } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { IoChevronDown } from "react-icons/io5";
 import { TbLogout2 } from "react-icons/tb";
 import { MdOutlineSupervisorAccount } from "react-icons/md";
@@ -21,6 +22,8 @@ interface UserMenuProps {
 }
 
 const UserMenu = ({ currentUser }: UserMenuProps) => {
+  const t = useTranslations("Navbar");
+
   const [isOpen, setIsOpen] = useState(false);
   const [adminOpen, setAdminOpen] = useState(false);
 
@@ -66,7 +69,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                   onClick={closeMenu}
                   icon={MdOutlineSupervisorAccount}
                 >
-                  Account
+                  {t("account")}
                 </MenuItem>
               </Link>
 
@@ -83,7 +86,8 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                         size={21}
                         className="shrink-0 transition-transform duration-200 group-hover:scale-105"
                       />
-                      <span>Admin Panel</span>
+
+                      <span>{t("adminPanel")}</span>
                     </span>
 
                     <IoChevronDown
@@ -98,7 +102,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                     <div className="mb-1 ml-9 border-l border-border pl-2">
                       <Link href="/admin" onClick={closeMenu}>
                         <MenuItem url="admin" onClick={closeMenu}>
-                          Dashboard
+                          {t("dashboard")}
                         </MenuItem>
                       </Link>
 
@@ -107,7 +111,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                           url="admin/users"
                           onClick={closeMenu}
                         >
-                          Users
+                          {t("users")}
                         </MenuItem>
                       </Link>
 
@@ -119,7 +123,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                           url="admin/withdrawals"
                           onClick={closeMenu}
                         >
-                          Withdrawals
+                          {t("withdrawals")}
                         </MenuItem>
                       </Link>
                     </div>
@@ -132,7 +136,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
               <ThemeToggle />
 
               <MenuItem icon={TbLogout2} onClick={handleSignOut}>
-                Sign Out
+                {t("signOut")}
               </MenuItem>
             </div>
           ) : (
@@ -142,7 +146,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                   onClick={closeMenu}
                   icon={HiOutlineLogout}
                 >
-                  Sign In
+                  {t("signIn")}
                 </MenuItem>
               </Link>
 
@@ -151,7 +155,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                   onClick={closeMenu}
                   icon={MdOutlineNoAccounts}
                 >
-                  Sign Up
+                  {t("signUp")}
                 </MenuItem>
               </Link>
 

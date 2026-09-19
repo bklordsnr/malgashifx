@@ -8,6 +8,7 @@ import { GrCircleInformation } from "react-icons/gr";
 import { BsPatchQuestion } from "react-icons/bs";
 import { IoChevronDown } from "react-icons/io5";
 import { signOut } from "next-auth/react";
+import { useTranslations } from "next-intl";
 
 import { SafeUser } from "@/types";
 
@@ -20,6 +21,8 @@ interface MobileProps {
 }
 
 const MobileMenu = ({ currentUser }: MobileProps) => {
+  const t = useTranslations("Navbar");
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [adminOpen, setAdminOpen] = useState(false);
 
@@ -55,7 +58,7 @@ const MobileMenu = ({ currentUser }: MobileProps) => {
       <button
         type="button"
         onClick={toggleMenu}
-        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        aria-label={menuOpen ? t("closeMenu") : t("openMenu")}
         aria-expanded={menuOpen}
         className="relative z-[70] flex h-10 w-10 items-center justify-center rounded-full lg:hidden"
       >
@@ -83,7 +86,7 @@ const MobileMenu = ({ currentUser }: MobileProps) => {
       >
         <button
           type="button"
-          aria-label="Close menu"
+          aria-label={t("closeMenu")}
           onClick={closeMenu}
           className={`absolute inset-0 bg-black/20 backdrop-blur-md transition-opacity duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
             menuOpen ? "opacity-100" : "opacity-0"
@@ -105,7 +108,7 @@ const MobileMenu = ({ currentUser }: MobileProps) => {
                       onClick={closeMenu}
                       icon={MdOutlineSupervisorAccount}
                     >
-                      Account
+                      {t("account")}
                     </MenuItem>
                   </Link>
 
@@ -122,7 +125,8 @@ const MobileMenu = ({ currentUser }: MobileProps) => {
                             size={21}
                             className="shrink-0 transition-transform duration-200 group-hover:scale-105"
                           />
-                          <span>Admin Panel</span>
+
+                          <span>{t("adminPanel")}</span>
                         </span>
 
                         <IoChevronDown
@@ -140,7 +144,7 @@ const MobileMenu = ({ currentUser }: MobileProps) => {
                               url="admin"
                               onClick={closeMenu}
                             >
-                              Dashboard
+                              {t("dashboard")}
                             </MenuItem>
                           </Link>
 
@@ -152,7 +156,7 @@ const MobileMenu = ({ currentUser }: MobileProps) => {
                               url="admin/users"
                               onClick={closeMenu}
                             >
-                              Users
+                              {t("users")}
                             </MenuItem>
                           </Link>
 
@@ -164,7 +168,7 @@ const MobileMenu = ({ currentUser }: MobileProps) => {
                               url="admin/withdrawals"
                               onClick={closeMenu}
                             >
-                              Withdrawals
+                              {t("withdrawals")}
                             </MenuItem>
                           </Link>
                         </div>
@@ -182,7 +186,7 @@ const MobileMenu = ({ currentUser }: MobileProps) => {
                   onClick={closeMenu}
                   icon={GrCircleInformation}
                 >
-                  About Company
+                  {t("aboutCompany")}
                 </MenuItem>
               </Link>
 
@@ -194,7 +198,7 @@ const MobileMenu = ({ currentUser }: MobileProps) => {
                   onClick={closeMenu}
                   icon={BsPatchQuestion}
                 >
-                  FAQs
+                  {t("faqs")}
                 </MenuItem>
               </Link>
 
@@ -212,7 +216,7 @@ const MobileMenu = ({ currentUser }: MobileProps) => {
                 variant="destructive"
                 className="h-12 w-full rounded-xl border-custom3 text-sm font-medium"
               >
-                Sign Out
+                {t("signOut")}
               </Button>
             ) : (
               <div className="flex flex-col gap-3">
@@ -222,10 +226,10 @@ const MobileMenu = ({ currentUser }: MobileProps) => {
                   className={`h-12 w-full rounded-xl border-custom2 ${buttonVariants(
                     {
                       variant: "outline",
-                    }
+                    },
                   )}`}
                 >
-                  Sign In
+                  {t("signIn")}
                 </Link>
 
                 <Link
@@ -234,10 +238,10 @@ const MobileMenu = ({ currentUser }: MobileProps) => {
                   className={`h-12 w-full rounded-xl border-custom ${buttonVariants(
                     {
                       variant: "default",
-                    }
+                    },
                   )}`}
                 >
-                  Sign Up
+                  {t("signUp")}
                 </Link>
               </div>
             )}
