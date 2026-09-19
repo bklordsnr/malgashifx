@@ -68,9 +68,9 @@ export async function POST(request: Request) {
     const resetUrl = `${baseUrl}/en/reset-password?token=${token}`;
 
     await resend.emails.send({
-      from: "SOMALIA MALGASHI <noreply@malgashitraders.xyz>",
+      from: "Somalia Malgashi <noreply@malgashitraders.xyz>",
       to: user.email,
-      subject: "Reset your SOMALIA MALGASHI password",
+      subject: "Reset your Somalia Malgashi password",
       html: `
   <div
     style="
@@ -238,7 +238,7 @@ export async function POST(request: Request) {
             color: #8a8a8a;
           "
         >
-          This is an automated security email from SOMALIA MALGASHI.
+          This is an automated security email from Somalia Malgashi.
         </p>
       </div>
     </div>
