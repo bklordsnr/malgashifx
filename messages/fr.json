@@ -309,6 +309,7 @@
     "signUp": "Créer un compte",
     "signingIn": "Connexion en cours...",
     "signIn": "Se connecter",
+    "forgotPassword": "Mot de passe oublié ?",
     "welcomeBack": "Bon retour ! ☺️",
     "somethingWentWrong": "Une erreur s'est produite. Veuillez réessayer.",
     "validation": {
@@ -324,6 +325,8 @@
     "name": "Entrez votre nom",
     "email": "Entrez votre e-mail",
     "password": "Entrez votre mot de passe",
+    "country": "Pays",
+    "number": "Numéro de téléphone",
     "alreadyHaveAccount": "Vous avez déjà un compte ?",
     "signIn": "Se connecter",
     "creatingAccount": "Création du compte...",
@@ -336,7 +339,33 @@
       "nameTooLong": "Le nom est trop long",
       "nameLettersOnly": "Le nom doit contenir uniquement des lettres",
       "invalidEmail": "Veuillez saisir une adresse e-mail valide",
-      "passwordTooShort": "Le mot de passe doit comporter au moins 6 caractères"
+      "passwordTooShort": "Le mot de passe doit comporter au moins 6 caractères",
+      "countryRequired": "Veuillez sélectionner votre pays",
+      "numberRequired": "Veuillez saisir un numéro de téléphone valide"
     }
+  },
+  "ForgotPassword": {
+    "title": "Mot de passe oublié ?",
+    "description": "Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+    "email": "Entrez votre e-mail",
+    "sendResetLink": "Envoyer le lien de réinitialisation",
+    "sending": "Envoi en cours...",
+    "success": "Si un compte existe avec cette adresse e-mail, un lien de réinitialisation du mot de passe a été envoyé.",
+    "rememberPassword": "Vous vous souvenez de votre mot de passe ?",
+    "signIn": "Se connecter",
+    "somethingWentWrong": "Une erreur s'est produite. Veuillez réessayer."
+  },
+  "ResetPassword": {
+    "title": "Réinitialiser votre mot de passe",
+    "description": "Créez un nouveau mot de passe pour votre compte.",
+    "password": "Entrez votre nouveau mot de passe",
+    "confirmPassword": "Confirmez votre nouveau mot de passe",
+    "resetPassword": "Réinitialiser le mot de passe",
+    "resetting": "Réinitialisation...",
+    "success": "Votre mot de passe a été réinitialisé avec succès.",
+    "invalidLink": "Ce lien de réinitialisation du mot de passe est invalide ou a expiré.",
+    "passwordTooShort": "Le mot de passe doit comporter au moins 6 caractères",
+    "passwordsDoNotMatch": "Les mots de passe ne correspondent pas",
+    "somethingWentWrong": "Une erreur s'est produite. Veuillez réessayer."
   }
 }

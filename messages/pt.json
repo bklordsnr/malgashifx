@@ -310,6 +310,7 @@
     "signUp": "Criar Conta",
     "signingIn": "A entrar...",
     "signIn": "Entrar",
+    "forgotPassword": "Esqueceu sua senha?",
     "welcomeBack": "Bem-vindo de volta! ☺️",
     "somethingWentWrong": "Algo correu mal. Tente novamente.",
     "validation": {
@@ -325,6 +326,8 @@
     "name": "Introduza o seu nome",
     "email": "Introduza o seu email",
     "password": "Introduza a sua palavra-passe",
+    "country": "País",
+    "number": "Número de telefone",
     "alreadyHaveAccount": "Já tem uma conta?",
     "signIn": "Entrar",
     "creatingAccount": "A criar conta...",
@@ -337,7 +340,33 @@
       "nameTooLong": "O nome é demasiado longo",
       "nameLettersOnly": "O nome deve conter apenas letras",
       "invalidEmail": "Introduza um endereço de email válido",
-      "passwordTooShort": "A palavra-passe deve ter pelo menos 6 caracteres"
+      "passwordTooShort": "A palavra-passe deve ter pelo menos 6 caracteres",
+      "countryRequired": "Selecione o seu país",
+      "numberRequired": "Insira um número de telefone válido"
     }
+  },
+  "ForgotPassword": {
+    "title": "Esqueceu sua senha?",
+    "description": "Digite seu e-mail e enviaremos um link para redefinir sua senha.",
+    "email": "Digite seu e-mail",
+    "sendResetLink": "Enviar Link de Redefinição",
+    "sending": "Enviando...",
+    "success": "Se existir uma conta com este e-mail, um link para redefinir sua senha foi enviado.",
+    "rememberPassword": "Lembra da sua senha?",
+    "signIn": "Entrar",
+    "somethingWentWrong": "Algo deu errado. Tente novamente."
+  },
+  "ResetPassword": {
+    "title": "Redefina sua senha",
+    "description": "Crie uma nova senha para sua conta.",
+    "password": "Digite sua nova senha",
+    "confirmPassword": "Confirme sua nova senha",
+    "resetPassword": "Redefinir senha",
+    "resetting": "Redefinindo...",
+    "success": "Sua senha foi redefinida com sucesso.",
+    "invalidLink": "Este link de redefinição de senha é inválido ou expirou.",
+    "passwordTooShort": "A senha deve ter pelo menos 6 caracteres",
+    "passwordsDoNotMatch": "As senhas não coincidem",
+    "somethingWentWrong": "Algo deu errado. Tente novamente."
   }
 }

@@ -37,7 +37,8 @@ model User {
   Profit          Int?         @default(0)
 
   tradingstatus   Boolean      @default(false)
-  number          String?      @default("null")
+  number          String?
+  country         String?
   clearancestatus Boolean      @default(false)
 
   image           String?
@@ -50,6 +51,7 @@ model User {
 
   accounts        Account[]
   withdrawals     Withdrawal[]
+  passwordResetTokens PasswordResetToken[]
 }
 
 model Withdrawal {
@@ -63,6 +65,19 @@ model Withdrawal {
   updatedAt   DateTime         @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model PasswordResetToken {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  token     String   @unique
+  userId    String   @db.ObjectId
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
 }
 
 enum WithdrawalStatus {

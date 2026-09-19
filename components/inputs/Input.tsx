@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import {
   type FieldErrors,
   type FieldPath,
   type FieldValues,
   type UseFormRegister,
 } from "react-hook-form";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 
 interface InputProps<T extends FieldValues> {
   id: FieldPath<T>;
@@ -26,18 +28,24 @@ const Input = <T extends FieldValues>({
   register,
   errors,
 }: InputProps<T>) => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const hasError = Boolean(errors[id]);
+  const isPassword = type === "password";
+  const inputType = isPassword && showPassword ? "text" : type;
 
   return (
     <div className="relative w-full">
       <input
         {...register(id, { required })}
         id={String(id)}
-        type={type}
+        type={inputType}
         autoComplete="off"
         disabled={disabled}
         placeholder=""
         className={`peer w-full rounded-md border bg-background px-4 py-2 pt-6 text-sm font-light text-muted-foreground transition focus:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-70 ${
+          isPassword ? "pr-11" : ""
+        } ${
           hasError
             ? "border-destructive focus:border-destructive"
             : "border-border focus:border-border"
@@ -52,6 +60,22 @@ const Input = <T extends FieldValues>({
       >
         {label}
       </label>
+
+      {isPassword && (
+        <button
+          type="button"
+          onClick={() => setShowPassword((current) => !current)}
+          disabled={disabled}
+          aria-label={showPassword ? "Hide password" : "Show password"}
+          className="absolute right-3 top-1/2 z-20 -translate-y-1/2 text-muted-foreground transition hover:text-foreground disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {showPassword ? (
+            <IoEyeOffOutline size={19} />
+          ) : (
+            <IoEyeOutline size={19} />
+          )}
+        </button>
+      )}
     </div>
   );
 };

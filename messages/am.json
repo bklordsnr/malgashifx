@@ -310,6 +310,7 @@
     "signUp": "መለያ ፍጠር",
     "signingIn": "በመግባት ላይ...",
     "signIn": "ግባ",
+    "forgotPassword": "የይለፍ ቃልዎን ረሱ?",
     "welcomeBack": "እንኳን በደህና ተመለሱ! ☺️",
     "somethingWentWrong": "አንድ ችግር ተፈጥሯል። እባክዎ እንደገና ይሞክሩ።",
     "validation": {
@@ -325,6 +326,8 @@
     "name": "ስምዎን ያስገቡ",
     "email": "ኢሜይልዎን ያስገቡ",
     "password": "የይለፍ ቃልዎን ያስገቡ",
+    "country": "አገር",
+    "number": "የስልክ ቁጥር",
     "alreadyHaveAccount": "ቀድሞውኑ መለያ አለዎት?",
     "signIn": "ግባ",
     "creatingAccount": "መለያ በመፍጠር ላይ...",
@@ -337,7 +340,33 @@
       "nameTooLong": "ስሙ በጣም ረጅም ነው",
       "nameLettersOnly": "ስም ፊደላትን ብቻ መያዝ አለበት",
       "invalidEmail": "እባክዎ ትክክለኛ የኢሜይል አድራሻ ያስገቡ",
-      "passwordTooShort": "የይለፍ ቃል ቢያንስ 6 ቁምፊዎች ሊኖሩት ይገባል"
+      "passwordTooShort": "የይለፍ ቃል ቢያንስ 6 ቁምፊዎች ሊኖሩት ይገባል",
+      "countryRequired": "እባክዎ አገርዎን ይምረጡ",
+      "numberRequired": "እባክዎ ትክክለኛ የስልክ ቁጥር ያስገቡ"
     }
+  },
+  "ForgotPassword": {
+    "title": "የይለፍ ቃልዎን ረሱ?",
+    "description": "ኢሜይል አድራሻዎን ያስገቡ፣ የይለፍ ቃልዎን ለማደስ የሚያስችል አገናኝ እንልክልዎታለን።",
+    "email": "ኢሜይልዎን ያስገቡ",
+    "sendResetLink": "የማደሻ አገናኝ ላክ",
+    "sending": "በመላክ ላይ...",
+    "success": "ለዚህ ኢሜይል አካውንት ካለ፣ የይለፍ ቃል ማደሻ አገናኝ ተልኳል።",
+    "rememberPassword": "የይለፍ ቃልዎን ያስታውሳሉ?",
+    "signIn": "ይግቡ",
+    "somethingWentWrong": "የሆነ ችግር ተፈጥሯል። እባክዎ እንደገና ይሞክሩ።"
+  },
+  "ResetPassword": {
+    "title": "የይለፍ ቃልዎን ያድሱ",
+    "description": "ለአካውንትዎ አዲስ የይለፍ ቃል ይፍጠሩ።",
+    "password": "አዲሱን የይለፍ ቃልዎን ያስገቡ",
+    "confirmPassword": "አዲሱን የይለፍ ቃልዎን ያረጋግጡ",
+    "resetPassword": "የይለፍ ቃል ያድሱ",
+    "resetting": "በማደስ ላይ...",
+    "success": "የይለፍ ቃልዎ በተሳካ ሁኔታ ታድሷል።",
+    "invalidLink": "ይህ የይለፍ ቃል ማደሻ አገናኝ ልክ አይደለም ወይም ጊዜው አልፎበታል።",
+    "passwordTooShort": "የይለፍ ቃሉ ቢያንስ 6 ቁምፊዎች መሆን አለበት",
+    "passwordsDoNotMatch": "የይለፍ ቃሎቹ አይዛመዱም",
+    "somethingWentWrong": "የሆነ ችግር ተፈጥሯል። እባክዎ እንደገና ይሞክሩ።"
   }
 }

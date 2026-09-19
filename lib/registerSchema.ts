@@ -6,6 +6,8 @@ export const createRegisterSchema = (messages: {
   nameLettersOnly: string;
   invalidEmail: string;
   passwordTooShort: string;
+  countryRequired: string;
+  numberRequired: string;
 }) =>
   z.object({
     name: z
@@ -18,6 +20,16 @@ export const createRegisterSchema = (messages: {
       .string()
       .email(messages.invalidEmail)
       .transform((value) => value.toLowerCase().trim()),
+
+    country: z
+      .string()
+      .length(2, messages.countryRequired)
+      .transform((value) => value.toUpperCase().trim()),
+
+    number: z
+      .string()
+      .trim()
+      .min(7, messages.numberRequired),
 
     password: z
       .string()

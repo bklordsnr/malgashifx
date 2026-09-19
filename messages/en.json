@@ -310,6 +310,7 @@
     "signingIn": "Signing in...",
     "signIn": "Sign In",
     "welcomeBack": "Welcome back! ☺️",
+    "forgotPassword": "Forgot password?",
     "somethingWentWrong": "Something went wrong. Please try again.",
     "validation": {
       "invalidEmail": "Please enter a valid email address",
@@ -324,6 +325,8 @@
     "name": "Enter your name",
     "email": "Enter your email",
     "password": "Enter your password",
+    "country": "Country",
+    "number": "Phone number",
     "alreadyHaveAccount": "Already have an account?",
     "signIn": "Sign In",
     "creatingAccount": "Creating account...",
@@ -336,7 +339,33 @@
       "nameTooLong": "Name is too long",
       "nameLettersOnly": "Name must contain letters only",
       "invalidEmail": "Please enter a valid email address",
-      "passwordTooShort": "Password must be at least 6 characters"
+      "passwordTooShort": "Password must be at least 6 characters",
+      "countryRequired": "Please select your country",
+      "numberRequired": "Please enter a valid phone number"
     }
+  },
+  "ForgotPassword": {
+    "title": "Forgot Your Password?",
+    "description": "Enter your email address and we'll send you a link to reset your password.",
+    "email": "Enter your email",
+    "sendResetLink": "Send Reset Link",
+    "sending": "Sending...",
+    "success": "If an account exists for this email, a password reset link has been sent.",
+    "rememberPassword": "Remember your password?",
+    "signIn": "Sign In",
+    "somethingWentWrong": "Something went wrong. Please try again."
+  },
+  "ResetPassword": {
+    "title": "Reset Your Password",
+    "description": "Create a new password for your account.",
+    "password": "Enter your new password",
+    "confirmPassword": "Confirm your new password",
+    "resetPassword": "Reset Password",
+    "resetting": "Resetting...",
+    "success": "Your password has been reset successfully.",
+    "invalidLink": "This password reset link is invalid or has expired.",
+    "passwordTooShort": "Password must be at least 6 characters",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "somethingWentWrong": "Something went wrong. Please try again."
   }
 }

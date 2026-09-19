@@ -302,6 +302,7 @@
     "signUp": "Isdiiwaangeli",
     "signingIn": "Waa la soo gelayaa...",
     "signIn": "Soo Gal",
+    "forgotPassword": "Ma illoowday erayga sirta ah?",
     "welcomeBack": "Ku soo dhawoow mar kale! ☺️",
     "somethingWentWrong": "Wax khalad ah ayaa dhacay. Fadlan mar kale isku day.",
     "validation": {
@@ -317,6 +318,8 @@
     "name": "Geli magacaaga",
     "email": "Geli iimaylkaaga",
     "password": "Geli eraygaaga sirta ah",
+    "country": "Dalka",
+    "number": "Lambarka telefoonka",
     "alreadyHaveAccount": "Akoon hore ma u leedahay?",
     "signIn": "Soo Gal",
     "creatingAccount": "Akoonka waa la samaynayaa...",
@@ -329,7 +332,33 @@
       "nameTooLong": "Magacu aad buu u dheer yahay",
       "nameLettersOnly": "Magacu waa inuu ka koobnaadaa xarfo oo keliya",
       "invalidEmail": "Fadlan geli cinwaan email oo sax ah",
-      "passwordTooShort": "Furaha sirta ah waa inuu ka koobnaadaa ugu yaraan 6 xaraf"
+      "passwordTooShort": "Furaha sirta ah waa inuu ka koobnaadaa ugu yaraan 6 xaraf",
+      "countryRequired": "Fadlan dooro dalkaaga",
+      "numberRequired": "Fadlan geli lambar telefoon oo sax ah"
     }
+  },
+  "ForgotPassword": {
+    "title": "Ma ilowday eraygaaga sirta ah?",
+    "description": "Geli iimaylkaaga, waxaana kuu soo diri doonaa xiriir aad ku cusboonaysiin karto eraygaaga sirta ah.",
+    "email": "Geli iimaylkaaga",
+    "sendResetLink": "Dir Xiriirka Dib-u-dejinta",
+    "sending": "Waa la dirayaa...",
+    "success": "Haddii akoon ku jiro iimaylkan, waxaa laguu soo diray xiriir dib loogu dejinayo eraygaaga sirta ah.",
+    "rememberPassword": "Ma xasuusataa eraygaaga sirta ah?",
+    "signIn": "Soo Gal",
+    "somethingWentWrong": "Waxbaa khaldamay. Fadlan mar kale isku day."
+  },
+  "ResetPassword": {
+    "title": "Dib u deji eraygaaga sirta ah",
+    "description": "U samee akoonkaaga eray sir ah oo cusub.",
+    "password": "Geli eraygaaga sirta ah ee cusub",
+    "confirmPassword": "Xaqiiji eraygaaga sirta ah ee cusub",
+    "resetPassword": "Dib u deji erayga sirta ah",
+    "resetting": "Waa la dib u dejinayaa...",
+    "success": "Eraygaaga sirta ah si guul leh ayaa dib loogu dejiyay.",
+    "invalidLink": "Xiriirkan dib-u-dejinta erayga sirta ah ma shaqaynayo ama wuu dhacay.",
+    "passwordTooShort": "Erayga sirta ah waa inuu ahaadaa ugu yaraan 6 xaraf",
+    "passwordsDoNotMatch": "Erayada sirta ahi isma waafaqayaan",
+    "somethingWentWrong": "Waxbaa khaldamay. Fadlan mar kale isku day."
   }
 }

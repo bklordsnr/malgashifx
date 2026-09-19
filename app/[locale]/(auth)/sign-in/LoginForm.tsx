@@ -115,6 +115,15 @@ const LoginForm = () => {
         errors={errors}
       />
 
+      <div className="flex justify-end">
+        <Link
+          href="/forgot-password"
+          className="text-sm text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground"
+        >
+          {t("forgotPassword")}
+        </Link>
+      </div>
+
       <p className="mr-auto text-sm text-muted-foreground">
         {t("noAccount")}
 
