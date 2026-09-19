@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { redirect } from "next/navigation";
+import { redirect } from "@/i18n/navigation";
 
 import { getCurrentUser } from "@/actions/GetUser";
 import Container from "@/components/Container";
@@ -7,13 +7,22 @@ import FormWrapper from "@/components/FormWrapper";
 
 import LoginForm from "./LoginForm";
 
-const SignInPage = async () => {
+type SignInPageProps = {
+  params: Promise<{
+    locale: string;
+  }>;
+};
+
+const SignInPage = async ({ params }: SignInPageProps) => {
+  const { locale } = await params;
+
   const currentUser = await getCurrentUser();
   const t = await getTranslations("SignIn");
 
-  if (currentUser) {
-    redirect("/account");
-  }
+  redirect({
+    href: "/account",
+    locale,
+  });
 
   return (
     <Container>
@@ -24,9 +33,7 @@ const SignInPage = async () => {
               {t("title")}
             </h1>
 
-            <p className="text-sm text-muted-foreground">
-              {t("description")}
-            </p>
+            <p className="text-sm text-muted-foreground">{t("description")}</p>
           </div>
 
           <FormWrapper>

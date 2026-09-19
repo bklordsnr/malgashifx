@@ -71,7 +71,6 @@ const LoginForm = () => {
 
       if (callback?.ok) {
         router.push("/account");
-        router.refresh();
         toast.success(t("welcomeBack"));
       }
 
