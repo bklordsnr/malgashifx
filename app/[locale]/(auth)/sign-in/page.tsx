@@ -19,10 +19,12 @@ const SignInPage = async ({ params }: SignInPageProps) => {
   const currentUser = await getCurrentUser();
   const t = await getTranslations("SignIn");
 
-  redirect({
-    href: "/account",
-    locale,
-  });
+  if (currentUser) {
+    redirect({
+      href: "/account",
+      locale,
+    });
+  }
 
   return (
     <Container>

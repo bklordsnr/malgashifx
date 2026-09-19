@@ -2,18 +2,14 @@
 
 import { useState } from "react";
 import { z } from "zod";
-import {
-  useForm,
-  type FieldErrors,
-  type SubmitHandler,
-} from "react-hook-form";
+import { useForm, type FieldErrors, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { FcGoogle } from "react-icons/fc";
+import { FcGoogle } from "react-icons/fc"; 
 
 import { createRegisterSchema } from "@/lib/registerSchema";
 import Input from "@/components/inputs/Input";
@@ -82,6 +78,7 @@ const RegisterForm = () => {
 
       if (callback?.ok) {
         router.push("/account");
+        router.refresh();
         toast.success(t("welcome"));
         return;
       }

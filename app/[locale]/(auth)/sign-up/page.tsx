@@ -18,10 +18,12 @@ const SignUpPage = async ({ params }: SignUnPageProps) => {
   const currentUser = await getCurrentUser();
   const t = await getTranslations("SignUp");
 
-  redirect({
-    href: "/account",
-    locale,
-  });
+  if (currentUser) {
+    redirect({
+      href: "/account",
+      locale,
+    });
+  }
 
   return (
     <Container>
