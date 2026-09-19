@@ -201,61 +201,61 @@
     "goodToSeeYou": "Heureux de vous revoir, {name}.",
 
     "balance": {
-      "total": "Solde total",
-      "leverage": "Effet de levier",
-      "investedValue": "Valeur investie",
-      "targetProfit": "Bénéfice cible"
+      "total": "Solde Total",
+      "leverage": "Effet de Levier",
+      "investedValue": "Valeur Investie",
+      "targetProfit": "Profit Cible"
     },
 
     "withdrawal": {
-      "title": "Retirer des fonds",
-      "description": "Retirez les fonds disponibles directement vers votre portefeuille mobile.",
+      "title": "Retirer des Fonds",
+      "description": "Retirez vos fonds disponibles directement vers votre portefeuille mobile.",
 
       "unavailable": "Retrait indisponible",
-      "clearanceRestriction": "Votre compte fait actuellement l'objet d'une restriction de validation. Les retraits seront disponibles une fois votre compte approuvé.",
+      "clearanceRestriction": "Votre compte est actuellement soumis à une restriction de retrait. Les retraits seront disponibles après l'approbation de votre compte.",
 
       "noBalance": "Aucun solde disponible",
-      "noBalanceDescription": "Vous devez disposer d'un solde disponible avant de pouvoir effectuer un retrait.",
+      "noBalanceDescription": "Vous devez avoir un solde disponible pour effectuer un retrait.",
 
-      "amount": "Montant du retrait",
+      "amount": "Montant du Retrait",
       "available": "Disponible : {amount}",
-      "placeholder": "0.00",
-      "minimum": "Minimum $5",
-      "maximum": "Maximum $600",
+      "placeholder": "0,00",
+      "minimum": "Minimum 5 $",
+      "maximum": "Maximum 600 $",
 
-      "mobileNumber": "Numéro de téléphone mobile",
-      "mobilePlaceholder": "Entrez le numéro de téléphone mobile",
-      "walletDetected": "Portefeuille mobile {network} détecté",
-      "supportedWallets": "Les numéros EVC, Telesom et Golis sont pris en charge.",
+      "mobileNumber": "Numéro de Téléphone",
+      "mobilePlaceholder": "Entrez le numéro",
+      "walletDetected": "Portefeuille {network} détecté",
+      "supportedWallets": "Les numéros EVC, Telesom et Golis sont acceptés.",
 
-      "button": "Retirer les fonds",
+      "button": "Retirer",
 
       "information": {
-        "title": "Informations sur le retrait",
-        "description": "Gardez vos informations de retrait exactes afin d'éviter les retards.",
-        "availableBalance": "Solde disponible",
+        "title": "Informations sur le Retrait",
+        "description": "Vérifiez vos informations de retrait pour éviter les retards.",
+        "availableBalance": "Solde Disponible",
         "minimum": "Minimum",
         "maximum": "Maximum",
-        "supportedWallets": "Portefeuilles pris en charge"
+        "supportedWallets": "Portefeuilles Acceptés"
       },
 
       "validation": {
         "invalidAmount": "Entrez un montant valide",
-        "minimum": "Le retrait minimum est de $5",
-        "maximum": "Le retrait maximum est de $600",
+        "minimum": "Le retrait minimum est de 5 $",
+        "maximum": "Le retrait maximum est de 600 $",
         "exceedsBalance": "Le montant dépasse votre solde disponible",
         "invalidPhone": "Entrez un numéro EVC, Telesom ou Golis valide"
       },
 
       "confirmation": {
         "title": "Confirmer le retrait",
-        "description": "Veuillez vérifier les informations de votre retrait avant de confirmer.",
+        "description": "Vérifiez les informations de votre retrait avant de confirmer.",
         "amount": "Montant",
-        "mobileNumber": "Numéro de téléphone mobile",
+        "mobileNumber": "Numéro de Téléphone",
         "wallet": "Portefeuille",
-        "warning": "Assurez-vous que le numéro de téléphone mobile appartient à votre portefeuille avant de confirmer ce retrait.",
+        "warning": "Assurez-vous que le numéro de téléphone appartient à votre portefeuille avant de confirmer.",
         "cancel": "Annuler",
-        "processing": "Traitement en cours...",
+        "processing": "Traitement...",
         "confirm": "Confirmer"
       },
 
@@ -263,7 +263,7 @@
         "title": "Retrait envoyé",
         "description": "Votre demande de retrait a été envoyée avec succès.",
         "amount": "Montant du retrait",
-        "remainingBalance": "Solde restant",
+        "remainingBalance": "Solde Restant",
         "done": "Terminé"
       },
 
@@ -273,24 +273,24 @@
     },
 
     "overview": {
-      "title": "Aperçu du compte",
-      "description": "État de votre compte et de votre trading",
-      "tradingStatus": "État du trading",
+      "title": "Aperçu du Compte",
+      "description": "État de votre compte et de vos opérations",
+      "tradingStatus": "État des Opérations",
       "active": "Actif",
       "inactive": "Inactif",
-      "email": "E-mail",
-      "phoneNumber": "Numéro de téléphone",
-      "clearanceStatus": "État de validation",
+      "email": "Email",
+      "phoneNumber": "Numéro de Téléphone",
+      "clearanceStatus": "État de l'Approbation",
       "approved": "Approuvé",
-      "notApproved": "Non approuvé",
-      "notProvided": "Non fourni"
+      "notApproved": "Non Approuvé",
+      "notProvided": "Non renseigné"
     },
 
     "history": {
-      "title": "Historique des retraits",
+      "title": "Historique des Retraits",
       "description": "Consultez vos demandes de retrait récentes et leur statut.",
-      "emptyTitle": "Aucun retrait pour le moment",
-      "emptyDescription": "Vos demandes de retrait apparaîtront ici dès que vous effectuerez un retrait.",
+      "emptyTitle": "Aucun retrait",
+      "emptyDescription": "Vos demandes de retrait apparaîtront ici après votre premier retrait.",
       "status": {
         "pending": "En attente",
         "approved": "Approuvé",

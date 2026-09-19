@@ -213,48 +213,48 @@
       "description": "Levante fundos disponíveis diretamente para a sua carteira móvel.",
 
       "unavailable": "Levantamento indisponível",
-      "clearanceRestriction": "A sua conta possui atualmente uma restrição de liberação. Os levantamentos ficarão disponíveis quando a sua conta for aprovada.",
+      "clearanceRestriction": "A sua conta tem atualmente uma restrição de levantamento. Os levantamentos ficarão disponíveis após a aprovação da sua conta.",
 
       "noBalance": "Sem saldo disponível",
-      "noBalanceDescription": "Precisa de ter saldo disponível antes de poder efetuar um levantamento.",
+      "noBalanceDescription": "Precisa de saldo disponível para efetuar um levantamento.",
 
       "amount": "Valor do Levantamento",
       "available": "Disponível: {amount}",
       "placeholder": "0,00",
-      "minimum": "Mínimo $5",
-      "maximum": "Máximo $600",
+      "minimum": "Mínimo 5 $",
+      "maximum": "Máximo 600 $",
 
       "mobileNumber": "Número de Telemóvel",
-      "mobilePlaceholder": "Introduza o número de telemóvel",
-      "walletDetected": "Carteira móvel {network} detetada",
-      "supportedWallets": "São suportados números EVC, Telesom e Golis.",
+      "mobilePlaceholder": "Introduza o número",
+      "walletDetected": "Carteira {network} detetada",
+      "supportedWallets": "São aceites números EVC, Telesom e Golis.",
 
-      "button": "Levantar Fundos",
+      "button": "Levantar",
 
       "information": {
-        "title": "Informações sobre o Levantamento",
+        "title": "Informações do Levantamento",
         "description": "Mantenha os seus dados de levantamento corretos para evitar atrasos.",
         "availableBalance": "Saldo Disponível",
         "minimum": "Mínimo",
         "maximum": "Máximo",
-        "supportedWallets": "Carteiras suportadas"
+        "supportedWallets": "Carteiras Aceites"
       },
 
       "validation": {
         "invalidAmount": "Introduza um valor válido",
-        "minimum": "O levantamento mínimo é de $5",
-        "maximum": "O levantamento máximo é de $600",
-        "exceedsBalance": "O valor excede o seu saldo disponível",
+        "minimum": "O levantamento mínimo é de 5 $",
+        "maximum": "O levantamento máximo é de 600 $",
+        "exceedsBalance": "O valor excede o saldo disponível",
         "invalidPhone": "Introduza um número EVC, Telesom ou Golis válido"
       },
 
       "confirmation": {
         "title": "Confirmar levantamento",
-        "description": "Reveja os dados do seu levantamento antes de confirmar.",
+        "description": "Verifique os dados do levantamento antes de confirmar.",
         "amount": "Valor",
-        "mobileNumber": "Número de telemóvel",
+        "mobileNumber": "Número de Telemóvel",
         "wallet": "Carteira",
-        "warning": "Certifique-se de que o número de telemóvel pertence à sua carteira antes de confirmar este levantamento.",
+        "warning": "Certifique-se de que o número de telemóvel pertence à sua carteira antes de confirmar.",
         "cancel": "Cancelar",
         "processing": "A processar...",
         "confirm": "Confirmar"
@@ -264,7 +264,7 @@
         "title": "Levantamento enviado",
         "description": "O seu pedido de levantamento foi enviado com sucesso.",
         "amount": "Valor do levantamento",
-        "remainingBalance": "Saldo restante",
+        "remainingBalance": "Saldo Restante",
         "done": "Concluído"
       },
 
@@ -277,21 +277,21 @@
       "title": "Visão Geral da Conta",
       "description": "Estado da sua conta e negociação",
       "tradingStatus": "Estado da Negociação",
-      "active": "Ativo",
-      "inactive": "Inativo",
+      "active": "Ativa",
+      "inactive": "Inativa",
       "email": "Email",
       "phoneNumber": "Número de Telemóvel",
-      "clearanceStatus": "Estado da Liberação",
-      "approved": "Aprovado",
-      "notApproved": "Não Aprovado",
-      "notProvided": "Não fornecido"
+      "clearanceStatus": "Estado da Aprovação",
+      "approved": "Aprovada",
+      "notApproved": "Não Aprovada",
+      "notProvided": "Não indicado"
     },
 
     "history": {
       "title": "Histórico de Levantamentos",
       "description": "Veja os seus pedidos de levantamento recentes e o respetivo estado.",
-      "emptyTitle": "Ainda não existem levantamentos",
-      "emptyDescription": "Os seus pedidos de levantamento aparecerão aqui assim que efetuar um levantamento.",
+      "emptyTitle": "Ainda sem levantamentos",
+      "emptyDescription": "Os seus pedidos de levantamento aparecerão aqui quando efetuar um levantamento.",
       "status": {
         "pending": "Pendente",
         "approved": "Aprovado",

@@ -190,86 +190,100 @@
   },
 
   "Account": {
-    "welcome": "Ku soo dhawoow 😎",
-    "goodToSeeYou": "Waa ku faraxsanahay inaan ku aragno, {name}.",
+    "welcome": "Soo Dhawoow 😎",
+    "goodToSeeYou": "Waa ku faraxsanahay inaan ku arko, {name}.",
+
     "balance": {
-      "total": "Wadarta Hadhaaga",
+      "total": "Hadhaaga Guud",
       "leverage": "Leverage",
-      "investedValue": "Qiimaha La Maalgashaday",
+      "investedValue": "Lacagta La Maalgashaday",
       "targetProfit": "Faa'iidada La Beegsanayo"
     },
+
     "withdrawal": {
       "title": "Lacag La Bax",
       "description": "Lacagta aad heli karto si toos ah ugu dir boorsadaada moobilka.",
-      "unavailable": "Lacag-la-bixid lama heli karo",
-      "clearanceRestriction": "Akoonkaaga hadda wuxuu leeyahay xannibaad oggolaansho. Lacag-la-bixiddu waxay kuu diyaar noqon doontaa marka akoonkaaga la ansixiyo.",
+
+      "unavailable": "Lacag-bixintu ma diyaar aha",
+      "clearanceRestriction": "Akoonkaagu hadda wuxuu leeyahay xannibaad lacag-bixin. Lacag-bixintu waxay diyaar noqon doontaa marka akoonkaaga la ansixiyo.",
+
       "noBalance": "Hadhaag la heli karo ma jiro",
-      "noBalanceDescription": "Waxaad u baahan tahay hadhaag la heli karo ka hor intaadan lacag la bixin.",
-      "amount": "Qadarka Lacagta La Baxayo",
+      "noBalanceDescription": "Waxaad u baahan tahay hadhaag la heli karo si aad lacag ula baxdo.",
+
+      "amount": "Qadarka Lacagta",
       "available": "La heli karo: {amount}",
       "placeholder": "0.00",
       "minimum": "Ugu yaraan $5",
       "maximum": "Ugu badnaan $600",
+
       "mobileNumber": "Lambarka Moobilka",
-      "mobilePlaceholder": "Geli lambarka moobilka",
-      "walletDetected": "Boorsada moobilka ee {network} ayaa la aqoonsaday",
-      "supportedWallets": "Lambarada EVC, Telesom, iyo Golis waa la taageeraa.",
+      "mobilePlaceholder": "Geli lambarka",
+      "walletDetected": "Boorsada {network} ayaa la aqoonsaday",
+      "supportedWallets": "Lambarada EVC, Telesom iyo Golis waa la taageeraa.",
+
       "button": "Lacag La Bax",
+
       "information": {
-        "title": "Macluumaadka Lacag-la-bixidda",
-        "description": "Xogta lacag-la-bixiddaada si sax ah u geli si looga fogaado dib-u-dhac.",
+        "title": "Macluumaadka Lacag-bixinta",
+        "description": "Hubi in xogta lacag-bixintu sax tahay si looga fogaado dib-u-dhac.",
         "availableBalance": "Hadhaaga La Heli Karo",
         "minimum": "Ugu Yar",
         "maximum": "Ugu Badan",
         "supportedWallets": "Boorsooyinka La Taageero"
       },
+
       "validation": {
         "invalidAmount": "Geli qadar sax ah",
         "minimum": "Lacagta ugu yar ee la bixi karo waa $5",
         "maximum": "Lacagta ugu badan ee la bixi karo waa $600",
-        "exceedsBalance": "Qadarku wuxuu ka badan yahay hadhaagaaga la heli karo",
-        "invalidPhone": "Geli lambar EVC, Telesom, ama Golis oo sax ah"
+        "exceedsBalance": "Qadarku wuxuu ka badan yahay hadhaagaaga",
+        "invalidPhone": "Geli lambar EVC, Telesom ama Golis oo sax ah"
       },
+
       "confirmation": {
-        "title": "Xaqiiji lacag-la-bixidda",
-        "description": "Fadlan hubi faahfaahinta lacag-la-bixiddaada ka hor intaadan xaqiijin.",
+        "title": "Xaqiiji Lacag-bixinta",
+        "description": "Fadlan hubi faahfaahinta lacag-bixinta ka hor intaadan xaqiijin.",
         "amount": "Qadar",
         "mobileNumber": "Lambarka Moobilka",
         "wallet": "Boorsada",
-        "warning": "Hubi in lambarka moobilku leeyahay boorsadaada ka hor intaadan xaqiijin lacag-la-bixidda.",
+        "warning": "Hubi in lambarka moobilku yahay lambarka boorsadaada ka hor intaadan xaqiijin.",
         "cancel": "Jooji",
-        "processing": "Waa la habaynayaa...",
+        "processing": "Waa la farsamaynayaa...",
         "confirm": "Xaqiiji"
       },
+
       "success": {
-        "title": "Codsiga lacag-la-bixidda waa la diray",
-        "description": "Codsigaaga lacag-la-bixidda si guul leh ayaa loo diray.",
-        "amount": "Qadarka lacagta la bixiyay",
-        "remainingBalance": "Hadhaaga haray",
-        "done": "Dhammay"
+        "title": "Lacag-bixinta Waa La Diray",
+        "description": "Codsigaaga lacag-bixinta si guul leh ayaa loo diray.",
+        "amount": "Qadarka Lacagta",
+        "remainingBalance": "Hadhaaga Haray",
+        "done": "Dhammaystir"
       },
+
       "errors": {
-        "generic": "Wax khalad ah ayaa dhacay. Fadlan mar kale isku day."
+        "generic": "Waxbaa khaldamay. Fadlan isku day mar kale."
       }
     },
+
     "overview": {
       "title": "Guudmarka Akoonka",
       "description": "Xaaladda akoonkaaga iyo ganacsigaaga",
       "tradingStatus": "Xaaladda Ganacsiga",
       "active": "Firfircoon",
       "inactive": "Aan Firfircoonayn",
-      "email": "Iimayl",
+      "email": "Email",
       "phoneNumber": "Lambarka Moobilka",
-      "clearanceStatus": "Xaaladda Oggolaanshaha",
+      "clearanceStatus": "Xaaladda Ansixinta",
       "approved": "La Ansixiyay",
       "notApproved": "Lama Ansixin",
       "notProvided": "Lama Bixin"
     },
+
     "history": {
-      "title": "Taariikhda Lacag-la-bixidda",
-      "description": "Eeg codsiyadaadii lacag-la-bixidda ee dhowaan iyo xaaladdooda.",
+      "title": "Taariikhda Lacag-bixinta",
+      "description": "Eeg codsiyadaadii lacag-bixinta ee dhowaan iyo xaaladdooda.",
       "emptyTitle": "Weli lacag lama bixin",
-      "emptyDescription": "Codsiyada lacag-la-bixiddaadu waxay halkan ka soo muuqan doonaan markaad lacag bixiso.",
+      "emptyDescription": "Codsiyada lacag-bixintaadu waxay halkan ka soo muuqan doonaan markaad lacag bixiso.",
       "status": {
         "pending": "Sugaya",
         "approved": "La Ansixiyay",
