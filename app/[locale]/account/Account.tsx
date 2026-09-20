@@ -1,9 +1,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
+
 import { useRouter } from "next/navigation";
+
 import { useTranslations } from "next-intl";
+
 import toast from "react-hot-toast";
+
+import CurrencyDisplay from "@/components/currency/CurrencyDisplay";
 
 import {
   FiArrowRight,
@@ -13,13 +18,17 @@ import {
   FiTrendingUp,
   FiCreditCard,
 } from "react-icons/fi";
+
 import { MdOutlineAccountBalanceWallet } from "react-icons/md";
 
 import { SafeUser } from "@/types";
+
 import { withdraw } from "@/actions/Withdraw";
+
 import { supportedWallets, type Network } from "@/config/walletConfig";
 
 import WithdrawalHistory from "./WithdrawalHistory";
+
 import { formatPrice } from "@/utils/formatPrice";
 
 interface Withdrawal {
@@ -110,7 +119,9 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
     Boolean(phoneNumber) &&
     !phoneError;
 
-  const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAmountChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const value = event.target.value;
 
     if (/^\d*\.?\d*$/.test(value)) {
@@ -118,7 +129,9 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
     }
   };
 
-  const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePhoneChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const value = event.target.value.replace(/\D/g, "");
     setPhoneNumber(value);
   };
@@ -191,6 +204,7 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
 
         {/* Balance Cards */}
         <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Total Balance */}
           <div className="rounded-2xl border-custom2 bg-background p-5">
             <div className="flex items-center justify-between">
               <span className="text-sm text-muted-foreground">
@@ -202,11 +216,19 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
               </div>
             </div>
 
-            <p className="mt-4 text-2xl font-semibold tracking-tight text-foreground">
-              {formatPrice(balance)}
-            </p>
+            <div className="mt-4">
+              <p className="text-2xl font-semibold tracking-tight text-foreground">
+                {formatPrice(balance)}
+              </p>
+
+              <CurrencyDisplay
+                amount={balance}
+                country={currentUser?.country}
+              />
+            </div>
           </div>
 
+          {/* Leverage */}
           <div className="rounded-2xl border-custom2 bg-background p-5">
             <div className="flex items-center justify-between">
               <span className="text-sm text-muted-foreground">
@@ -223,6 +245,7 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
             </p>
           </div>
 
+          {/* Invested Value */}
           <div className="rounded-2xl border-custom2 bg-background p-5">
             <div className="flex items-center justify-between">
               <span className="text-sm text-muted-foreground">
@@ -234,11 +257,19 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
               </div>
             </div>
 
-            <p className="mt-4 text-2xl font-semibold tracking-tight text-foreground">
-              {formatPrice(currentUser?.Deposit)}
-            </p>
+            <div className="mt-4">
+              <p className="text-2xl font-semibold tracking-tight text-foreground">
+                {formatPrice(currentUser?.Deposit)}
+              </p>
+
+              <CurrencyDisplay
+                amount={Number(currentUser?.Deposit ?? 0)}
+                country={currentUser?.country}
+              />
+            </div>
           </div>
 
+          {/* Target Profit */}
           <div className="rounded-2xl border-custom2 bg-background p-5">
             <div className="flex items-center justify-between">
               <span className="text-sm text-muted-foreground">
@@ -250,14 +281,22 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
               </div>
             </div>
 
-            <p className="mt-4 text-2xl font-semibold tracking-tight text-foreground">
-              {formatPrice(currentUser?.Profit)}
-            </p>
+            <div className="mt-4">
+              <p className="text-2xl font-semibold tracking-tight text-foreground">
+                {formatPrice(currentUser?.Profit)}
+              </p>
+
+              <CurrencyDisplay
+                amount={Number(currentUser?.Profit ?? 0)}
+                country={currentUser?.country}
+              />
+            </div>
           </div>
         </section>
 
         {/* Withdrawal Section */}
         <section className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[1.4fr_0.6fr]">
+          {/* Withdrawal Form */}
           <div className="rounded-2xl border-custom2 bg-background p-5 sm:p-6">
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -439,36 +478,61 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
             </div>
 
             <div className="mt-6 divide-y divide-border">
+              {/* Available Balance */}
               <div className="flex items-center justify-between gap-4 py-4 first:pt-0">
                 <span className="text-sm text-muted-foreground">
                   {t("withdrawal.information.availableBalance")}
                 </span>
 
-                <span className="text-sm font-semibold text-foreground">
-                  {formatPrice(balance)}
-                </span>
+                <div className="text-right">
+                  <span className="block text-sm font-semibold text-foreground">
+                    {formatPrice(balance)}
+                  </span>
+
+                  <CurrencyDisplay
+                    amount={balance}
+                    country={currentUser?.country}
+                  />
+                </div>
               </div>
 
+              {/* Minimum */}
               <div className="flex items-center justify-between gap-4 py-4">
                 <span className="text-sm text-muted-foreground">
                   {t("withdrawal.information.minimum")}
                 </span>
 
-                <span className="text-sm font-semibold text-foreground">
-                  $5
-                </span>
+                <div className="text-right">
+                  <span className="block text-sm font-semibold text-foreground">
+                    $5
+                  </span>
+
+                  <CurrencyDisplay
+                    amount={MIN_WITHDRAWAL}
+                    country={currentUser?.country}
+                  />
+                </div>
               </div>
 
+              {/* Maximum */}
               <div className="flex items-center justify-between gap-4 py-4">
                 <span className="text-sm text-muted-foreground">
                   {t("withdrawal.information.maximum")}
                 </span>
 
-                <span className="text-sm font-semibold text-foreground">
-                  $600
-                </span>
+                <div className="text-right">
+                  <span className="block text-sm font-semibold text-foreground">
+                    $600
+                  </span>
+
+                  <CurrencyDisplay
+                    amount={MAX_WITHDRAWAL}
+                    country={currentUser?.country}
+                  />
+                </div>
               </div>
 
+              {/* Supported Wallets */}
               <div className="flex items-center justify-between gap-4 py-4 last:pb-0">
                 <span className="text-sm text-muted-foreground">
                   {t("withdrawal.information.supportedWallets")}
@@ -497,6 +561,7 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
           </div>
 
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Trading Status */}
             <div className="rounded-xl border-custom bg-muted/20 p-4">
               <span className="text-xs text-muted-foreground">
                 {t("overview.tradingStatus")}
@@ -505,7 +570,9 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
               <div className="mt-2 flex items-center gap-2">
                 <span
                   className={`h-2 w-2 rounded-full ${
-                    isTradingActive ? "bg-primary" : "bg-muted-foreground"
+                    isTradingActive
+                      ? "bg-primary"
+                      : "bg-muted-foreground"
                   }`}
                 />
 
@@ -517,6 +584,7 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
               </div>
             </div>
 
+            {/* Email */}
             <div className="rounded-xl border-custom bg-muted/20 p-4">
               <span className="text-xs text-muted-foreground">
                 {t("overview.email")}
@@ -527,6 +595,7 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
               </p>
             </div>
 
+            {/* Phone Number */}
             <div className="rounded-xl border-custom bg-muted/20 p-4">
               <span className="text-xs text-muted-foreground">
                 {t("overview.phoneNumber")}
@@ -537,6 +606,7 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
               </p>
             </div>
 
+            {/* Clearance Status */}
             <div className="rounded-xl border-custom bg-muted/20 p-4">
               <span className="text-xs text-muted-foreground">
                 {t("overview.clearanceStatus")}
@@ -588,16 +658,25 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
             </div>
 
             <div className="mt-6 overflow-hidden rounded-xl border border-border">
+              {/* Amount */}
               <div className="flex items-center justify-between gap-4 border-b border-border px-4 py-3">
                 <span className="text-sm text-muted-foreground">
                   {t("withdrawal.confirmation.amount")}
                 </span>
 
-                <span className="text-sm font-semibold text-foreground">
-                  {formatPrice(withdrawalAmount)}
-                </span>
+                <div className="text-right">
+                  <span className="block text-sm font-semibold text-foreground">
+                    {formatPrice(withdrawalAmount)}
+                  </span>
+
+                  <CurrencyDisplay
+                    amount={withdrawalAmount}
+                    country={currentUser?.country}
+                  />
+                </div>
               </div>
 
+              {/* Mobile Number */}
               <div className="flex items-center justify-between gap-4 border-b border-border px-4 py-3">
                 <span className="text-sm text-muted-foreground">
                   {t("withdrawal.confirmation.mobileNumber")}
@@ -608,6 +687,7 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
                 </span>
               </div>
 
+              {/* Wallet */}
               <div className="flex items-center justify-between gap-4 px-4 py-3">
                 <span className="text-sm text-muted-foreground">
                   {t("withdrawal.confirmation.wallet")}
@@ -674,37 +754,60 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
             </p>
 
             <div className="mt-6 overflow-hidden rounded-xl border border-border text-left">
+              {/* Amount */}
               <div className="flex items-center justify-between gap-4 border-b border-border px-4 py-3">
                 <span className="text-sm text-muted-foreground">
                   {t("withdrawal.success.amount")}
                 </span>
 
-                <span className="text-sm font-semibold text-foreground">
-                  {formatPrice(completedWithdrawal.amount)}
-                </span>
+                <div className="text-right">
+                  <span className="block text-sm font-semibold text-foreground">
+                    {formatPrice(completedWithdrawal.amount)}
+                  </span>
+
+                  <CurrencyDisplay
+                    amount={completedWithdrawal.amount}
+                    country={currentUser?.country}
+                  />
+                </div>
               </div>
 
+              {/* Wallet */}
               <div className="flex items-center justify-between gap-4 border-b border-border px-4 py-3">
                 <span className="text-sm text-muted-foreground">
                   {t("withdrawal.confirmation.wallet")}
                 </span>
 
-                <span className="text-sm font-semibold text-foreground">
+                <span className="text-right text-sm font-semibold text-foreground">
                   {t(`wallets.${completedWithdrawal.network}`)} •{" "}
                   {completedWithdrawal.phoneNumber}
                 </span>
               </div>
 
+              {/* Remaining Balance */}
               <div className="flex items-center justify-between gap-4 px-4 py-3">
                 <span className="text-sm text-muted-foreground">
                   {t("withdrawal.success.remainingBalance")}
                 </span>
 
-                <span className="text-sm font-semibold text-foreground">
-                  {formatPrice(
-                    Math.max(0, balance - completedWithdrawal.amount),
-                  )}
-                </span>
+                <div className="text-right">
+                  <span className="block text-sm font-semibold text-foreground">
+                    {formatPrice(
+                      Math.max(
+                        0,
+                        balance - completedWithdrawal.amount,
+                      ),
+                    )}
+                  </span>
+
+                  <CurrencyDisplay
+                    amount={Math.max(
+                      0,
+                      balance - completedWithdrawal.amount,
+                    )}
+                    country={currentUser?.country}
+                  />
+                </div>
               </div>
             </div>
 
