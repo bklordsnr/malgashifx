@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -18,6 +17,7 @@ import { MdOutlineAccountBalanceWallet } from "react-icons/md";
 
 import { SafeUser } from "@/types";
 import { withdraw } from "@/actions/Withdraw";
+import { supportedWallets, type Network } from "@/config/walletConfig";
 
 import WithdrawalHistory from "./WithdrawalHistory";
 import { formatPrice } from "@/utils/formatPrice";
@@ -35,8 +35,6 @@ interface AccountProps {
   currentUser: SafeUser | null;
   withdrawals: Withdrawal[];
 }
-
-type Network = "EVC" | "Telesom" | "Golis";
 
 const MIN_WITHDRAWAL = 5;
 const MAX_WITHDRAWAL = 600;
@@ -62,11 +60,11 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
   const network = useMemo<Network | null>(() => {
     if (!phoneNumber) return null;
 
-    if (phoneNumber.startsWith("061")) return "EVC";
-    if (phoneNumber.startsWith("063")) return "Telesom";
-    if (phoneNumber.startsWith("09")) return "Golis";
+    const matchedWallet = supportedWallets.find((wallet) =>
+      wallet.prefixes.some((prefix) => phoneNumber.startsWith(prefix)),
+    );
 
-    return null;
+    return matchedWallet?.key ?? null;
   }, [phoneNumber]);
 
   const amountError = useMemo(() => {
@@ -148,7 +146,7 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
       }
 
       const newWithdrawal: Withdrawal = {
-         id: result.withdrawalId,
+        id: result.withdrawalId,
         amount: withdrawalAmount,
         phoneNumber,
         network,
@@ -180,7 +178,9 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
-          <p className="text-sm font-medium text-primary">{t("welcome")}</p>
+          <p className="text-sm font-medium text-primary">
+            {t("welcome")}
+          </p>
 
           <h1 className="mt-1 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
             {t("goodToSeeYou", {
@@ -198,7 +198,7 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
               </span>
 
               <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                <FiCreditCard  size={18} />
+                <FiCreditCard size={18} />
               </div>
             </div>
 
@@ -271,7 +271,7 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
               </div>
 
               <div className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary sm:flex">
-                <FiCreditCard  size={21} />
+                <FiCreditCard size={21} />
               </div>
             </div>
 
@@ -297,7 +297,10 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
             ) : balance <= 0 ? (
               <div className="mt-6 rounded-xl border border-border bg-muted/30 p-4">
                 <div className="flex items-start gap-3">
-                  <FiInfo size={19} className="mt-0.5 shrink-0 text-primary" />
+                  <FiInfo
+                    size={19}
+                    className="mt-0.5 shrink-0 text-primary"
+                  />
 
                   <div>
                     <p className="text-sm font-semibold text-foreground">
@@ -383,8 +386,9 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
                   {network && !phoneError && (
                     <p className="mt-2 flex items-center gap-1.5 text-xs text-primary">
                       <FiCheckCircle size={14} />
+
                       {t("withdrawal.walletDetected", {
-                        network,
+                        network: t(`wallets.${network}`),
                       })}
                     </p>
                   )}
@@ -471,7 +475,9 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
                 </span>
 
                 <span className="text-right text-sm font-semibold text-foreground">
-                  EVC, Telesom, Golis
+                  {supportedWallets
+                    .map((wallet) => t(`wallets.${wallet.key}`))
+                    .join(", ")}
                 </span>
               </div>
             </div>
@@ -527,7 +533,7 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
               </span>
 
               <p className="mt-2 text-sm font-medium text-foreground">
-                {t("overview.notProvided")}
+                {currentUser?.number || t("overview.notProvided")}
               </p>
             </div>
 
@@ -539,7 +545,9 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
               <div className="mt-2 flex items-center gap-2">
                 <span
                   className={`h-2 w-2 rounded-full ${
-                    isClearanceApproved ? "bg-primary" : "bg-muted-foreground"
+                    isClearanceApproved
+                      ? "bg-primary"
+                      : "bg-muted-foreground"
                   }`}
                 />
 
@@ -606,14 +614,17 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
                 </span>
 
                 <span className="text-sm font-semibold text-foreground">
-                  {network}
+                  {network ? t(`wallets.${network}`) : ""}
                 </span>
               </div>
             </div>
 
             <div className="mt-4 rounded-xl border border-border bg-muted/30 p-4">
               <div className="flex items-start gap-3">
-                <FiInfo size={18} className="mt-0.5 shrink-0 text-primary" />
+                <FiInfo
+                  size={18}
+                  className="mt-0.5 shrink-0 text-primary"
+                />
 
                 <p className="text-xs leading-5 text-muted-foreground">
                   {t("withdrawal.confirmation.warning")}
@@ -679,7 +690,7 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
                 </span>
 
                 <span className="text-sm font-semibold text-foreground">
-                  {completedWithdrawal.network} •{" "}
+                  {t(`wallets.${completedWithdrawal.network}`)} •{" "}
                   {completedWithdrawal.phoneNumber}
                 </span>
               </div>

@@ -207,6 +207,12 @@
       "targetProfit": "Target Profit"
     },
 
+    "wallets": {
+      "EVC": "EVC Plus",
+      "Telesom": "Telesom",
+      "Golis": "Golis"
+    },
+
     "withdrawal": {
       "title": "Withdraw Funds",
       "description": "Withdraw available funds directly to your mobile wallet.",
@@ -382,5 +388,14 @@
     "emailRequired": "Please enter your email address.",
     "resend": "Resend verification email",
     "sending": "Sending..."
+  },
+  "ThemeToggle": {
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "dark": "Dark",
+    "light": "Light",
+    "switchToDark": "Switch to dark mode",
+    "switchToLight": "Switch to light mode",
+    "theme": "Theme"
   }
 }

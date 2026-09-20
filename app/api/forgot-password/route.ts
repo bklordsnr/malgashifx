@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
 import { Resend } from "resend";
+import site from "@/config/site";
 
 import prisma from "@/lib/prismadb";
 
@@ -63,14 +64,14 @@ export async function POST(request: Request) {
       },
     });
 
-    const baseUrl = process.env.NEXTAUTH_URL || "https://malgashitraders.xyz";
+    const baseUrl = site.url;
 
     const resetUrl = `${baseUrl}/en/reset-password?token=${token}`;
 
     await resend.emails.send({
-      from: "Somalia Malgashi <noreply@malgashitraders.xyz>",
+      from: `${site.name} <${site.email}>`,
       to: user.email,
-      subject: "Reset your Somalia Malgashi password",
+      subject: `Reset your ${site.name} password`,
       html: `
   <div
     style="
@@ -104,10 +105,10 @@ export async function POST(request: Request) {
             font-size: 20px;
             font-weight: 700;
             letter-spacing: 0.3px;
-            color: #175f22;
+            color: ${site.primaryColor};
           "
         >
-          SOMALIA MALGASHI
+          Somalia Malgashi
         </div>
       </div>
 
@@ -134,7 +135,7 @@ export async function POST(request: Request) {
           "
         >
           We received a request to reset the password for your
-          SOMALIA MALGASHI account.
+          ${site.name} account.
         </p>
 
         <p
@@ -156,7 +157,7 @@ export async function POST(request: Request) {
             style="
               display: inline-block;
               padding: 13px 24px;
-              background-color: #175f22;
+              background-color: ${site.primaryColor};
               color: #ffffff;
               text-decoration: none;
               border-radius: 7px;
@@ -192,7 +193,7 @@ export async function POST(request: Request) {
           <a
             href="${resetUrl}"
             style="
-              color: #175f22;
+              color: ${site.primaryColor};
               text-decoration: underline;
             "
           >
@@ -238,16 +239,16 @@ export async function POST(request: Request) {
             color: #8a8a8a;
           "
         >
-          This is an automated security email from Somalia Malgashi.
+          This is an automated security email from ${site.name}.
         </p>
       </div>
     </div>
   </div>
 `,
       text: `
-Reset your Somali Malgashi password
+Reset your ${site.name} password
 
-We received a request to reset the password for your SOMALIA MALGASHI account.
+We received a request to reset the password for your ${site.name} account.
 
 Use the link below to create a new password:
 
@@ -257,7 +258,7 @@ This link will expire in 1 hour.
 
 If you didn't request a password reset, you can safely ignore this email. Your password will not be changed.
 
-Somali Malgashi
+${site.name}
 This is an automated security email.
   `,
     });

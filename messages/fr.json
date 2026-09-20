@@ -206,6 +206,11 @@
       "investedValue": "Valeur Investie",
       "targetProfit": "Profit Cible"
     },
+    "wallets": {
+      "EVC": "EVC Plus",
+      "Telesom": "Telesom",
+      "Golis": "Golis"
+    },
 
     "withdrawal": {
       "title": "Retirer des Fonds",
@@ -382,5 +387,14 @@
     "emailRequired": "Veuillez saisir votre adresse e-mail.",
     "resend": "Renvoyer l'e-mail de vérification",
     "sending": "Envoi..."
+  },
+  "ThemeToggle": {
+    "darkMode": "Mode sombre",
+    "lightMode": "Mode clair",
+    "dark": "Sombre",
+    "light": "Clair",
+    "switchToDark": "Passer au mode sombre",
+    "switchToLight": "Passer au mode clair",
+    "theme": "Thème"
   }
 }

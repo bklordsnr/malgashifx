@@ -199,6 +199,11 @@
       "investedValue": "Lacagta La Maalgashaday",
       "targetProfit": "Faa'iidada La Beegsanayo"
     },
+    "wallets": {
+      "EVC": "EVC Plus",
+      "Telesom": "Telesom",
+      "Golis": "Golis"
+    },
 
     "withdrawal": {
       "title": "Lacag La Bax",
@@ -375,5 +380,14 @@
     "emailRequired": "Fadlan geli cinwaankaaga iimaylka.",
     "resend": "Dib u dir iimaylka xaqiijinta",
     "sending": "Waa la dirayaa..."
+  },
+  "ThemeToggle": {
+    "darkMode": "Habka mugdiga",
+    "lightMode": "Habka iftiinka",
+    "dark": "Mugdi",
+    "light": "Iftiin",
+    "switchToDark": "U beddel habka mugdiga",
+    "switchToLight": "U beddel habka iftiinka",
+    "theme": "Habka"
   }
 }

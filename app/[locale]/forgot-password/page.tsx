@@ -17,7 +17,9 @@ const ForgotPasswordPage = async () => {
               {t("title")}
             </h1>
 
-            <p className="text-sm text-muted-foreground">{t("description")}</p>
+            <p className="text-sm text-muted-foreground">
+              {t("description")}
+            </p>
           </div>
 
           <FormWrapper>

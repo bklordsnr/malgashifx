@@ -97,7 +97,7 @@ const LoginForm = () => {
       <Button
         type="button"
         variant="outline"
-        onClick={() => signIn("google")}
+        onClick={handleGoogleSignIn}
         disabled={isLoading}
         className="flex w-full items-center gap-x-3 border-custom2"
       >

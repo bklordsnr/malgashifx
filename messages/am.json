@@ -207,6 +207,11 @@
       "investedValue": "የተዋለ ዋጋ",
       "targetProfit": "የታሰበ ትርፍ"
     },
+    "wallets": {
+      "EVC": "EVC Plus",
+      "Telesom": "Telesom",
+      "Golis": "Golis"
+    },
 
     "withdrawal": {
       "title": "ገንዘብ ያውጡ",
@@ -383,5 +388,14 @@
     "emailRequired": "እባክዎ የኢሜይል አድራሻዎን ያስገቡ።",
     "resend": "የማረጋገጫ ኢሜይልን እንደገና ላክ",
     "sending": "በመላክ ላይ..."
+  },
+  "ThemeToggle": {
+    "darkMode": "ጨለማ ሁነታ",
+    "lightMode": "ብርሃን ሁነታ",
+    "dark": "ጨለማ",
+    "light": "ብርሃን",
+    "switchToDark": "ወደ ጨለማ ሁነታ ቀይር",
+    "switchToLight": "ወደ ብርሃን ሁነታ ቀይር",
+    "theme": "ሁነታ"
   }
 }

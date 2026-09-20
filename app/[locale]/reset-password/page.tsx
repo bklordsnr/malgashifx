@@ -24,7 +24,9 @@ const ResetPasswordPage = async ({ searchParams }: ResetPasswordPageProps) => {
               {t("title")}
             </h1>
 
-            <p className="text-sm text-muted-foreground">{t("description")}</p>
+            <p className="text-sm text-muted-foreground">
+              {t("description")}
+            </p>
           </div>
 
           <FormWrapper>
@@ -35,5 +37,5 @@ const ResetPasswordPage = async ({ searchParams }: ResetPasswordPageProps) => {
     </Container>
   );
 };
-
+ 
 export default ResetPasswordPage;

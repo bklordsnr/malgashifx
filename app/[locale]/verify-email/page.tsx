@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { FiArrowRight } from "react-icons/fi";
 
 import prisma from "@/lib/prismadb";
 import Container from "@/components/Container";
@@ -95,9 +96,14 @@ const VerifyEmailPage = async ({
             {showSignIn && (
               <Link
                 href="/sign-in"
-                className="inline-block pt-2 text-sm font-medium text-primary underline underline-offset-4"
+                className="group mt-4 flex w-full items-center justify-center gap-2 rounded-md border-custom2 bg-background px-4 py-3 text-sm font-medium text-primary transition-all hover:bg-muted"
               >
-                {t("signIn")}
+                <span>{t("signIn")}</span>
+
+                <FiArrowRight
+                  size={17}
+                  className="transition-transform duration-200 group-hover:translate-x-1"
+                />
               </Link>
             )}
           </div>

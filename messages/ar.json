@@ -207,6 +207,11 @@
       "investedValue": "قيمة الاستثمار",
       "targetProfit": "الربح المستهدف"
     },
+    "wallets": {
+      "EVC": "EVC Plus",
+      "Telesom": "Telesom",
+      "Golis": "Golis"
+    },
 
     "withdrawal": {
       "title": "سحب الأموال",
@@ -383,5 +388,14 @@
     "emailRequired": "يرجى إدخال عنوان بريدك الإلكتروني.",
     "resend": "إعادة إرسال رسالة التحقق",
     "sending": "جارٍ الإرسال..."
+  },
+  "ThemeToggle": {
+    "darkMode": "الوضع الداكن",
+    "lightMode": "الوضع الفاتح",
+    "dark": "داكن",
+    "light": "فاتح",
+    "switchToDark": "التبديل إلى الوضع الداكن",
+    "switchToLight": "التبديل إلى الوضع الفاتح",
+    "theme": "المظهر"
   }
 }

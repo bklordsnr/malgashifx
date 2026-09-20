@@ -207,6 +207,11 @@
       "investedValue": "Valor Investido",
       "targetProfit": "Lucro Alvo"
     },
+    "wallets": {
+      "EVC": "EVC Plus",
+      "Telesom": "Telesom",
+      "Golis": "Golis"
+    },
 
     "withdrawal": {
       "title": "Levantar Fundos",
@@ -383,5 +388,14 @@
     "emailRequired": "Digite seu endereço de e-mail.",
     "resend": "Reenviar e-mail de verificação",
     "sending": "Enviando..."
+  },
+  "ThemeToggle": {
+    "darkMode": "Modo escuro",
+    "lightMode": "Modo claro",
+    "dark": "Escuro",
+    "light": "Claro",
+    "switchToDark": "Mudar para o modo escuro",
+    "switchToLight": "Mudar para o modo claro",
+    "theme": "Tema"
   }
 }
