@@ -1,12 +1,15 @@
 "use client";
 
 import { useState } from "react";
+
 import {
   HiOutlineCheckCircle,
   HiOutlineClock,
   HiOutlineXCircle,
 } from "react-icons/hi";
+
 import { FiArrowDownLeft } from "react-icons/fi";
+
 import toast from "react-hot-toast";
 
 import { processWithdrawal } from "@/actions/AdminWithdrawals";
@@ -15,10 +18,19 @@ import { Button } from "@/components/ui/button";
 interface Withdrawal {
   id: string;
   amount: number;
-  phoneNumber: string;
-  network: string;
+
+  // New withdrawal structure
+  method?: string | null;
+  provider?: string | null;
+  destination?: string | null;
+  network?: string | null;
+
+  // Kept for older withdrawals
+  phoneNumber?: string | null;
+
   status: "PENDING" | "APPROVED" | "REJECTED";
   createdAt: string;
+
   user: {
     id: string;
     name: string | null;
@@ -30,6 +42,13 @@ interface WithdrawalManagementProps {
   withdrawals: Withdrawal[];
 }
 
+const methodLabels: Record<string, string> = {
+  MOBILE_MONEY: "Mobile Money",
+  CRYPTO: "Cryptocurrency",
+  CARD: "Bank Card",
+  LOCAL_WALLET: "Local Wallet",
+};
+
 const formatDate = (date: string) => {
   return new Intl.DateTimeFormat("en-US", {
     dateStyle: "medium",
@@ -37,23 +56,35 @@ const formatDate = (date: string) => {
   }).format(new Date(date));
 };
 
+const getMethodLabel = (
+  method?: string | null,
+) => {
+  if (!method) {
+    return "Withdrawal";
+  }
+
+  return methodLabels[method] ?? method;
+};
+
 const WithdrawalManagement = ({
   withdrawals,
 }: WithdrawalManagementProps) => {
-  const [loadingId, setLoadingId] = useState<string | null>(null);
+  const [loadingId, setLoadingId] =
+    useState<string | null>(null);
 
   const pendingCount = withdrawals.filter(
-    (withdrawal) => withdrawal.status === "PENDING"
+    (withdrawal) =>
+      withdrawal.status === "PENDING",
   ).length;
 
   const handleAction = async (
     withdrawalId: string,
-    action: "APPROVE" | "REJECT"
+    action: "APPROVE" | "REJECT",
   ) => {
     const confirmed = window.confirm(
       action === "APPROVE"
         ? "Are you sure you want to approve this withdrawal?"
-        : "Are you sure you want to reject this withdrawal and return the amount to the user's balance?"
+        : "Are you sure you want to reject this withdrawal and return the amount to the user's balance?",
     );
 
     if (!confirmed) {
@@ -76,7 +107,9 @@ const WithdrawalManagement = ({
 
       toast.error(result.message);
     } catch {
-      toast.error("Something went wrong. Please try again.");
+      toast.error(
+        "Something went wrong. Please try again.",
+      );
     } finally {
       setLoadingId(null);
     }
@@ -84,6 +117,7 @@ const WithdrawalManagement = ({
 
   return (
     <div>
+      {/* Header */}
       <div className="mb-8">
         <p className="text-sm font-semibold uppercase tracking-wide text-primary">
           Administration
@@ -98,6 +132,7 @@ const WithdrawalManagement = ({
         </p>
       </div>
 
+      {/* Summary */}
       <div className="mb-6 grid grid-cols-3 gap-3">
         <div className="rounded-2xl border-custom2 bg-card p-4">
           <p className="text-xs font-medium text-muted-foreground">
@@ -130,6 +165,7 @@ const WithdrawalManagement = ({
         </div>
       </div>
 
+      {/* Empty State */}
       {withdrawals.length === 0 ? (
         <div className="rounded-2xl border-custom2 bg-card px-5 py-12 text-center">
           <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-muted">
@@ -144,14 +180,28 @@ const WithdrawalManagement = ({
           </h2>
 
           <p className="mt-1 text-xs text-muted-foreground">
-            Withdrawal requests will appear here when users submit them.
+            Withdrawal requests will appear here when
+            users submit them.
           </p>
         </div>
       ) : (
+        /* Withdrawal List */
         <div className="space-y-4">
           {withdrawals.map((withdrawal) => {
-            const isLoading = loadingId === withdrawal.id;
-            const isPending = withdrawal.status === "PENDING";
+            const isLoading =
+              loadingId === withdrawal.id;
+
+            const isPending =
+              withdrawal.status === "PENDING";
+
+            const methodLabel = getMethodLabel(
+              withdrawal.method,
+            );
+
+            const destination =
+              withdrawal.destination ||
+              withdrawal.phoneNumber ||
+              "—";
 
             return (
               <div
@@ -159,6 +209,7 @@ const WithdrawalManagement = ({
                 className="rounded-2xl border-custom2 bg-card p-5 sm:p-6"
               >
                 <div className="flex flex-col gap-5">
+                  {/* User + Status */}
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div className="flex min-w-0 items-center gap-3">
                       <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10">
@@ -170,59 +221,84 @@ const WithdrawalManagement = ({
 
                       <div className="min-w-0">
                         <h2 className="text-base font-semibold text-foreground">
-                          ${withdrawal.amount.toLocaleString()}
+                          $
+                          {withdrawal.amount.toLocaleString()}
                         </h2>
 
                         <p className="mt-1 truncate text-sm text-muted-foreground">
-                          {withdrawal.user.name || "Unnamed User"}
+                          {withdrawal.user.name ||
+                            "Unnamed User"}
                         </p>
 
                         <p className="truncate text-xs text-muted-foreground">
-                          {withdrawal.user.email || "No email address"}
+                          {withdrawal.user.email ||
+                            "No email address"}
                         </p>
                       </div>
                     </div>
 
-                    {withdrawal.status === "PENDING" && (
+                    {withdrawal.status ===
+                      "PENDING" && (
                       <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-yellow-500/20 bg-yellow-500/10 px-2.5 py-1 text-xs font-medium text-yellow-700">
-                        <HiOutlineClock size={14} />
+                        <HiOutlineClock
+                          size={14}
+                        />
                         Pending
                       </span>
                     )}
 
-                    {withdrawal.status === "APPROVED" && (
+                    {withdrawal.status ===
+                      "APPROVED" && (
                       <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">
-                        <HiOutlineCheckCircle size={14} />
+                        <HiOutlineCheckCircle
+                          size={14}
+                        />
                         Approved
                       </span>
                     )}
 
-                    {withdrawal.status === "REJECTED" && (
+                    {withdrawal.status ===
+                      "REJECTED" && (
                       <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-destructive/20 bg-destructive/10 px-2.5 py-1 text-xs font-medium text-destructive">
-                        <HiOutlineXCircle size={14} />
+                        <HiOutlineXCircle
+                          size={14}
+                        />
                         Rejected
                       </span>
                     )}
                   </div>
 
-                  <div className="grid gap-3 border-y border-border py-4 sm:grid-cols-3">
+                  {/* Withdrawal Details */}
+                  <div className="grid gap-4 border-y border-border py-4 sm:grid-cols-2 lg:grid-cols-4">
                     <div>
                       <p className="text-[11px] font-medium text-muted-foreground">
-                        Network
+                        Method
                       </p>
 
                       <p className="mt-1 text-sm font-medium text-foreground">
-                        {withdrawal.network}
+                        {methodLabel}
                       </p>
                     </div>
 
                     <div>
                       <p className="text-[11px] font-medium text-muted-foreground">
-                        Phone Number
+                        Provider
                       </p>
 
                       <p className="mt-1 text-sm font-medium text-foreground">
-                        {withdrawal.phoneNumber}
+                        {withdrawal.provider ||
+                          withdrawal.network ||
+                          "—"}
+                      </p>
+                    </div>
+
+                    <div>
+                      <p className="text-[11px] font-medium text-muted-foreground">
+                        Destination
+                      </p>
+
+                      <p className="mt-1 break-all text-sm font-medium text-foreground">
+                        {destination}
                       </p>
                     </div>
 
@@ -232,11 +308,27 @@ const WithdrawalManagement = ({
                       </p>
 
                       <p className="mt-1 text-sm font-medium text-foreground">
-                        {formatDate(withdrawal.createdAt)}
+                        {formatDate(
+                          withdrawal.createdAt,
+                        )}
                       </p>
                     </div>
                   </div>
 
+                  {/* Crypto Network */}
+                  {withdrawal.network && (
+                    <div className="rounded-xl bg-muted/50 px-4 py-3">
+                      <p className="text-[11px] font-medium text-muted-foreground">
+                        Network
+                      </p>
+
+                      <p className="mt-1 text-sm font-medium text-foreground">
+                        {withdrawal.network}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Actions */}
                   {isPending && (
                     <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
                       <Button
@@ -245,13 +337,15 @@ const WithdrawalManagement = ({
                         onClick={() =>
                           handleAction(
                             withdrawal.id,
-                            "REJECT"
+                            "REJECT",
                           )
                         }
                         disabled={isLoading}
                         className="h-11 border-custom3"
                       >
-                        {isLoading ? "Processing..." : "Reject"}
+                        {isLoading
+                          ? "Processing..."
+                          : "Reject"}
                       </Button>
 
                       <Button
@@ -259,13 +353,15 @@ const WithdrawalManagement = ({
                         onClick={() =>
                           handleAction(
                             withdrawal.id,
-                            "APPROVE"
+                            "APPROVE",
                           )
                         }
                         disabled={isLoading}
                         className="h-11 border-custom"
                       >
-                        {isLoading ? "Processing..." : "Approve"}
+                        {isLoading
+                          ? "Processing..."
+                          : "Approve"}
                       </Button>
                     </div>
                   )}

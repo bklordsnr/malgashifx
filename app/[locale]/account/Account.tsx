@@ -23,9 +23,12 @@ import { MdOutlineAccountBalanceWallet } from "react-icons/md";
 
 import { SafeUser } from "@/types";
 
-import { withdraw } from "@/actions/Withdraw";
+import {
+  withdraw,
+  type WithdrawalMethod,
+} from "@/actions/Withdraw";
 
-import { supportedWallets, type Network } from "@/config/walletConfig";
+import { withdrawalMethods } from "@/config/walletConfig";
 
 import WithdrawalHistory from "./WithdrawalHistory";
 
@@ -34,8 +37,11 @@ import { formatPrice } from "@/utils/formatPrice";
 interface Withdrawal {
   id: string;
   amount: number;
-  phoneNumber: string;
-  network: string;
+  phoneNumber: string | null;
+  method?: string | null;
+  provider?: string | null;
+  destination?: string | null;
+  network?: string | null;
   status: "PENDING" | "APPROVED" | "REJECTED";
   createdAt: string;
 }
@@ -48,39 +54,129 @@ interface AccountProps {
 const MIN_WITHDRAWAL = 5;
 const MAX_WITHDRAWAL = 600;
 
-const Account = ({ currentUser, withdrawals }: AccountProps) => {
+const Account = ({
+  currentUser,
+  withdrawals,
+}: AccountProps) => {
   const t = useTranslations("Account");
   const router = useRouter();
 
   const [amount, setAmount] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [showConfirmation, setShowConfirmation] = useState(false);
-  const [withdrawalComplete, setWithdrawalComplete] = useState(false);
-  const [isWithdrawing, setIsWithdrawing] = useState(false);
+
+  const [withdrawalMethod, setWithdrawalMethod] =
+    useState<WithdrawalMethod | "">("");
+
+  const [provider, setProvider] = useState("");
+
+  const [network, setNetwork] = useState("");
+
+  const [destination, setDestination] = useState("");
+
+  const [showConfirmation, setShowConfirmation] =
+    useState(false);
+
+  const [withdrawalComplete, setWithdrawalComplete] =
+    useState(false);
+
+  const [isWithdrawing, setIsWithdrawing] =
+    useState(false);
+
   const [completedWithdrawal, setCompletedWithdrawal] =
     useState<Withdrawal | null>(null);
 
-  const isTradingActive = Boolean(currentUser?.tradingstatus);
-  const isClearanceApproved = Boolean(currentUser?.clearancestatus);
+  const isTradingActive = Boolean(
+    currentUser?.tradingstatus,
+  );
 
-  const balance = Number(currentUser?.TotalBalance ?? 0);
+  const isClearanceApproved = Boolean(
+    currentUser?.clearancestatus,
+  );
+
+  const balance = Number(
+    currentUser?.TotalBalance ?? 0,
+  );
+
   const withdrawalAmount = Number(amount);
 
-  const network = useMemo<Network | null>(() => {
-    if (!phoneNumber) return null;
+  /*
+   * Get providers available for the user's country.
+   *
+   * Providers without a country restriction are
+   * available to everyone.
+   */
+  const availableProviders = useMemo(() => {
+    if (!withdrawalMethod) return [];
 
-    const matchedWallet = supportedWallets.find((wallet) =>
-      wallet.prefixes.some((prefix) => phoneNumber.startsWith(prefix)),
+    const methodConfig =
+      withdrawalMethods[withdrawalMethod];
+
+    const country =
+      currentUser?.country?.toUpperCase();
+
+    return methodConfig.providers.filter((item) => {
+      if (!("countries" in item) || !item.countries) {
+        return true;
+      }
+
+      if (!country) {
+        return false;
+      }
+
+      return item.countries.some(
+        (allowedCountry) =>
+          allowedCountry === country,
+      );
+    });
+  }, [
+    currentUser?.country,
+    withdrawalMethod,
+  ]);
+
+  /*
+   * Find the currently selected provider.
+   */
+  const selectedProvider = useMemo(() => {
+    if (!withdrawalMethod || !provider) {
+      return null;
+    }
+
+    const methodConfig =
+      withdrawalMethods[withdrawalMethod];
+
+    return (
+      methodConfig.providers.find(
+        (item) => item.key === provider,
+      ) ?? null
     );
+  }, [provider, withdrawalMethod]);
 
-    return matchedWallet?.key ?? null;
-  }, [phoneNumber]);
+  /*
+   * Crypto networks for the selected provider.
+   */
+  const availableNetworks = useMemo(() => {
+    if (
+      !selectedProvider ||
+      !("networks" in selectedProvider)
+    ) {
+      return [];
+    }
 
+    return selectedProvider.networks;
+  }, [selectedProvider]);
+
+  /*
+   * Withdrawal amount validation.
+   */
   const amountError = useMemo(() => {
     if (!amount) return null;
 
-    if (!Number.isFinite(withdrawalAmount) || withdrawalAmount <= 0) {
-      return t("withdrawal.validation.invalidAmount");
+    if (
+      !Number.isFinite(withdrawalAmount) ||
+      withdrawalAmount <= 0
+    ) {
+      return t(
+        "withdrawal.validation.invalidAmount",
+      );
     }
 
     if (withdrawalAmount < MIN_WITHDRAWAL) {
@@ -92,22 +188,64 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
     }
 
     if (withdrawalAmount > balance) {
-      return t("withdrawal.validation.exceedsBalance");
+      return t(
+        "withdrawal.validation.exceedsBalance",
+      );
     }
 
     return null;
-  }, [amount, balance, t, withdrawalAmount]);
+  }, [
+    amount,
+    balance,
+    t,
+    withdrawalAmount,
+  ]);
 
-  const phoneError = useMemo(() => {
-    if (!phoneNumber) return null;
+  /*
+   * Provider validation.
+   */
+  const providerError = useMemo(() => {
+    if (!withdrawalMethod) return null;
+
+    if (!provider) {
+      return "Please select a provider.";
+    }
+
+    return null;
+  }, [provider, withdrawalMethod]);
+
+  /*
+   * Crypto network validation.
+   */
+  const networkError = useMemo(() => {
+    if (withdrawalMethod !== "CRYPTO") {
+      return null;
+    }
 
     if (!network) {
-      return t("withdrawal.validation.invalidPhone");
+      return "Please select a network.";
     }
 
     return null;
-  }, [network, phoneNumber, t]);
+  }, [network, withdrawalMethod]);
 
+  /*
+   * Destination validation.
+   */
+  const destinationError = useMemo(() => {
+    if (!destination) return null;
+
+    if (destination.trim().length < 3) {
+      return "Please enter a valid withdrawal destination.";
+    }
+
+    return null;
+  }, [destination]);
+
+  /*
+   * Everything required before the user can
+   * open the confirmation modal.
+   */
   const canWithdraw =
     balance > 0 &&
     isClearanceApproved &&
@@ -116,8 +254,11 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
     withdrawalAmount >= MIN_WITHDRAWAL &&
     withdrawalAmount <= MAX_WITHDRAWAL &&
     withdrawalAmount <= balance &&
-    Boolean(phoneNumber) &&
-    !phoneError;
+    Boolean(withdrawalMethod) &&
+    !providerError &&
+    !networkError &&
+    Boolean(destination.trim()) &&
+    !destinationError;
 
   const handleAmountChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -129,11 +270,41 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
     }
   };
 
-  const handlePhoneChange = (
+  const handleMethodChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    const value =
+      event.target.value as
+        | WithdrawalMethod
+        | "";
+
+    setWithdrawalMethod(value);
+
+    // Changing the method resets all dependent fields.
+    setProvider("");
+    setNetwork("");
+    setDestination("");
+  };
+
+  const handleProviderChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    setProvider(event.target.value);
+
+    // Changing provider resets the network.
+    setNetwork("");
+  };
+
+  const handleNetworkChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    setNetwork(event.target.value);
+  };
+
+  const handleDestinationChange = (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    const value = event.target.value.replace(/\D/g, "");
-    setPhoneNumber(value);
+    setDestination(event.target.value);
   };
 
   const handleWithdraw = () => {
@@ -143,37 +314,73 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
   };
 
   const handleConfirmWithdrawal = async () => {
-    if (!canWithdraw || !network) return;
+    if (
+      !canWithdraw ||
+      !withdrawalMethod ||
+      !provider
+    ) {
+      return;
+    }
 
     setIsWithdrawing(true);
 
     try {
       const result = await withdraw({
         amount: withdrawalAmount,
-        phoneNumber,
+        method: withdrawalMethod,
+        provider,
+        destination: destination.trim(),
+        network:
+          withdrawalMethod === "CRYPTO"
+            ? network
+            : undefined,
       });
 
       if (!result?.success) {
-        toast.error(result?.message || t("withdrawal.errors.generic"));
+        toast.error(
+          result?.message ||
+            t("withdrawal.errors.generic"),
+        );
+
         return;
       }
 
       const newWithdrawal: Withdrawal = {
         id: result.withdrawalId,
         amount: withdrawalAmount,
-        phoneNumber,
-        network,
+
+        phoneNumber:
+          withdrawalMethod === "MOBILE_MONEY"
+            ? destination.trim()
+            : null,
+
+        method: withdrawalMethod,
+
+        provider,
+
+        destination: destination.trim(),
+
+        network:
+          withdrawalMethod === "CRYPTO"
+            ? network
+            : null,
+
         status: "PENDING",
+
         createdAt: new Date().toISOString(),
       };
 
       setCompletedWithdrawal(newWithdrawal);
+
       setShowConfirmation(false);
+
       setWithdrawalComplete(true);
 
       router.refresh();
     } catch {
-      toast.error(t("withdrawal.errors.generic"));
+      toast.error(
+        t("withdrawal.errors.generic"),
+      );
     } finally {
       setIsWithdrawing(false);
     }
@@ -181,14 +388,31 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
 
   const handleCloseSuccess = () => {
     setWithdrawalComplete(false);
+
     setCompletedWithdrawal(null);
+
     setAmount("");
-    setPhoneNumber("");
+
+    setWithdrawalMethod("");
+
+    setProvider("");
+
+    setNetwork("");
+
+    setDestination("");
   };
+
+  const methodLabel = withdrawalMethod
+    ? withdrawalMethods[withdrawalMethod].label
+    : "";
+
+  const providerLabel =
+    selectedProvider?.label ?? provider;
 
   return (
     <main className="w-full py-8 sm:py-10 lg:py-12">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+
         {/* Header */}
         <div className="mb-8">
           <p className="text-sm font-medium text-primary">
@@ -204,6 +428,7 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
 
         {/* Balance Cards */}
         <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
           {/* Total Balance */}
           <div className="rounded-2xl border-custom2 bg-background p-5">
             <div className="flex items-center justify-between">
@@ -263,7 +488,9 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
               </p>
 
               <CurrencyDisplay
-                amount={Number(currentUser?.Deposit ?? 0)}
+                amount={Number(
+                  currentUser?.Deposit ?? 0,
+                )}
                 country={currentUser?.country}
               />
             </div>
@@ -287,7 +514,9 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
               </p>
 
               <CurrencyDisplay
-                amount={Number(currentUser?.Profit ?? 0)}
+                amount={Number(
+                  currentUser?.Profit ?? 0,
+                )}
                 country={currentUser?.country}
               />
             </div>
@@ -296,8 +525,10 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
 
         {/* Withdrawal Section */}
         <section className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[1.4fr_0.6fr]">
+
           {/* Withdrawal Form */}
           <div className="rounded-2xl border-custom2 bg-background p-5 sm:p-6">
+
             <div className="flex items-start justify-between gap-4">
               <div>
                 <h2 className="text-xl font-semibold tracking-tight text-foreground">
@@ -328,7 +559,9 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
                     </p>
 
                     <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                      {t("withdrawal.clearanceRestriction")}
+                      {t(
+                        "withdrawal.clearanceRestriction",
+                      )}
                     </p>
                   </div>
                 </div>
@@ -347,13 +580,16 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
                     </p>
 
                     <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                      {t("withdrawal.noBalanceDescription")}
+                      {t(
+                        "withdrawal.noBalanceDescription",
+                      )}
                     </p>
                   </div>
                 </div>
               </div>
             ) : (
               <div className="mt-6 space-y-5">
+
                 {/* Amount */}
                 <div>
                   <div className="mb-2 flex items-center justify-between gap-3">
@@ -382,16 +618,25 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
                       inputMode="decimal"
                       value={amount}
                       onChange={handleAmountChange}
-                      placeholder={t("withdrawal.placeholder")}
+                      placeholder={t(
+                        "withdrawal.placeholder",
+                      )}
                       className={`h-12 w-full rounded-xl border-custom bg-background pl-8 pr-4 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/10 ${
-                        amountError ? "border-destructive" : ""
+                        amountError
+                          ? "border-destructive"
+                          : ""
                       }`}
                     />
                   </div>
 
                   <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
-                    <span>{t("withdrawal.minimum")}</span>
-                    <span>{t("withdrawal.maximum")}</span>
+                    <span>
+                      {t("withdrawal.minimum")}
+                    </span>
+
+                    <span>
+                      {t("withdrawal.maximum")}
+                    </span>
                   </div>
 
                   {amountError && (
@@ -401,49 +646,233 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
                   )}
                 </div>
 
-                {/* Phone Number */}
+                {/* Withdrawal Method */}
                 <div>
                   <label
-                    htmlFor="withdrawal-phone"
+                    htmlFor="withdrawal-method"
                     className="mb-2 block text-sm font-medium text-foreground"
                   >
-                    {t("withdrawal.mobileNumber")}
+                    Withdrawal Method
                   </label>
 
-                  <input
-                    id="withdrawal-phone"
-                    type="tel"
-                    inputMode="numeric"
-                    value={phoneNumber}
-                    onChange={handlePhoneChange}
-                    placeholder={t("withdrawal.mobilePlaceholder")}
-                    className={`h-12 w-full rounded-xl border-custom bg-background px-4 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/10 ${
-                      phoneError ? "border-destructive" : ""
-                    }`}
-                  />
+                  <select
+                    id="withdrawal-method"
+                    value={withdrawalMethod}
+                    onChange={handleMethodChange}
+                    className="h-12 w-full rounded-xl border-custom bg-background px-4 text-sm text-foreground outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10"
+                  >
+                    <option value="">
+                      Select withdrawal method
+                    </option>
 
-                  {network && !phoneError && (
-                    <p className="mt-2 flex items-center gap-1.5 text-xs text-primary">
-                      <FiCheckCircle size={14} />
-
-                      {t("withdrawal.walletDetected", {
-                        network: t(`wallets.${network}`),
-                      })}
-                    </p>
-                  )}
-
-                  {phoneError && (
-                    <p className="mt-2 text-xs text-destructive">
-                      {phoneError}
-                    </p>
-                  )}
-
-                  {!phoneError && !network && (
-                    <p className="mt-2 text-xs text-muted-foreground">
-                      {t("withdrawal.supportedWallets")}
-                    </p>
-                  )}
+                    {(
+                      Object.entries(
+                        withdrawalMethods,
+                      ) as [
+                        WithdrawalMethod,
+                        (typeof withdrawalMethods)[WithdrawalMethod],
+                      ][]
+                    ).map(
+                      ([key, method]) => (
+                        <option
+                          key={key}
+                          value={key}
+                        >
+                          {method.label}
+                        </option>
+                      ),
+                    )}
+                  </select>
                 </div>
+
+                {/* Provider */}
+                {withdrawalMethod && (
+                  <div>
+                    <label
+                      htmlFor="withdrawal-provider"
+                      className="mb-2 block text-sm font-medium text-foreground"
+                    >
+                      Provider
+                    </label>
+
+                    <select
+                      id="withdrawal-provider"
+                      value={provider}
+                      onChange={
+                        handleProviderChange
+                      }
+                      className={`h-12 w-full rounded-xl border-custom bg-background px-4 text-sm text-foreground outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10 ${
+                        providerError
+                          ? "border-destructive"
+                          : ""
+                      }`}
+                    >
+                      <option value="">
+                        Select provider
+                      </option>
+
+                      {availableProviders.map(
+                        (item) => (
+                          <option
+                            key={item.key}
+                            value={item.key}
+                          >
+                            {item.label}
+                          </option>
+                        ),
+                      )}
+                    </select>
+
+                    {availableProviders.length ===
+                      0 && (
+                      <p className="mt-2 text-xs text-muted-foreground">
+                        No providers are currently
+                        available for your country.
+                      </p>
+                    )}
+
+                    {providerError && (
+                      <p className="mt-2 text-xs text-destructive">
+                        {providerError}
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                {/* Crypto Network */}
+                {withdrawalMethod ===
+                  "CRYPTO" &&
+                  provider && (
+                    <div>
+                      <label
+                        htmlFor="withdrawal-network"
+                        className="mb-2 block text-sm font-medium text-foreground"
+                      >
+                        Network
+                      </label>
+
+                      <select
+                        id="withdrawal-network"
+                        value={network}
+                        onChange={
+                          handleNetworkChange
+                        }
+                        className={`h-12 w-full rounded-xl border-custom bg-background px-4 text-sm text-foreground outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10 ${
+                          networkError
+                            ? "border-destructive"
+                            : ""
+                        }`}
+                      >
+                        <option value="">
+                          Select network
+                        </option>
+
+                        {availableNetworks.map(
+                          (networkOption) => (
+                            <option
+                              key={networkOption}
+                              value={networkOption}
+                            >
+                              {networkOption}
+                            </option>
+                          ),
+                        )}
+                      </select>
+
+                      {networkError && (
+                        <p className="mt-2 text-xs text-destructive">
+                          {networkError}
+                        </p>
+                      )}
+                    </div>
+                  )}
+
+                {/* Destination */}
+                {withdrawalMethod &&
+                  provider && (
+                    <div>
+                      <label
+                        htmlFor="withdrawal-destination"
+                        className="mb-2 block text-sm font-medium text-foreground"
+                      >
+                        {withdrawalMethod ===
+                        "MOBILE_MONEY"
+                          ? "Mobile Money Number"
+                          : withdrawalMethod ===
+                              "CRYPTO"
+                            ? "Wallet Address"
+                            : withdrawalMethod ===
+                                "LOCAL_WALLET"
+                              ? "Wallet / Account Number"
+                              : "Payout Reference"}
+                      </label>
+
+                      <input
+                        id="withdrawal-destination"
+                        type="text"
+                        value={destination}
+                        onChange={
+                          handleDestinationChange
+                        }
+                        placeholder={
+                          withdrawalMethod ===
+                          "MOBILE_MONEY"
+                            ? "Enter mobile money number"
+                            : withdrawalMethod ===
+                                "CRYPTO"
+                              ? "Enter wallet address"
+                              : withdrawalMethod ===
+                                  "LOCAL_WALLET"
+                                ? "Enter wallet or account number"
+                                : "Enter your payout reference"
+                        }
+                        className={`h-12 w-full rounded-xl border-custom bg-background px-4 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/10 ${
+                          destinationError
+                            ? "border-destructive"
+                            : ""
+                        }`}
+                      />
+
+                      {destinationError && (
+                        <p className="mt-2 text-xs text-destructive">
+                          {destinationError}
+                        </p>
+                      )}
+
+                      {/* Crypto Warning */}
+                      {withdrawalMethod ===
+                        "CRYPTO" && (
+                        <div className="mt-3 flex gap-2 rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs text-amber-800">
+                          <FiInfo className="mt-0.5 shrink-0" />
+
+                          <p>
+                            Make sure the wallet
+                            address and selected
+                            network are correct.
+                            Crypto transfers may not
+                            be reversible.
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Card Warning */}
+                      {withdrawalMethod ===
+                        "CARD" && (
+                        <div className="mt-3 flex gap-2 rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs text-amber-800">
+                          <FiCreditCard className="mt-0.5 shrink-0" />
+
+                          <p>
+                            Do not enter your full
+                            card number, CVV, PIN, or
+                            other sensitive card
+                            details here. Use the payout
+                            reference provided by your
+                            supported payment provider.
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  )}
 
                 {/* Withdraw Button */}
                 <button
@@ -453,6 +882,7 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
                   className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 text-sm font-medium text-primary-foreground transition-all hover:bg-primary/90 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {t("withdrawal.button")}
+
                   <FiArrowRight size={17} />
                 </button>
               </div>
@@ -461,6 +891,7 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
 
           {/* Withdrawal Information */}
           <div className="rounded-2xl border-custom2 bg-background p-5 sm:p-6">
+
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
                 <FiInfo size={19} />
@@ -468,20 +899,27 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
 
               <div>
                 <h2 className="text-base font-semibold text-foreground">
-                  {t("withdrawal.information.title")}
+                  {t(
+                    "withdrawal.information.title",
+                  )}
                 </h2>
 
                 <p className="mt-0.5 text-xs text-muted-foreground">
-                  {t("withdrawal.information.description")}
+                  {t(
+                    "withdrawal.information.description",
+                  )}
                 </p>
               </div>
             </div>
 
             <div className="mt-6 divide-y divide-border">
+
               {/* Available Balance */}
               <div className="flex items-center justify-between gap-4 py-4 first:pt-0">
                 <span className="text-sm text-muted-foreground">
-                  {t("withdrawal.information.availableBalance")}
+                  {t(
+                    "withdrawal.information.availableBalance",
+                  )}
                 </span>
 
                 <div className="text-right">
@@ -499,7 +937,9 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
               {/* Minimum */}
               <div className="flex items-center justify-between gap-4 py-4">
                 <span className="text-sm text-muted-foreground">
-                  {t("withdrawal.information.minimum")}
+                  {t(
+                    "withdrawal.information.minimum",
+                  )}
                 </span>
 
                 <div className="text-right">
@@ -517,7 +957,9 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
               {/* Maximum */}
               <div className="flex items-center justify-between gap-4 py-4">
                 <span className="text-sm text-muted-foreground">
-                  {t("withdrawal.information.maximum")}
+                  {t(
+                    "withdrawal.information.maximum",
+                  )}
                 </span>
 
                 <div className="text-right">
@@ -532,17 +974,41 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
                 </div>
               </div>
 
-              {/* Supported Wallets */}
-              <div className="flex items-center justify-between gap-4 py-4 last:pb-0">
+              {/* Available Methods */}
+              <div className="py-4 last:pb-0">
                 <span className="text-sm text-muted-foreground">
-                  {t("withdrawal.information.supportedWallets")}
+                  Available Methods
                 </span>
 
-                <span className="text-right text-sm font-semibold text-foreground">
-                  {supportedWallets
-                    .map((wallet) => t(`wallets.${wallet.key}`))
-                    .join(", ")}
-                </span>
+                <div className="mt-3 space-y-2">
+                  {(
+                    Object.entries(
+                      withdrawalMethods,
+                    ) as [
+                      WithdrawalMethod,
+                      (typeof withdrawalMethods)[WithdrawalMethod],
+                    ][]
+                  ).map(
+                    ([key, method]) => (
+                      <div
+                        key={key}
+                        className="flex items-center justify-between rounded-lg bg-muted/30 px-3 py-2"
+                      >
+                        <span className="text-xs font-medium text-foreground">
+                          {method.label}
+                        </span>
+
+                        <span className="text-xs text-muted-foreground">
+                          {method.providers.length}{" "}
+                          {method.providers.length ===
+                          1
+                            ? "provider"
+                            : "providers"}
+                        </span>
+                      </div>
+                    ),
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -550,6 +1016,7 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
 
         {/* Account Overview */}
         <section className="mt-8 rounded-2xl border-custom2 bg-background p-5 sm:p-6">
+
           <div>
             <h2 className="text-xl font-semibold tracking-tight text-foreground">
               {t("overview.title")}
@@ -561,6 +1028,7 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
           </div>
 
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
             {/* Trading Status */}
             <div className="rounded-xl border-custom bg-muted/20 p-4">
               <span className="text-xs text-muted-foreground">
@@ -591,7 +1059,8 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
               </span>
 
               <p className="mt-2 truncate text-sm font-medium text-foreground">
-                {currentUser?.email || t("overview.notProvided")}
+                {currentUser?.email ||
+                  t("overview.notProvided")}
               </p>
             </div>
 
@@ -602,7 +1071,8 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
               </span>
 
               <p className="mt-2 text-sm font-medium text-foreground">
-                {currentUser?.number || t("overview.notProvided")}
+                {currentUser?.number ||
+                  t("overview.notProvided")}
               </p>
             </div>
 
@@ -633,22 +1103,27 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
 
         {/* Withdrawal History */}
         <section className="mt-8">
-          <WithdrawalHistory withdrawals={withdrawals} />
+          <WithdrawalHistory
+            withdrawals={withdrawals}
+          />
         </section>
       </div>
 
-      {/* Confirmation Modal */}
+      {/* Withdrawal Confirmation Modal */}
       {showConfirmation && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/50 px-5 py-8 backdrop-blur-sm">
+
           <div className="w-full max-w-md rounded-2xl border border-border bg-background p-6 shadow-2xl">
+
             <div className="flex items-start justify-between gap-4">
               <div>
                 <h2 className="text-xl font-semibold tracking-tight text-foreground">
-                  {t("withdrawal.confirmation.title")}
+                  Confirm Withdrawal
                 </h2>
 
                 <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                  {t("withdrawal.confirmation.description")}
+                  Please review your withdrawal
+                  details before confirming.
                 </p>
               </div>
 
@@ -658,15 +1133,18 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
             </div>
 
             <div className="mt-6 overflow-hidden rounded-xl border border-border">
+
               {/* Amount */}
               <div className="flex items-center justify-between gap-4 border-b border-border px-4 py-3">
                 <span className="text-sm text-muted-foreground">
-                  {t("withdrawal.confirmation.amount")}
+                  Amount
                 </span>
 
                 <div className="text-right">
                   <span className="block text-sm font-semibold text-foreground">
-                    {formatPrice(withdrawalAmount)}
+                    {formatPrice(
+                      withdrawalAmount,
+                    )}
                   </span>
 
                   <CurrencyDisplay
@@ -676,26 +1154,61 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
                 </div>
               </div>
 
-              {/* Mobile Number */}
+              {/* Method */}
               <div className="flex items-center justify-between gap-4 border-b border-border px-4 py-3">
                 <span className="text-sm text-muted-foreground">
-                  {t("withdrawal.confirmation.mobileNumber")}
+                  Method
                 </span>
 
-                <span className="text-sm font-semibold text-foreground">
-                  {phoneNumber}
+                <span className="text-right text-sm font-semibold text-foreground">
+                  {methodLabel}
                 </span>
               </div>
 
-              {/* Wallet */}
-              <div className="flex items-center justify-between gap-4 px-4 py-3">
+              {/* Provider */}
+              <div className="flex items-center justify-between gap-4 border-b border-border px-4 py-3">
                 <span className="text-sm text-muted-foreground">
-                  {t("withdrawal.confirmation.wallet")}
+                  Provider
                 </span>
 
-                <span className="text-sm font-semibold text-foreground">
-                  {network ? t(`wallets.${network}`) : ""}
+                <span className="text-right text-sm font-semibold text-foreground">
+                  {providerLabel}
                 </span>
+              </div>
+
+              {/* Network */}
+              {withdrawalMethod ===
+                "CRYPTO" &&
+                network && (
+                  <div className="flex items-center justify-between gap-4 border-b border-border px-4 py-3">
+                    <span className="text-sm text-muted-foreground">
+                      Network
+                    </span>
+
+                    <span className="text-sm font-semibold text-foreground">
+                      {network}
+                    </span>
+                  </div>
+                )}
+
+              {/* Destination */}
+              <div className="px-4 py-3">
+                <span className="text-xs text-muted-foreground">
+                  {withdrawalMethod ===
+                  "MOBILE_MONEY"
+                    ? "Mobile Money Number"
+                    : withdrawalMethod ===
+                        "CRYPTO"
+                      ? "Wallet Address"
+                      : withdrawalMethod ===
+                          "LOCAL_WALLET"
+                        ? "Wallet / Account Number"
+                        : "Payout Reference"}
+                </span>
+
+                <p className="mt-1 break-all text-sm font-semibold text-foreground">
+                  {destination}
+                </p>
               </div>
             </div>
 
@@ -707,7 +1220,8 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
                 />
 
                 <p className="text-xs leading-5 text-muted-foreground">
-                  {t("withdrawal.confirmation.warning")}
+                  Your withdrawal will be submitted
+                  for processing after confirmation.
                 </p>
               </div>
             </div>
@@ -715,112 +1229,191 @@ const Account = ({ currentUser, withdrawals }: AccountProps) => {
             <div className="mt-6 grid grid-cols-2 gap-3">
               <button
                 type="button"
-                onClick={() => setShowConfirmation(false)}
+                onClick={() =>
+                  setShowConfirmation(false)
+                }
                 disabled={isWithdrawing}
                 className="h-11 rounded-xl border-custom px-4 text-sm font-medium text-foreground transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50"
               >
-                {t("withdrawal.confirmation.cancel")}
+                Cancel
               </button>
 
               <button
                 type="button"
-                onClick={handleConfirmWithdrawal}
+                onClick={
+                  handleConfirmWithdrawal
+                }
                 disabled={isWithdrawing}
                 className="h-11 rounded-xl bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {isWithdrawing
-                  ? t("withdrawal.confirmation.processing")
-                  : t("withdrawal.confirmation.confirm")}
+                  ? "Processing..."
+                  : "Confirm"}
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* Success Modal */}
-      {withdrawalComplete && completedWithdrawal && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/50 px-5 py-8 backdrop-blur-sm">
-          <div className="w-full max-w-md rounded-2xl border border-border bg-background p-6 text-center shadow-2xl">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
-              <FiCheckCircle size={31} />
-            </div>
+      {/* Withdrawal Success Modal */}
+      {withdrawalComplete &&
+        completedWithdrawal && (
+          <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/50 px-5 py-8 backdrop-blur-sm">
 
-            <h2 className="mt-5 text-xl font-semibold tracking-tight text-foreground">
-              {t("withdrawal.success.title")}
-            </h2>
+            <div className="w-full max-w-md rounded-2xl border border-border bg-background p-6 text-center shadow-2xl">
 
-            <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-muted-foreground">
-              {t("withdrawal.success.description")}
-            </p>
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <FiCheckCircle size={31} />
+              </div>
 
-            <div className="mt-6 overflow-hidden rounded-xl border border-border text-left">
-              {/* Amount */}
-              <div className="flex items-center justify-between gap-4 border-b border-border px-4 py-3">
-                <span className="text-sm text-muted-foreground">
-                  {t("withdrawal.success.amount")}
-                </span>
+              <h2 className="mt-5 text-xl font-semibold tracking-tight text-foreground">
+                Withdrawal Submitted
+              </h2>
 
-                <div className="text-right">
-                  <span className="block text-sm font-semibold text-foreground">
-                    {formatPrice(completedWithdrawal.amount)}
+              <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-muted-foreground">
+                Your withdrawal request has been
+                submitted successfully and is now
+                pending processing.
+              </p>
+
+              <div className="mt-6 overflow-hidden rounded-xl border border-border text-left">
+
+                {/* Amount */}
+                <div className="flex items-center justify-between gap-4 border-b border-border px-4 py-3">
+                  <span className="text-sm text-muted-foreground">
+                    Amount
                   </span>
 
-                  <CurrencyDisplay
-                    amount={completedWithdrawal.amount}
-                    country={currentUser?.country}
-                  />
+                  <div className="text-right">
+                    <span className="block text-sm font-semibold text-foreground">
+                      {formatPrice(
+                        completedWithdrawal.amount,
+                      )}
+                    </span>
+
+                    <CurrencyDisplay
+                      amount={
+                        completedWithdrawal.amount
+                      }
+                      country={
+                        currentUser?.country
+                      }
+                    />
+                  </div>
                 </div>
-              </div>
 
-              {/* Wallet */}
-              <div className="flex items-center justify-between gap-4 border-b border-border px-4 py-3">
-                <span className="text-sm text-muted-foreground">
-                  {t("withdrawal.confirmation.wallet")}
-                </span>
+                {/* Method */}
+                <div className="flex items-center justify-between gap-4 border-b border-border px-4 py-3">
+                  <span className="text-sm text-muted-foreground">
+                    Method
+                  </span>
 
-                <span className="text-right text-sm font-semibold text-foreground">
-                  {t(`wallets.${completedWithdrawal.network}`)} •{" "}
-                  {completedWithdrawal.phoneNumber}
-                </span>
-              </div>
+                  <span className="text-right text-sm font-semibold text-foreground">
+                    {completedWithdrawal.method
+                      ? withdrawalMethods[
+                          completedWithdrawal
+                            .method as WithdrawalMethod
+                        ]?.label ??
+                        completedWithdrawal.method
+                      : "-"}
+                  </span>
+                </div>
 
-              {/* Remaining Balance */}
-              <div className="flex items-center justify-between gap-4 px-4 py-3">
-                <span className="text-sm text-muted-foreground">
-                  {t("withdrawal.success.remainingBalance")}
-                </span>
+                {/* Provider */}
+                <div className="flex items-center justify-between gap-4 border-b border-border px-4 py-3">
+                  <span className="text-sm text-muted-foreground">
+                    Provider
+                  </span>
 
-                <div className="text-right">
-                  <span className="block text-sm font-semibold text-foreground">
-                    {formatPrice(
-                      Math.max(
+                  <span className="text-right text-sm font-semibold text-foreground">
+                    {completedWithdrawal.provider ??
+                      "-"}
+                  </span>
+                </div>
+
+                {/* Network */}
+                {completedWithdrawal.network && (
+                  <div className="flex items-center justify-between gap-4 border-b border-border px-4 py-3">
+                    <span className="text-sm text-muted-foreground">
+                      Network
+                    </span>
+
+                    <span className="text-sm font-semibold text-foreground">
+                      {
+                        completedWithdrawal.network
+                      }
+                    </span>
+                  </div>
+                )}
+
+                {/* Destination */}
+                <div className="px-4 py-3">
+                  <span className="text-xs text-muted-foreground">
+                    Destination
+                  </span>
+
+                  <p className="mt-1 break-all text-sm font-semibold text-foreground">
+                    {completedWithdrawal.destination ??
+                      "-"}
+                  </p>
+                </div>
+
+                {/* Remaining Balance */}
+                <div className="flex items-center justify-between gap-4 border-t border-border px-4 py-3">
+                  <span className="text-sm text-muted-foreground">
+                    Remaining Balance
+                  </span>
+
+                  <div className="text-right">
+                    <span className="block text-sm font-semibold text-foreground">
+                      {formatPrice(
+                        Math.max(
+                          0,
+                          balance -
+                            completedWithdrawal.amount,
+                        ),
+                      )}
+                    </span>
+
+                    <CurrencyDisplay
+                      amount={Math.max(
                         0,
-                        balance - completedWithdrawal.amount,
-                      ),
-                    )}
-                  </span>
-
-                  <CurrencyDisplay
-                    amount={Math.max(
-                      0,
-                      balance - completedWithdrawal.amount,
-                    )}
-                    country={currentUser?.country}
-                  />
+                        balance -
+                          completedWithdrawal.amount,
+                      )}
+                      country={
+                        currentUser?.country
+                      }
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <button
-              type="button"
-              onClick={handleCloseSuccess}
-              className="mt-6 h-11 w-full rounded-xl bg-primary px-5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-            >
-              {t("withdrawal.success.done")}
-            </button>
+              <div className="mt-4 rounded-xl border border-primary/20 bg-primary/5 p-3">
+                <div className="flex items-start gap-2 text-left">
+                  <FiInfo
+                    size={16}
+                    className="mt-0.5 shrink-0 text-primary"
+                  />
+
+                  <p className="text-xs leading-5 text-muted-foreground">
+                    Your withdrawal is currently
+                    pending and will be processed
+                    after review.
+                  </p>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={handleCloseSuccess}
+                className="mt-6 h-11 w-full rounded-xl bg-primary px-5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+              >
+                Done
+              </button>
+            </div>
           </div>
-        </div>
-      )}
+        )}
     </main>
   );
 };

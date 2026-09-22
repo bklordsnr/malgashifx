@@ -59,13 +59,29 @@ model Withdrawal {
   id          String           @id @default(auto()) @map("_id") @db.ObjectId
   userId      String           @db.ObjectId
   amount      Int
-  phoneNumber String
-  network     String
+
+  // New generic withdrawal fields
+  method      WithdrawalMethod?
+  provider    String?
+  destination String?
+  network     String?
+
+  // Legacy field kept for existing withdrawals
+  phoneNumber String?
+
   status      WithdrawalStatus @default(PENDING)
+
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum WithdrawalMethod {
+  MOBILE_MONEY
+  CRYPTO
+  CARD
+  LOCAL_WALLET
 }
 
 model PasswordResetToken {

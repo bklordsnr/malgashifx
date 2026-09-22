@@ -8,27 +8,18 @@ import prisma from "@/lib/prismadb";
 const MIN_WITHDRAWAL = 5;
 const MAX_WITHDRAWAL = 600;
 
-const detectNetwork = (phoneNumber: string) => {
-  const number = phoneNumber.replace(/\s/g, "");
-
-  if (number.startsWith("061")) {
-    return "EVC";
-  }
-
-  if (number.startsWith("063")) {
-    return "Telesom";
-  }
-
-  if (number.startsWith("09")) {
-    return "Golis";
-  }
-
-  return null;
-};
+export type WithdrawalMethod =
+  | "MOBILE_MONEY"
+  | "CRYPTO"
+  | "CARD"
+  | "LOCAL_WALLET";
 
 interface WithdrawInput {
   amount: number;
-  phoneNumber: string;
+  method: WithdrawalMethod;
+  provider: string;
+  destination: string;
+  network?: string;
 }
 
 interface WithdrawSuccess {
@@ -37,8 +28,10 @@ interface WithdrawSuccess {
   balance: number;
   withdrawalId: string;
   amount: number;
-  phoneNumber: string;
-  network: string;
+  method: WithdrawalMethod;
+  provider: string;
+  destination: string;
+  network: string | null;
 }
 
 interface WithdrawFailure {
@@ -50,7 +43,10 @@ type WithdrawResult = WithdrawSuccess | WithdrawFailure;
 
 export async function withdraw({
   amount,
-  phoneNumber,
+  method,
+  provider,
+  destination,
+  network,
 }: WithdrawInput): Promise<WithdrawResult> {
   try {
     const session = await getServerSession(authOptions);
@@ -83,13 +79,35 @@ export async function withdraw({
       };
     }
 
-    const normalizedPhoneNumber = phoneNumber.replace(/\s/g, "");
-    const network = detectNetwork(normalizedPhoneNumber);
-
-    if (!network) {
+    if (!method) {
       return {
         success: false,
-        message: "Enter a valid EVC, Telesom, or Golis number.",
+        message: "Please select a withdrawal method.",
+      };
+    }
+
+    if (!provider.trim()) {
+      return {
+        success: false,
+        message: "Please select a withdrawal provider.",
+      };
+    }
+
+    if (!destination.trim()) {
+      return {
+        success: false,
+        message: "Please enter your withdrawal destination.",
+      };
+    }
+
+    const normalizedDestination = destination.trim();
+    const normalizedProvider = provider.trim();
+    const normalizedNetwork = network?.trim() || null;
+
+    if (method === "CRYPTO" && !normalizedNetwork) {
+      return {
+        success: false,
+        message: "Please select a cryptocurrency network.",
       };
     }
 
@@ -154,8 +172,18 @@ export async function withdraw({
         data: {
           userId: user.id,
           amount,
-          phoneNumber: normalizedPhoneNumber,
-          network,
+          method,
+          provider: normalizedProvider,
+          destination: normalizedDestination,
+          network: normalizedNetwork,
+
+          // Keep this populated for mobile-money withdrawals
+          // so existing parts of the application remain compatible.
+          phoneNumber:
+            method === "MOBILE_MONEY"
+              ? normalizedDestination
+              : null,
+
           status: "PENDING",
         },
       });
@@ -172,8 +200,10 @@ export async function withdraw({
       balance: result.balance,
       withdrawalId: result.withdrawalId,
       amount,
-      phoneNumber: normalizedPhoneNumber,
-      network,
+      method,
+      provider: normalizedProvider,
+      destination: normalizedDestination,
+      network: normalizedNetwork,
     };
   } catch (error) {
     console.error("WITHDRAWAL_ERROR", error);

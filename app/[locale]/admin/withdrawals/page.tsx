@@ -5,8 +5,6 @@ import Container from "@/components/Container";
 import prisma from "@/lib/prismadb";
 import WithdrawalManagement from "./WithdrawalManagement";
 
-
-
 const WithdrawalsPage = async () => {
   const admin = await requireAdmin();
 
@@ -18,13 +16,23 @@ const WithdrawalsPage = async () => {
     orderBy: {
       createdAt: "desc",
     },
+
     select: {
       id: true,
       amount: true,
-      phoneNumber: true,
+
+      // New withdrawal fields
+      method: true,
+      provider: true,
+      destination: true,
       network: true,
+
+      // Kept for older withdrawals
+      phoneNumber: true,
+
       status: true,
       createdAt: true,
+
       user: {
         select: {
           id: true,
@@ -35,10 +43,13 @@ const WithdrawalsPage = async () => {
     },
   });
 
-  const serializedWithdrawals = withdrawals.map((withdrawal) => ({
-    ...withdrawal,
-    createdAt: withdrawal.createdAt.toISOString(),
-  }));
+  const serializedWithdrawals = withdrawals.map(
+    (withdrawal) => ({
+      ...withdrawal,
+      createdAt:
+        withdrawal.createdAt.toISOString(),
+    }),
+  );
 
   return (
     <Container>
