@@ -5,12 +5,22 @@ export const withdrawalMethods = {
       {
         key: "MPESA",
         label: "M-Pesa",
-        countries: ["KE"],
+        countries: ["KE", "ET"],
       },
       {
         key: "AIRTEL_MONEY",
         label: "Airtel Money",
         countries: ["KE", "UG", "TZ"],
+      },
+      {
+        key: "VODAFONE",
+        label: "M-Pesa",
+        countries: ["MZ"],
+      },
+      {
+        key: "EMOLA",
+        label: "E-mola",
+        countries: ["MZ"],
       },
       {
         key: "EVC",
@@ -58,6 +68,11 @@ export const withdrawalMethods = {
         key: "INSTAPAY",
         label: "InstaPay",
         countries: ["EG"],
+      },
+      {
+        key: "CBE",
+        label: "Commercial Bank of Ethiopia",
+        countries: ["ET"],
       },
     ],
   },

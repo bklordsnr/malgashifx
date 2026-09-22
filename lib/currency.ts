@@ -36,6 +36,7 @@ export const COUNTRY_CURRENCY_MAP: Record<string, string> = {
   BE: "EUR",
   PT: "EUR",
   IE: "EUR",
+  MZ: "MZN",
 };
 
 export function getCurrencyFromCountry(country?: string | null) {
