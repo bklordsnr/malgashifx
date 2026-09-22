@@ -12,6 +12,11 @@ export const withdrawalMethods = {
         label: "Airtel Money",
         countries: ["KE", "UG", "TZ"],
       },
+       {
+        key: "TELEBIRR",
+        label: "Telebirr",
+        countries: ["ET"],
+      },
       {
         key: "VODAFONE",
         label: "M-Pesa",
