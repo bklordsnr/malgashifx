@@ -208,9 +208,9 @@
     },
 
     "wallets": {
-      "EVC": "EVC Plus",
-      "Telesom": "Telesom",
-      "Golis": "Golis"
+      "EVC": "Mobile-Wallet",
+      "Telesom": "Cards",
+      "Golis": "Cryptocurrency"
     },
 
     "withdrawal": {

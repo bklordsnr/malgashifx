@@ -208,9 +208,9 @@
       "targetProfit": "الربح المستهدف"
     },
     "wallets": {
-      "EVC": "EVC Plus",
-      "Telesom": "Telesom",
-      "Golis": "Golis"
+      "EVC": "Mobile-Wallet",
+      "Telesom": "Card",
+      "Golis": "cryptocurrency"
     },
 
     "withdrawal": {

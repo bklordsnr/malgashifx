@@ -200,9 +200,9 @@
       "targetProfit": "Faa'iidada La Beegsanayo"
     },
     "wallets": {
-      "EVC": "EVC Plus",
-      "Telesom": "Telesom",
-      "Golis": "Golis"
+      "EVC": "Mobile-Wallet",
+      "Telesom": "Card",
+      "Golis": "cryptocurrency"
     },
 
     "withdrawal": {
